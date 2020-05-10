@@ -1,11 +1,11 @@
 const express = require("express");
 const server = express();
 const PortNumber = 8080;
+const router = require("./router");
 
-server.get("/", (req, res)=>{
-  res.send("hi")
-});
+server.use(express.urlencoded({ extended: false }));
+server.use(express.json());
+server.use("/", router);
 
-server.listen(PORT, ()=>{
-  console.log(`Listening on port number: ${PortNumber}`)
-})
+
+module.exports = server;
