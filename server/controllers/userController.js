@@ -1,15 +1,31 @@
 const User = require('../models/userModel');
+const jwt = require('jsonwebtoken');
+
+// TOKEN EXPIRY
+const tokenLasts = '30d';
 
 exports.apiRegister = (req, res) => {
-  console.log(req.body);
+  console.log({ controller: req.body });
 
   let user = new User(req.body);
   user
     .register()
     .then(response => {
-      res.json(response);
+      res.json({
+        token: jwt.sign(
+          {
+            _id: user.data._id,
+            username: user.data.username,
+            avatar: user.avatar,
+          },
+          process.env.JWTSECRET,
+          { expiresIn: tokenLasts }
+        ),
+        username: user.data.username,
+        avatar: user.avatar,
+      });
     })
     .catch(err => {
-      res.json(err);
+      res.status(500).send('Error');
     });
 };
