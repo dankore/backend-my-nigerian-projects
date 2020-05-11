@@ -10,7 +10,7 @@ User.prototype.register = function () {
   return new Promise(async (resolve, reject) => {
    usersCollection.insertOne(this.data)
    .then(info=>{
-     console.log(info);
+     console.log(info.ops);
      resolve("User created.")
    })
   });
