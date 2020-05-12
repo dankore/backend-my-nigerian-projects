@@ -8,5 +8,6 @@ apiRouter.use(cors());
 apiRouter.get('/', (req, res) => res.json('API BACKEND'));
 apiRouter.post('/register', userController.apiRegister);
 apiRouter.post('/doesUsernameExist', userController.apiDoesUsernameExist);
+apiRouter.post('/doesEmailExist', userController.apiDoesEmailExist);
 
 module.exports = apiRouter;

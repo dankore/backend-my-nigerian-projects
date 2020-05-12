@@ -125,7 +125,7 @@ User.prototype.getAvatar = function () {
 
 User.findByUsername = function (username) {
   return new Promise((resolve, reject) => {
-    if(typeof username != 'string'){
+    if (typeof username != 'string') {
       reject();
       return;
     }
@@ -141,15 +141,36 @@ User.findByUsername = function (username) {
             username: userDoc.data.username,
             avatar: userDoc.avatar,
           };
-          console.log({ model: userDoc });
           resolve(userDoc);
-        } else{
+        } else {
           reject(false);
         }
-        
       })
       .catch(() => {
-        reject('No user');
+        reject('No user by username');
+      });
+  });
+};
+
+User.findByEmail = function (email) {
+  return new Promise((resolve, reject) => {
+    if (typeof email != 'string') {
+      reject();
+      return;
+    }
+    usersCollection
+      .findOne({
+        email: email,
+      })
+      .then(userDoc => {
+        if (userDoc) {
+          resolve(true);
+        } else {
+          resolve(false);
+        }
+      })
+      .catch(() => {
+        reject('No user by email');
       });
   });
 };

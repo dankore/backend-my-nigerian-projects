@@ -39,3 +39,13 @@ exports.apiDoesUsernameExist = (req, res) => {
       res.json(error);
     });
 };
+
+exports.apiDoesEmailExist = (req, res) => {
+  User.findByEmail(req.body.email)
+    .then(response => {
+      res.json(response);
+    })
+    .catch(error => {
+      res.json(error);
+    });
+};
