@@ -16,6 +16,22 @@ let User = class user_ {
   }
 };
 
+User.prototype.cleanUpForLogin = function () {
+  if (typeof this.data.username != 'string') {
+    this.data.username = '';
+  }
+
+  if (typeof this.data.password != 'string') {
+    this.data.password = '';
+  }
+
+  // get rid of any bogus properties
+  this.data = {
+    username: this.data.username.trim(),
+    password: this.data.password,
+  };
+};
+
 User.prototype.cleanUp = function () {
   if (typeof this.data.username != 'string') {
     this.data.username = '';
@@ -100,10 +116,9 @@ User.prototype.register = function () {
     // CLEAN AND VALIDATE DATA
     this.cleanUp();
     await this.validate();
-    console.log({ errors: this.errors });
+   
 
     if (!this.errors.length) {
-      console.log('hi from good!');
       // HASH USER PASSWORD
       let salt = bcrypt.genSaltSync();
       this.data.password = bcrypt.hashSync(this.data.password, salt);
@@ -113,7 +128,6 @@ User.prototype.register = function () {
       this.getAvatar();
       resolve('Model: User created.');
     } else {
-      console.log('hi from no good!');
       reject(this.errors);
     }
   });
@@ -177,8 +191,8 @@ User.findByEmail = function (email) {
 
 User.prototype.login = function () {
   return new Promise((resolve, reject) => {
-    // this.cleanUp();
-   
+    this.cleanUpForLogin();
+
     usersCollection
       .findOne({ username: this.data.username })
       .then(attemptedUser => {
