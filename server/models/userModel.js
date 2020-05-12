@@ -174,4 +174,26 @@ User.findByEmail = function (email) {
       });
   });
 };
+
+User.prototype.login = function () {
+  return new Promise((resolve, reject) => {
+    this.cleanUp();
+
+    usersCollection
+      .findOne({ username: this.data.username })
+      .then(attemptedUser => {
+        if (attemptedUser && bcrypt.compareSync(this.data.password, attemptedUser.password)) {
+          this.data = attemptedUser;
+          this.getAvatar();
+          resolve('Login Success!');
+        } else {
+          reject('Invalid username / password.');
+        }
+      })
+      .catch(() => {
+        reject('Please try again.');
+      });
+  });
+};
+
 module.exports = User;

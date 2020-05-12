@@ -49,3 +49,36 @@ exports.apiDoesEmailExist = (req, res) => {
       res.json(error);
     });
 };
+
+exports.apiCheckToken = (req, res) => {
+  try {
+    req.apiUser = jwt.verify(req.body.token, process.env.JWTSECRET);
+  } catch (error) {
+    res.json(false);
+  }
+};
+
+exports.apiLogin = (req, res) => {
+  let user = new User(req.body);
+
+  user
+    .login()
+    .then(response => {
+      res.json({
+        token: jwt.sign(
+          {
+            _id: user.data._id,
+            username: user.data.username,
+            avatar: user.avatar,
+          },
+          process.env.JWTSECRET,
+          { expiresIn: tokenLasts }
+        ),
+        username: user.data.username,
+        avatar: user.avatar,
+      });
+    })
+    .catch(() => {
+      res.json(false);
+    });
+};
