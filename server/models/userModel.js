@@ -103,7 +103,7 @@ User.prototype.register = function () {
     console.log({ errors: this.errors });
 
     if (!this.errors.length) {
-      console.log("hi from good!")
+      console.log('hi from good!');
       // HASH USER PASSWORD
       let salt = bcrypt.genSaltSync();
       this.data.password = bcrypt.hashSync(this.data.password, salt);
@@ -123,4 +123,34 @@ User.prototype.getAvatar = function () {
   this.avatar = `https://gravatar.com/avatar/${md5(this.data.email)}?s=128`;
 };
 
+User.findByUsername = function (username) {
+  return new Promise((resolve, reject) => {
+    if(typeof username != 'string'){
+      reject();
+      return;
+    }
+    usersCollection
+      .findOne({
+        username: username,
+      })
+      .then(userDoc => {
+        if (userDoc) {
+          userDoc = new User(userDoc, true);
+          userDoc = {
+            _id: userDoc.data._id,
+            username: userDoc.data.username,
+            avatar: userDoc.avatar,
+          };
+          console.log({ model: userDoc });
+          resolve(userDoc);
+        } else{
+          reject(false);
+        }
+        
+      })
+      .catch(() => {
+        reject('No user');
+      });
+  });
+};
 module.exports = User;

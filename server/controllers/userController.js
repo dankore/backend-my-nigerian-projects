@@ -29,3 +29,13 @@ exports.apiRegister = (req, res) => {
       res.status(500).send('Error');
     });
 };
+
+exports.apiDoesUsernameExist = (req, res) => {
+  User.findByUsername(req.body.username)
+    .then(() => {
+      res.json(true);
+    })
+    .catch(error => {
+      res.json(error);
+    });
+};
