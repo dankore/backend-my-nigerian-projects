@@ -177,8 +177,8 @@ User.findByEmail = function (email) {
 
 User.prototype.login = function () {
   return new Promise((resolve, reject) => {
-    this.cleanUp();
-
+    // this.cleanUp();
+   
     usersCollection
       .findOne({ username: this.data.username })
       .then(attemptedUser => {
