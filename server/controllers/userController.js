@@ -1,4 +1,6 @@
 const User = require('../models/userModel');
+const Bid = require('../models/bidModel');
+const Follow = require('../models/followModel')
 const jwt = require('jsonwebtoken');
 
 // TOKEN EXPIRY
@@ -142,7 +144,7 @@ exports.apiGetBidsByUsername = async (req, res) => {
 
 exports.profileFollowers = async (req, res) => {
   try {
-    let followers = await Follow.getFollowerById(req.profileUser._id);
+    let followers = await Follow.getFollowersById(req.profileUser._id);
     res.json(followers);
   } catch {
     res.status(500).send('Invalid follower requested.');

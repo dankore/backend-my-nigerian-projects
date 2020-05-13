@@ -19,4 +19,6 @@ apiRouter.post('/profile/:username', userController.ifUserExists, userController
 apiRouter.get('/profile/:username/bids', userController.ifUserExists, userController.apiGetBidsByUsername);
 apiRouter.get('/profile/:username/followers', userController.ifUserExists, userController.profileFollowers);
 apiRouter.get('/profile/:username/following', userController.ifUserExists, userController.profileFollowing);
+
+// EXPORT ROUTER CODE
 module.exports = apiRouter;
