@@ -1,5 +1,5 @@
-const bidsCollection = require('../db').db().collection('bids');
-const followsCollection = require('../db').db().collection('follows');
+const bidsCollection = require('../../db').db().collection('bids');
+const followsCollection = require('../../db').db().collection('follows');
 const ObjectID = require('mongodb').ObjectID;
 const User = require('./userModel');
 const sanitizeHTML = require('sanitize-html');
@@ -88,7 +88,7 @@ Bid.prototype.actuallyUpdate = function () {
   });
 };
 
-bid.reusableBidQuery = function (uniqueOperations, visitorId) {
+Bid.reusableBidQuery = function (uniqueOperations, visitorId) {
   return new Promise(async function (resolve, reject) {
     let aggOperations = uniqueOperations.concat([
       { $lookup: { from: 'users', localField: 'author', foreignField: '_id', as: 'authorDocument' } },
@@ -129,7 +129,7 @@ Bid.findSingleById = function (id, visitorId) {
       return;
     }
 
-    let bids = await bid.reusableBidQuery([{ $match: { _id: new ObjectID(id) } }], visitorId);
+    let bids = await Bid.reusableBidQuery([{ $match: { _id: new ObjectID(id) } }], visitorId);
 
     if (bids.length) {
       resolve(bids[0]);
@@ -140,7 +140,7 @@ Bid.findSingleById = function (id, visitorId) {
 };
 
 Bid.findByAuthorId = function (authorId) {
-  return bid.reusableBidQuery([{ $match: { author: authorId } }, { $sort: { createdDate: -1 } }]);
+  return Bid.reusableBidQuery([{ $match: { author: authorId } }, { $sort: { createdDate: -1 } }]);
 };
 
 Bid.delete = function (bidIdToDelete, currentUserId) {
@@ -162,7 +162,7 @@ Bid.delete = function (bidIdToDelete, currentUserId) {
 Bid.search = function (searchTerm) {
   return new Promise(async (resolve, reject) => {
     if (typeof searchTerm == 'string') {
-      let bids = await bid.reusableBidQuery([{ $match: { $text: { $search: searchTerm } } }, { $sort: { score: { $meta: 'textScore' } } }]);
+      let bids = await Bid.reusableBidQuery([{ $match: { $text: { $search: searchTerm } } }, { $sort: { score: { $meta: 'textScore' } } }]);
       resolve(bids);
     } else {
       reject();
@@ -185,7 +185,7 @@ Bid.getFeed = async function (id) {
   });
 
   // look for bids where the author is in the above array of followed users
-  return bid.reusableBidQuery([{ $match: { author: { $in: followedUsers } } }, { $sort: { createdDate: -1 } }]);
+  return Bid.reusableBidQuery([{ $match: { author: { $in: followedUsers } } }, { $sort: { createdDate: -1 } }]);
 };
 
 module.exports = Bid;

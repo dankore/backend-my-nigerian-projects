@@ -151,7 +151,7 @@ exports.profileFollowers = async (req, res) => {
   }
 };
 
-exports.profileFollowing = (req, res) =>{
+exports.profileFollowing = async (req, res) =>{
    try {
     let following = await Follow.getFollowingById(req.profileUser._id);
     res.json(following);
