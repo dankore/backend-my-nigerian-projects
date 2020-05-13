@@ -86,3 +86,74 @@ exports.apiLogin = (req, res) => {
       res.json(false);
     });
 };
+
+exports.ifUserExists = (req, res, next) => {
+  User.findByUsername(req.params.username)
+    .then(userDoc => {
+      req.profileUser = userDoc;
+      next();
+    })
+    .catch(() => {
+      res.json(false);
+    });
+};
+
+exports.profileBasicData = (req, res) => {
+  res.json({
+    profileUsername: req.profileUser.username,
+    profileAvatar: req.profileUser.avatar,
+    isFollowing: req.isFollowing,
+    counts: { bidCount: req.bidCount, followerCount: req.followerCount, followingCount: req.followingCount },
+  });
+};
+
+exports.sharedProfileData = async (req, res, next) => {
+  let viewerId;
+  try {
+    viewer = jwt.verify(req.body.token, process.env.JWTSECRET);
+    viewerId = viewer._id;
+  } catch {
+    viewerId = 0;
+  }
+
+  req.isFollowing = await Follow.isVisitorFollowing(req.profileUser._id, viewerId);
+
+  let bidCountPromise = Bid.countBidsByAuthor(req.profileUser._id);
+  let followerCountPromise = Follow.countFollowersById(req.profileUser._id);
+  let followingCountPromise = Follow.countFollowingById(req.profileUser._id);
+  let [bidCount, followerCount, followingCount] = await Promise.all([bidCountPromise, followerCountPromise, followingCountPromise]);
+
+  req.bidCount = bidCount;
+  req.followerCount = followerCount;
+  req.followingCount = followingCount;
+
+  next();
+};
+
+exports.apiGetBidsByUsername = async (req, res) => {
+  try {
+    let authorDoc = await User.findByUsername(req.params.username);
+    let bids = await bids.findByAuthorId(authorDoc._id);
+    res.json(bids);
+  } catch {
+    res.status(500).send('Invalid user requested.');
+  }
+};
+
+exports.profileFollowers = async (req, res) => {
+  try {
+    let followers = await Follow.getFollowerById(req.profileUser._id);
+    res.json(followers);
+  } catch {
+    res.status(500).send('Invalid follower requested.');
+  }
+};
+
+exports.profileFollowing = (req, res) =>{
+   try {
+    let following = await Follow.getFollowingById(req.profileUser._id);
+    res.json(following);
+  } catch {
+    res.status(500).send('Invalid following requested.');
+  }
+}
