@@ -22,6 +22,8 @@ exports.apiRegister = (req, res) => {
           { expiresIn: tokenLasts }
         ),
         username: user.data.username,
+        firstName: user.data.firstName,
+        lastName: user.data.lastName,
         avatar: user.avatar,
       });
     })
@@ -60,7 +62,7 @@ exports.apiCheckToken = (req, res) => {
 
 exports.apiLogin = (req, res) => {
   let user = new User(req.body);
-  
+
   user
     .login()
     .then(response => {
@@ -75,6 +77,8 @@ exports.apiLogin = (req, res) => {
           { expiresIn: tokenLasts }
         ),
         username: user.data.username,
+        firstName: user.data.firstName,
+        lastName: user.data.lastName,
         avatar: user.avatar,
       });
     })
