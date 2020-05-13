@@ -159,3 +159,21 @@ exports.profileFollowing = (req, res) =>{
     res.status(500).send('Invalid following requested.');
   }
 }
+
+exports.apiMustBeLoggedIn = function (req, res, next) {
+  try {
+    req.apiUser = jwt.verify(req.body.token, process.env.JWTSECRET)
+    next()
+  } catch {
+    res.status(500).send("Sorry, you must provide a valid token.")
+  }
+}
+
+exports.apiGetHomeFeed = async function (req, res) {
+  try {
+    let bids = await Bid.getFeed(req.apiUser._id)
+    res.json(bids)
+  } catch {
+    res.status(500).send("Error")
+  }
+}
