@@ -112,6 +112,8 @@ Bid.reusableBidQuery = function (uniqueOperations, visitorId) {
 
       bid.author = {
         username: bid.author.username,
+        firstName: bid.author.firstName,
+        lastName: bid.author.lastName,
         avatar: new User(bid.author, true).avatar,
       };
 
