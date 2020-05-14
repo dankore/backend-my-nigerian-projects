@@ -1,6 +1,6 @@
 const User = require('../models/userModel');
 const Bid = require('../models/bidModel');
-const Follow = require('../models/followModel')
+const Follow = require('../models/followModel');
 const jwt = require('jsonwebtoken');
 
 // TOKEN EXPIRY
@@ -100,19 +100,14 @@ exports.ifUserExists = (req, res, next) => {
     });
 };
 
-exports.profileBasicData = (req, res) => {
-  res.json({
-    profileUsername: req.profileUser.username,
-    profileAvatar: req.profileUser.avatar,
-    isFollowing: req.isFollowing,
-    counts: { bidCount: req.bidCount, followerCount: req.followerCount, followingCount: req.followingCount },
-  });
-};
-
 exports.sharedProfileData = async (req, res, next) => {
   let viewerId;
   try {
+    /**
+     * @var viewer STORES THE USER ENCODED IN THE TOKEN
+     */
     viewer = jwt.verify(req.body.token, process.env.JWTSECRET);
+    console.log({ viewer });
     viewerId = viewer._id;
   } catch {
     viewerId = 0;
@@ -132,10 +127,19 @@ exports.sharedProfileData = async (req, res, next) => {
   next();
 };
 
+exports.profileBasicData = (req, res) => {
+  res.json({
+    profileUsername: req.profileUser.username,
+    profileAvatar: req.profileUser.avatar,
+    isFollowing: req.isFollowing,
+    counts: { bidCount: req.bidCount, followerCount: req.followerCount, followingCount: req.followingCount },
+  });
+};
+
 exports.apiGetBidsByUsername = async (req, res) => {
   try {
     let authorDoc = await User.findByUsername(req.params.username);
-    let bids = await bids.findByAuthorId(authorDoc._id);
+    let bids = await Bid.findByAuthorId(authorDoc._id);
     res.json(bids);
   } catch {
     res.status(500).send('Invalid user requested.');
@@ -151,29 +155,29 @@ exports.profileFollowers = async (req, res) => {
   }
 };
 
-exports.profileFollowing = async (req, res) =>{
-   try {
+exports.profileFollowing = async (req, res) => {
+  try {
     let following = await Follow.getFollowingById(req.profileUser._id);
     res.json(following);
   } catch {
     res.status(500).send('Invalid following requested.');
   }
-}
+};
 
 exports.apiMustBeLoggedIn = function (req, res, next) {
   try {
-    req.apiUser = jwt.verify(req.body.token, process.env.JWTSECRET)
-    next()
+    req.apiUser = jwt.verify(req.body.token, process.env.JWTSECRET);
+    next();
   } catch {
-    res.status(500).send("Sorry, you must provide a valid token.")
+    res.status(500).send('Sorry, you must provide a valid token.');
   }
-}
+};
 
 exports.apiGetHomeFeed = async function (req, res) {
   try {
-    let bids = await Bid.getFeed(req.apiUser._id)
-    res.json(bids)
+    let bids = await Bid.getFeed(req.apiUser._id);
+    res.json(bids);
   } catch {
-    res.status(500).send("Error")
+    res.status(500).send('Error');
   }
-}
+};
