@@ -15,14 +15,14 @@ Bid.prototype.cleanUp = function () {
   if (typeof this.data.title != 'string') {
     this.data.title = '';
   }
-  if (typeof this.data.body != 'string') {
-    this.data.body = '';
+  if (typeof this.data.description != 'string') {
+    this.data.description = '';
   }
 
   // get rid of any bogus properties
   this.data = {
     title: sanitizeHTML(this.data.title.trim(), { allowedTags: [], allowedAttributes: {} }),
-    body: sanitizeHTML(this.data.body.trim(), { allowedTags: [], allowedAttributes: {} }),
+    description: sanitizeHTML(this.data.description.trim(), { allowedTags: [], allowedAttributes: {} }),
     createdDate: new Date(),
     author: ObjectID(this.userid),
   };
@@ -32,7 +32,7 @@ Bid.prototype.validate = function () {
   if (this.data.title == '') {
     this.errors.push('You must provide a title.');
   }
-  if (this.data.body == '') {
+  if (this.data.description == '') {
     this.errors.push('You must provide bid content.');
   }
 };
@@ -80,7 +80,7 @@ Bid.prototype.actuallyUpdate = function () {
     this.cleanUp();
     this.validate();
     if (!this.errors.length) {
-      await bidsCollection.findOneAndUpdate({ _id: new ObjectID(this.requestedBidId) }, { $set: { title: this.data.title, body: this.data.body } });
+      await bidsCollection.findOneAndUpdate({ _id: new ObjectID(this.requestedBidId) }, { $set: { title: this.data.title, description: this.data.description } });
       resolve('success');
     } else {
       resolve('failure');
@@ -95,7 +95,7 @@ Bid.reusableBidQuery = function (uniqueOperations, visitorId) {
       {
         $project: {
           title: 1,
-          body: 1,
+          description: 1,
           createdDate: 1,
           authorId: '$author',
           author: { $arrayElemAt: ['$authorDocument', 0] },

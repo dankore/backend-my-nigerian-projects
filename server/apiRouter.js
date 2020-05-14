@@ -32,7 +32,7 @@ apiRouter.post('/removeFollow/:username', userController.apiMustBeLoggedIn, foll
 apiRouter.get('/bid/:id', bidController.reactApiViewSingle);
 apiRouter.post('/bid/:id/edit', userController.apiMustBeLoggedIn, bidController.apiUpdate);
 apiRouter.delete('/bid/:id', userController.apiMustBeLoggedIn, bidController.apiDelete);
-apiRouter.post('/create-post', userController.apiMustBeLoggedIn, bidController.apiCreate);
+apiRouter.post('/create-bid', userController.apiMustBeLoggedIn, bidController.apiCreate);
 apiRouter.post('/search', bidController.search);
 
 // EXPORT ROUTER CODE
