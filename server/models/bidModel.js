@@ -96,6 +96,8 @@ Bid.reusableBidQuery = function (uniqueOperations, visitorId) {
         $project: {
           title: 1,
           description: 1,
+          firstName: 1,
+          lastName: 1,
           createdDate: 1,
           authorId: '$author',
           author: { $arrayElemAt: ['$authorDocument', 0] },
