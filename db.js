@@ -1,5 +1,5 @@
 require("dotenv").config();
-const PORTNUMBER = process.env.PORTNUMBER;
+const PORTNUMBER = process.env.PORTNUMBER || 8080;
 const mongodb = require("mongodb");
 
 mongodb.connect(process.env.CONNECTIONSTRING, { useNewUrlParser: true, useUnifiedTopology: true }, function (err, client) {
