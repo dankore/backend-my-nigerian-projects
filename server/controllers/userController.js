@@ -7,8 +7,6 @@ const jwt = require('jsonwebtoken');
 const tokenLasts = '30d';
 
 exports.apiRegister = (req, res) => {
-  console.log({ controller: req.body });
-
   let user = new User(req.body);
   user
     .register()
@@ -107,7 +105,6 @@ exports.sharedProfileData = async (req, res, next) => {
      * @var viewer STORES THE USER ENCODED IN THE TOKEN
      */
     viewer = jwt.verify(req.body.token, process.env.JWTSECRET);
-    console.log({ viewer });
     viewerId = viewer._id;
   } catch {
     viewerId = 0;
