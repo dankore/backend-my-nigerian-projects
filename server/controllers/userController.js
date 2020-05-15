@@ -130,6 +130,8 @@ exports.sharedProfileData = async (req, res, next) => {
 exports.profileBasicData = (req, res) => {
   res.json({
     profileUsername: req.profileUser.username,
+    profileFirstName: req.profileUser.firstName,
+    profileLastName: req.profileUser.lastName,
     profileAvatar: req.profileUser.avatar,
     isFollowing: req.isFollowing,
     counts: { bidCount: req.bidCount, followerCount: req.followerCount, followingCount: req.followingCount },
