@@ -88,7 +88,7 @@ Project.prototype.actuallyUpdate = function () {
   });
 };
 
-Project.reusableBidQuery = function (uniqueOperations, visitorId) {
+Project.reusableProjectQuery = function (uniqueOperations, visitorId) {
   return new Promise(async function (resolve, reject) {
     let aggOperations = uniqueOperations.concat([
       { $lookup: { from: 'users', localField: 'author', foreignField: '_id', as: 'authorDocument' } },
@@ -133,7 +133,7 @@ Project.findSingleById = function (id, visitorId) {
       return;
     }
 
-    let projects = await Project.reusableBidQuery([{ $match: { _id: new ObjectID(id) } }], visitorId);
+    let projects = await Project.reusableProjectQuery([{ $match: { _id: new ObjectID(id) } }], visitorId);
 
     if (projects.length) {
       resolve(projects[0]);
@@ -144,7 +144,7 @@ Project.findSingleById = function (id, visitorId) {
 };
 
 Project.findByAuthorId = function (authorId) {
-  return Project.reusableBidQuery([{ $match: { author: authorId } }, { $sort: { createdDate: -1 } }]);
+  return Project.reusableProjectQuery([{ $match: { author: authorId } }, { $sort: { createdDate: -1 } }]);
 };
 
 Project.delete = function (projectIdToDelete, currentUserId) {
@@ -166,7 +166,7 @@ Project.delete = function (projectIdToDelete, currentUserId) {
 Project.search = function (searchTerm) {
   return new Promise(async (resolve, reject) => {
     if (typeof searchTerm == 'string') {
-      let projects = await Project.reusableBidQuery([{ $match: { $text: { $search: searchTerm } } }, { $sort: { score: { $meta: 'textScore' } } }]);
+      let projects = await Project.reusableProjectQuery([{ $match: { $text: { $search: searchTerm } } }, { $sort: { score: { $meta: 'textScore' } } }]);
       resolve(projects);
     } else {
       reject();
@@ -174,7 +174,7 @@ Project.search = function (searchTerm) {
   });
 };
 
-Project.countBidsByAuthor = function (id) {
+Project.countProjectsByAuthor = function (id) {
   return new Promise(async (resolve, reject) => {
     let projectCount = await projectsCollection.countDocuments({ author: id });
     resolve(projectCount);
@@ -189,7 +189,7 @@ Project.getFeed = async function (id) {
   });
 
   // look for projects where the author is in the above array of followed users
-  return Project.reusableBidQuery([{ $match: { author: { $in: followedUsers } } }, { $sort: { createdDate: -1 } }]);
+  return Project.reusableProjectQuery([{ $match: { author: { $in: followedUsers } } }, { $sort: { createdDate: -1 } }]);
 };
 
-module.exports = Bid;
+module.exports = Project;

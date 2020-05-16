@@ -1,5 +1,5 @@
 const User = require('../models/userModel');
-const Bid = require('../models/projectModel');
+const Project = require('../models/projectModel');
 const Follow = require('../models/followModel');
 const jwt = require('jsonwebtoken');
 
