@@ -1,9 +1,9 @@
-const Bid = require('../models/bidModel');
+const Project = require('../models/projectModel');
 
 exports.apiCreate = function (req, res) {
-  let bid = new Bid(req.body, req.apiUser._id);
+  let project = new Project(req.body, req.apiUser._id);
 
-  bid
+  project
     .create()
     .then(function (newId) {
       res.json(newId);
@@ -14,12 +14,12 @@ exports.apiCreate = function (req, res) {
 };
 
 exports.apiUpdate = function (req, res) {
-  let bid = new Bid(req.body, req.apiUser._id, req.params.id);
+  let project = new Project(req.body, req.apiUser._id, req.params.id);
 
-  bid
+  project
     .update()
     .then(status => {
-      // the bid was successfully updated in the database
+      // the project was successfully updated in the database
       // or user did have permission, but there were validation errors
       if (status == 'success') {
         res.json('success');
@@ -28,14 +28,14 @@ exports.apiUpdate = function (req, res) {
       }
     })
     .catch(() => {
-      // a bid with the requested id doesn't exist
-      // or if the current visitor is not the owner of the requested bid
+      // a project with the requested id doesn't exist
+      // or if the current visitor is not the owner of the requested project
       res.json('no permissions');
     });
 };
 
 exports.apiDelete = function (req, res) {
-  Bid.delete(req.params.id, req.apiUser._id)
+  Project.delete(req.params.id, req.apiUser._id)
     .then(() => {
       res.json('Success');
     })
@@ -45,9 +45,9 @@ exports.apiDelete = function (req, res) {
 };
 
 exports.search = function (req, res) {
-  Bid.search(req.body.searchTerm)
-    .then(bids => {
-      res.json(bids);
+  Project.search(req.body.searchTerm)
+    .then(projects => {
+      res.json(projects);
     })
     .catch(() => {
       res.json([]);
@@ -56,8 +56,8 @@ exports.search = function (req, res) {
 
 exports.reactApiViewSingle = async function (req, res) {
   try {
-    let bid = await Bid.findSingleById(req.params.id, 0);
-    res.json(bid);
+    let project = await Project.findSingleById(req.params.id, 0);
+    res.json(project);
   } catch {
     res.json(false);
   }

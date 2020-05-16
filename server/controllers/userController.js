@@ -1,5 +1,5 @@
 const User = require('../models/userModel');
-const Bid = require('../models/bidModel');
+const Project = require('../models/projectModel');
 const Follow = require('../models/followModel');
 const jwt = require('jsonwebtoken');
 
@@ -112,12 +112,12 @@ exports.sharedProfileData = async (req, res, next) => {
 
   req.isFollowing = await Follow.isVisitorFollowing(req.profileUser._id, viewerId);
 
-  let bidCountPromise = Bid.countBidsByAuthor(req.profileUser._id);
+  let projectCountPromise = Project.countProjectsByAuthor(req.profileUser._id);
   let followerCountPromise = Follow.countFollowersById(req.profileUser._id);
   let followingCountPromise = Follow.countFollowingById(req.profileUser._id);
-  let [bidCount, followerCount, followingCount] = await Promise.all([bidCountPromise, followerCountPromise, followingCountPromise]);
+  let [projectCount, followerCount, followingCount] = await Promise.all([projectCountPromise, followerCountPromise, followingCountPromise]);
 
-  req.bidCount = bidCount;
+  req.projectCount = projectCount;
   req.followerCount = followerCount;
   req.followingCount = followingCount;
 
@@ -131,15 +131,15 @@ exports.profileBasicData = (req, res) => {
     profileLastName: req.profileUser.lastName,
     profileAvatar: req.profileUser.avatar,
     isFollowing: req.isFollowing,
-    counts: { bidCount: req.bidCount, followerCount: req.followerCount, followingCount: req.followingCount },
+    counts: { projectCount: req.projectCount, followerCount: req.followerCount, followingCount: req.followingCount },
   });
 };
 
-exports.apiGetBidsByUsername = async (req, res) => {
+exports.apiGetProjectsByUsername = async (req, res) => {
   try {
     let authorDoc = await User.findByUsername(req.params.username);
-    let bids = await Bid.findByAuthorId(authorDoc._id);
-    res.json(bids);
+    let projects = await Project.findByAuthorId(authorDoc._id);
+    res.json(projects);
   } catch {
     res.status(500).send('Invalid user requested.');
   }
@@ -174,8 +174,8 @@ exports.apiMustBeLoggedIn = function (req, res, next) {
 
 exports.apiGetHomeFeed = async function (req, res) {
   try {
-    let bids = await Bid.getFeed(req.apiUser._id);
-    res.json(bids);
+    let projects = await Project.getFeed(req.apiUser._id);
+    res.json(projects);
   } catch {
     res.status(500).send('Error');
   }

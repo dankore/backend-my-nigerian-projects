@@ -1,17 +1,17 @@
-const bidsCollection = require('../../db').db().collection('bids');
+const projectsCollection = require('../../db').db().collection('projects');
 const followsCollection = require('../../db').db().collection('follows');
 const ObjectID = require('mongodb').ObjectID;
 const User = require('./userModel');
 const sanitizeHTML = require('sanitize-html');
 
-let Bid = function (data, userid, requestedBidId) {
+let Project = function (data, userid, requestedProjectId) {
   this.data = data;
   this.errors = [];
   this.userid = userid;
-  this.requestedBidId = requestedBidId;
+  this.requestedProjectId = requestedProjectId;
 };
 
-Bid.prototype.cleanUp = function () {
+Project.prototype.cleanUp = function () {
   if (typeof this.data.title != 'string') {
     this.data.title = '';
   }
@@ -28,22 +28,22 @@ Bid.prototype.cleanUp = function () {
   };
 };
 
-Bid.prototype.validate = function () {
+Project.prototype.validate = function () {
   if (this.data.title == '') {
     this.errors.push('You must provide a title.');
   }
   if (this.data.description == '') {
-    this.errors.push('You must provide bid content.');
+    this.errors.push('You must provide project content.');
   }
 };
 
-Bid.prototype.create = function () {
+Project.prototype.create = function () {
   return new Promise((resolve, reject) => {
     this.cleanUp();
     this.validate();
     if (!this.errors.length) {
-      // save bid into database
-      bidsCollection
+      // save project into database
+      projectsCollection
         .insertOne(this.data)
         .then(info => {
           resolve(info.ops[0]._id);
@@ -58,11 +58,11 @@ Bid.prototype.create = function () {
   });
 };
 
-Bid.prototype.update = function () {
+Project.prototype.update = function () {
   return new Promise(async (resolve, reject) => {
     try {
-      let bid = await Bid.findSingleById(this.requestedBidId, this.userid);
-      if (bid.isVisitorOwner) {
+      let project = await Project.findSingleById(this.requestedProjectId, this.userid);
+      if (project.isVisitorOwner) {
         // actually update the db
         let status = await this.actuallyUpdate();
         resolve(status);
@@ -75,12 +75,12 @@ Bid.prototype.update = function () {
   });
 };
 
-Bid.prototype.actuallyUpdate = function () {
+Project.prototype.actuallyUpdate = function () {
   return new Promise(async (resolve, reject) => {
     this.cleanUp();
     this.validate();
     if (!this.errors.length) {
-      await bidsCollection.findOneAndUpdate({ _id: new ObjectID(this.requestedBidId) }, { $set: { title: this.data.title, description: this.data.description } });
+      await projectsCollection.findOneAndUpdate({ _id: new ObjectID(this.requestedProjectId) }, { $set: { title: this.data.title, description: this.data.description } });
       resolve('success');
     } else {
       resolve('failure');
@@ -88,7 +88,7 @@ Bid.prototype.actuallyUpdate = function () {
   });
 };
 
-Bid.reusableBidQuery = function (uniqueOperations, visitorId) {
+Project.reusableProjectQuery = function (uniqueOperations, visitorId) {
   return new Promise(async function (resolve, reject) {
     let aggOperations = uniqueOperations.concat([
       { $lookup: { from: 'users', localField: 'author', foreignField: '_id', as: 'authorDocument' } },
@@ -105,54 +105,54 @@ Bid.reusableBidQuery = function (uniqueOperations, visitorId) {
       },
     ]);
 
-    let bids = await bidsCollection.aggregate(aggOperations).toArray();
+    let projects = await projectsCollection.aggregate(aggOperations).toArray();
 
-    // clean up author property in each bid object
-    bids = bids.map(function (bid) {
-      bid.isVisitorOwner = bid.authorId.equals(visitorId);
-      bid.authorId = undefined;
+    // clean up author property in each project object
+    projects = projects.map(function (project) {
+      project.isVisitorOwner = project.authorId.equals(visitorId);
+      project.authorId = undefined;
 
-      bid.author = {
-        username: bid.author.username,
-        firstName: bid.author.firstName,
-        lastName: bid.author.lastName,
-        avatar: new User(bid.author, true).avatar,
+      project.author = {
+        username: project.author.username,
+        firstName: project.author.firstName,
+        lastName: project.author.lastName,
+        avatar: new User(project.author, true).avatar,
       };
 
-      return bid;
+      return project;
     });
 
-    resolve(bids);
+    resolve(projects);
   });
 };
 
-Bid.findSingleById = function (id, visitorId) {
+Project.findSingleById = function (id, visitorId) {
   return new Promise(async function (resolve, reject) {
     if (typeof id != 'string' || !ObjectID.isValid(id)) {
       reject();
       return;
     }
 
-    let bids = await Bid.reusableBidQuery([{ $match: { _id: new ObjectID(id) } }], visitorId);
+    let projects = await Project.reusableProjectQuery([{ $match: { _id: new ObjectID(id) } }], visitorId);
 
-    if (bids.length) {
-      resolve(bids[0]);
+    if (projects.length) {
+      resolve(projects[0]);
     } else {
       reject();
     }
   });
 };
 
-Bid.findByAuthorId = function (authorId) {
-  return Bid.reusableBidQuery([{ $match: { author: authorId } }, { $sort: { createdDate: -1 } }]);
+Project.findByAuthorId = function (authorId) {
+  return Project.reusableProjectQuery([{ $match: { author: authorId } }, { $sort: { createdDate: -1 } }]);
 };
 
-Bid.delete = function (bidIdToDelete, currentUserId) {
+Project.delete = function (projectIdToDelete, currentUserId) {
   return new Promise(async (resolve, reject) => {
     try {
-      let bid = await Bid.findSingleById(bidIdToDelete, currentUserId);
-      if (bid.isVisitorOwner) {
-        await bidsCollection.deleteOne({ _id: new ObjectID(bidIdToDelete) });
+      let project = await Project.findSingleById(projectIdToDelete, currentUserId);
+      if (project.isVisitorOwner) {
+        await projectsCollection.deleteOne({ _id: new ObjectID(projectIdToDelete) });
         resolve();
       } else {
         reject();
@@ -163,33 +163,33 @@ Bid.delete = function (bidIdToDelete, currentUserId) {
   });
 };
 
-Bid.search = function (searchTerm) {
+Project.search = function (searchTerm) {
   return new Promise(async (resolve, reject) => {
     if (typeof searchTerm == 'string') {
-      let bids = await Bid.reusableBidQuery([{ $match: { $text: { $search: searchTerm } } }, { $sort: { score: { $meta: 'textScore' } } }]);
-      resolve(bids);
+      let projects = await Project.reusableProjectQuery([{ $match: { $text: { $search: searchTerm } } }, { $sort: { score: { $meta: 'textScore' } } }]);
+      resolve(projects);
     } else {
       reject();
     }
   });
 };
 
-Bid.countBidsByAuthor = function (id) {
+Project.countProjectsByAuthor = function (id) {
   return new Promise(async (resolve, reject) => {
-    let bidCount = await bidsCollection.countDocuments({ author: id });
-    resolve(bidCount);
+    let projectCount = await projectsCollection.countDocuments({ author: id });
+    resolve(projectCount);
   });
 };
 
-Bid.getFeed = async function (id) {
+Project.getFeed = async function (id) {
   // create an array of the user ids that the current user follows
   let followedUsers = await followsCollection.find({ authorId: new ObjectID(id) }).toArray();
   followedUsers = followedUsers.map(function (followDoc) {
     return followDoc.followedId;
   });
 
-  // look for bids where the author is in the above array of followed users
-  return Bid.reusableBidQuery([{ $match: { author: { $in: followedUsers } } }, { $sort: { createdDate: -1 } }]);
+  // look for projects where the author is in the above array of followed users
+  return Project.reusableProjectQuery([{ $match: { author: { $in: followedUsers } } }, { $sort: { createdDate: -1 } }]);
 };
 
-module.exports = Bid;
+module.exports = Project;
