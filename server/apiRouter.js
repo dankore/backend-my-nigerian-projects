@@ -29,9 +29,9 @@ apiRouter.post('/addFollow/:username', userController.apiMustBeLoggedIn, followC
 apiRouter.post('/removeFollow/:username', userController.apiMustBeLoggedIn, followController.apiRemoveFollow);
 
 // BID
-apiRouter.get('/bid/:id', bidController.reactApiViewSingle);
-apiRouter.post('/bid/:id/edit', userController.apiMustBeLoggedIn, bidController.apiUpdate);
-apiRouter.delete('/bid/:id', userController.apiMustBeLoggedIn, bidController.apiDelete);
+apiRouter.get('/project/:id', bidController.reactApiViewSingle);
+apiRouter.post('/project/:id/edit', userController.apiMustBeLoggedIn, bidController.apiUpdate);
+apiRouter.delete('/project/:id', userController.apiMustBeLoggedIn, bidController.apiDelete);
 apiRouter.post('/create-project', userController.apiMustBeLoggedIn, bidController.apiCreate);
 apiRouter.post('/search', bidController.search);
 
