@@ -8,6 +8,7 @@ const cors = require('cors');
 apiRouter.use(cors());
 
 apiRouter.post('/getHomeFeed', userController.apiMustBeLoggedIn, userController.apiGetHomeFeed);
+apiRouter.get('/getHomeFeedIfNotLoggedIn', userController.apiGetHomeFeedIfNotLoggedIn)
 
 apiRouter.get('/', (req, res) => res.json('API BACKEND'));
 apiRouter.post('/login', userController.apiLogin);

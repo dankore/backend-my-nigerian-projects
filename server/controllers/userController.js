@@ -180,3 +180,12 @@ exports.apiGetHomeFeed = async function (req, res) {
     res.status(500).send('Error');
   }
 };
+
+exports.apiGetHomeFeedIfNotLoggedIn = async (req, res) =>{
+  try {
+    let projects = await Project.getFeedWithoutLoggingIn();
+    res.json(projects)
+  } catch (error) {
+    res.status(500).send('Error')
+  }
+}

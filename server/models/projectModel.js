@@ -181,6 +181,14 @@ Project.countProjectsByAuthor = function (id) {
   });
 };
 
+Project.getFeedWithoutLoggingIn = () => {
+  return new Promise(async (resolve, reject) => {
+    let projects = await projectsCollection.find({}).toArray();
+    
+    resolve(projects);
+  });
+};
+
 Project.getFeed = async function (id) {
   // create an array of the user ids that the current user follows
   let followedUsers = await followsCollection.find({ authorId: new ObjectID(id) }).toArray();
