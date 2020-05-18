@@ -54,7 +54,7 @@ User.prototype.cleanUp = function () {
     username: this.data.username.trim().toLowerCase(),
     firstName: this.data.firstName.trim(),
     lastName: this.data.lastName.trim(),
-    email: this.data.email,
+    email: this.data.email.trim().toLowerCase(),
     password: this.data.password,
   };
 };

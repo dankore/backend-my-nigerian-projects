@@ -1,5 +1,6 @@
 const projectsCollection = require('../../db').db().collection('projects');
 const followsCollection = require('../../db').db().collection('follows');
+const usersCollection = require('../../db').db().collection('users');
 const ObjectID = require('mongodb').ObjectID;
 const User = require('./userModel');
 const sanitizeHTML = require('sanitize-html');
@@ -183,15 +184,20 @@ Project.countProjectsByAuthor = function (id) {
 
 Project.getFeedWithoutLoggingIn = () => {
   return new Promise(async (resolve, reject) => {
-    let projects = await projectsCollection.find({}).toArray();
-    
-    resolve(projects);
+    // GET ALL USER IDS
+    let allUserIds = await usersCollection.distinct('_id');
+
+    // GET ALL PROJECTS, IF ANY, THAT THE ABOVE IDS AUTHORED
+    let allProjects = await Project.reusableProjectQuery([{ $match: { author: { $in: allUserIds } } }, { $sort: { createdDate: -1 } }]);
+
+    resolve(allProjects);
   });
 };
 
 Project.getFeed = async function (id) {
   // create an array of the user ids that the current user follows
   let followedUsers = await followsCollection.find({ authorId: new ObjectID(id) }).toArray();
+
   followedUsers = followedUsers.map(function (followDoc) {
     return followDoc.followedId;
   });
