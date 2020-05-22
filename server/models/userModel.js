@@ -269,10 +269,13 @@ User.prototype.updateProfile = function () {
               firstName: this.data.firstName,
               lastName: this.data.lastName,
             },
+          },
+          {
+            returnOriginal: false,
+            projection: { username: 1 },
           }
         )
         .then(info => {
-          console.log({ info: info.value.username });
           resolve(info.value.username);
         })
         .catch(() => {
@@ -281,8 +284,6 @@ User.prototype.updateProfile = function () {
     } else {
       reject('Profile Update failed.');
     }
-
-    console.log({ model: this.data });
   });
 };
 

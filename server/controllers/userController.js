@@ -62,7 +62,6 @@ exports.apiCheckToken = (req, res) => {
 
 exports.apiLogin = (req, res) => {
   let user = new User(req.body);
-  console.log({ req: req.body, user: user });
 
   user
     .login()
@@ -198,7 +197,6 @@ exports.updateProfileInfo = (req, res) => {
   user
     .updateProfile()
     .then(response => {
-      console.log(response);
       res.json(response);
     })
     .catch(error => {
