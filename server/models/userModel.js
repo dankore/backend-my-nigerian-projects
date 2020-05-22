@@ -1,4 +1,5 @@
 const usersCollection = require('../../db').db().collection('users');
+const ObjectID = require('mongodb').ObjectID;
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const md5 = require('md5');
@@ -14,6 +15,33 @@ let User = class user_ {
       this.getAvatar();
     }
   }
+};
+
+User.prototype.cleanUpForNotRegisterApi = function () {
+  if (typeof this.data.username != 'string') {
+    this.data.username = '';
+  }
+
+  if (typeof this.data.password != 'string') {
+    this.data.password = '';
+  }
+
+  if (typeof this.data.firstName != 'string') {
+    this.data.firstName = '';
+  }
+
+  if (typeof this.data.lastName != 'string') {
+    this.data.firstName = '';
+  }
+
+  // get rid of any bogus properties
+  this.data = {
+    userId: this.data.userId,
+    username: this.data.username.trim(),
+    firstName: this.data.firstName.trim(),
+    lastName: this.data.lastName.trim(),
+    password: this.data.password,
+  };
 };
 
 User.prototype.cleanUpForLogin = function () {
@@ -57,6 +85,21 @@ User.prototype.cleanUp = function () {
     email: this.data.email.trim().toLowerCase(),
     password: this.data.password,
   };
+};
+
+User.prototype.validateEditProfile = function () {
+  if (this.data.username == '') {
+    this.errors.push('You must provide a username.');
+  }
+  if (this.data.username != '' && !validator.isAlphanumeric(this.data.username)) {
+    this.errors.push('Username can only contain letters and numbers.');
+  }
+  if (this.data.firstName == '') {
+    this.errors.push('You must provide a first name.');
+  }
+  if (this.data.lastName == '') {
+    this.errors.push('You must provide a last name.');
+  }
 };
 
 User.prototype.validate = function () {
@@ -213,6 +256,32 @@ User.prototype.login = function () {
 
 User.prototype.updateProfile = function () {
   return new Promise(async (resolve, reject) => {
+    this.cleanUpForNotRegisterApi();
+    this.validateEditProfile();
+
+    if (!this.errors.length) {
+      usersCollection
+        .findOneAndUpdate(
+          { _id: new ObjectID(this.data.userId) },
+          {
+            $set: {
+              username: this.data.username,
+              firstName: this.data.firstName,
+              lastName: this.data.lastName,
+            },
+          }
+        )
+        .then(info => {
+          console.log({ info: info.value.username });
+          resolve(info.value.username);
+        })
+        .catch(() => {
+          reject('Profile Update failed.');
+        });
+    } else {
+      reject('Profile Update failed.');
+    }
+
     console.log({ model: this.data });
   });
 };

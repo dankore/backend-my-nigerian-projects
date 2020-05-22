@@ -62,6 +62,7 @@ exports.apiCheckToken = (req, res) => {
 
 exports.apiLogin = (req, res) => {
   let user = new User(req.body);
+  console.log({ req: req.body, user: user });
 
   user
     .login()
@@ -76,6 +77,7 @@ exports.apiLogin = (req, res) => {
           process.env.JWTSECRET,
           { expiresIn: tokenLasts }
         ),
+        userId: user.data._id,
         username: user.data.username,
         firstName: user.data.firstName,
         lastName: user.data.lastName,
@@ -191,16 +193,15 @@ exports.apiGetHomeFeedIfNotLoggedIn = async (req, res) => {
 };
 
 exports.updateProfileInfo = (req, res) => {
-  console.log({ controller: req.body });
   let user = new User(req.body);
-  
-    console.log(user)
 
-   user.updateProfile()
+  user
+    .updateProfile()
     .then(response => {
-      res.json('Success');
+      console.log(response);
+      res.json(response);
     })
     .catch(error => {
-      res.status(500).send('Error');
+      res.status(500).send(error);
     });
 };
