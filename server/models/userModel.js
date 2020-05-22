@@ -116,7 +116,6 @@ User.prototype.register = function () {
     // CLEAN AND VALIDATE DATA
     this.cleanUp();
     await this.validate();
-   
 
     if (!this.errors.length) {
       // HASH USER PASSWORD
@@ -209,6 +208,12 @@ User.prototype.login = function () {
       .catch(() => {
         reject('Please try again.');
       });
+  });
+};
+
+User.prototype.updateProfile = function () {
+  return new Promise(async (resolve, reject) => {
+    console.log({ model: this.data });
   });
 };
 

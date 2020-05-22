@@ -181,11 +181,26 @@ exports.apiGetHomeFeed = async function (req, res) {
   }
 };
 
-exports.apiGetHomeFeedIfNotLoggedIn = async (req, res) =>{
+exports.apiGetHomeFeedIfNotLoggedIn = async (req, res) => {
   try {
     let projects = await Project.getFeedWithoutLoggingIn();
-    res.json(projects)
+    res.json(projects);
   } catch (error) {
-    res.status(500).send('Error')
+    res.status(500).send('Error');
   }
-}
+};
+
+exports.updateProfileInfo = (req, res) => {
+  console.log({ controller: req.body });
+  let user = new User(req.body);
+  
+    console.log(user)
+
+   user.updateProfile()
+    .then(response => {
+      res.json('Success');
+    })
+    .catch(error => {
+      res.status(500).send('Error');
+    });
+};
