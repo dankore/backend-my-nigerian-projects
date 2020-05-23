@@ -76,7 +76,7 @@ exports.apiLogin = (req, res) => {
           process.env.JWTSECRET,
           { expiresIn: tokenLasts }
         ),
-        userId: user.data._id,
+        _id: user.data._id,
         username: user.data.username,
         firstName: user.data.firstName,
         lastName: user.data.lastName,

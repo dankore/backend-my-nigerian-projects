@@ -180,7 +180,6 @@ User.prototype.getAvatar = function () {
 };
 
 User.findByUsername = function (username) {
-  console.log({ findByUsername: username });
   return new Promise((resolve, reject) => {
     if (typeof username != 'string') {
       reject();
