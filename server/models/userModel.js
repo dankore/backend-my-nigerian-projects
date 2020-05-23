@@ -36,7 +36,7 @@ User.prototype.cleanUpForNotRegisterApi = function () {
 
   // get rid of any bogus properties
   this.data = {
-    userId: this.data.userId,
+    _id: this.data._id,
     username: this.data.username.trim(),
     firstName: this.data.firstName.trim(),
     lastName: this.data.lastName.trim(),
@@ -180,11 +180,13 @@ User.prototype.getAvatar = function () {
 };
 
 User.findByUsername = function (username) {
+  console.log({ findByUsername: username });
   return new Promise((resolve, reject) => {
     if (typeof username != 'string') {
       reject();
       return;
     }
+    
     usersCollection
       .findOne({
         username: username,
@@ -199,6 +201,7 @@ User.findByUsername = function (username) {
             lastName: userDoc.data.lastName,
             avatar: userDoc.avatar,
           };
+          
           resolve(userDoc);
         } else {
           reject(false);
@@ -262,7 +265,7 @@ User.prototype.updateProfile = function () {
     if (!this.errors.length) {
       usersCollection
         .findOneAndUpdate(
-          { _id: new ObjectID(this.data.userId) },
+          { _id: new ObjectID(this.data._id) },
           {
             $set: {
               username: this.data.username,
@@ -272,11 +275,16 @@ User.prototype.updateProfile = function () {
           },
           {
             returnOriginal: false,
-            projection: { username: 1 },
+            // projection: {
+            //   _id: 1,
+            //   username: 1,
+            //   firstName: 1,
+            //   lastName: 1,
+            // },
           }
         )
         .then(info => {
-          resolve(info.value.username);
+          resolve(info.value);
         })
         .catch(() => {
           reject('Profile Update failed.');
