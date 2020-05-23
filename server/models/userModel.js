@@ -185,7 +185,7 @@ User.findByUsername = function (username) {
       reject();
       return;
     }
-    
+
     usersCollection
       .findOne({
         username: username,
@@ -200,7 +200,7 @@ User.findByUsername = function (username) {
             lastName: userDoc.data.lastName,
             avatar: userDoc.avatar,
           };
-          
+
           resolve(userDoc);
         } else {
           reject(false);
@@ -274,12 +274,6 @@ User.prototype.updateProfile = function () {
           },
           {
             returnOriginal: false,
-            // projection: {
-            //   _id: 1,
-            //   username: 1,
-            //   firstName: 1,
-            //   lastName: 1,
-            // },
           }
         )
         .then(info => {

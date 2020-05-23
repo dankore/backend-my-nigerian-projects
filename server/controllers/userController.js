@@ -11,16 +11,19 @@ exports.apiRegister = (req, res) => {
   user
     .register()
     .then(response => {
+      console.log(user.data);
       res.json({
         token: jwt.sign(
           {
             _id: user.data._id,
             username: user.data.username,
-            avatar: user.avatar,
+            firstName: user.data.firstName,
+            lastName: user.data.lastName,
           },
           process.env.JWTSECRET,
           { expiresIn: tokenLasts }
         ),
+        _id: user.data._id,
         username: user.data.username,
         firstName: user.data.firstName,
         lastName: user.data.lastName,
@@ -71,7 +74,8 @@ exports.apiLogin = (req, res) => {
           {
             _id: user.data._id,
             username: user.data.username,
-            avatar: user.avatar,
+            firstName: user.data.firstName,
+            lastName: user.data.lastName,
           },
           process.env.JWTSECRET,
           { expiresIn: tokenLasts }
@@ -197,7 +201,23 @@ exports.updateProfileInfo = (req, res) => {
   user
     .updateProfile()
     .then(response => {
-      res.json(response);
+      console.log(user.data);
+      res.json({
+        token: jwt.sign(
+          {
+            _id: user.data._id,
+            username: user.data.username,
+            firstName: user.data.firstName,
+            lastName: user.data.lastName,
+          },
+          process.env.JWTSECRET,
+          { expiresIn: tokenLasts }
+        ),
+        _id: user.data._id,
+        username: user.data.username,
+        firstName: user.data.firstName,
+        lastName: user.data.lastName,
+      });
     })
     .catch(error => {
       res.status(500).send(error);
