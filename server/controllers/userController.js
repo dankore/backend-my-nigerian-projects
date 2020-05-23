@@ -223,3 +223,13 @@ exports.updateProfileInfo = (req, res) => {
       res.status(500).send(error);
     });
 };
+
+exports.apiChangePassword = async (req, res) => {
+  User.changePassword(req.body)
+    .then(response => {
+      res.json(response);
+    })
+    .catch(error => {
+      res.json(error);
+    });
+};

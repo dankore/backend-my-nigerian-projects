@@ -11,6 +11,7 @@ apiRouter.get('/getHomeFeedIfNotLoggedIn', userController.apiGetHomeFeedIfNotLog
 apiRouter.get('/', (req, res) => res.json('API BACKEND'));
 apiRouter.post('/login', userController.apiLogin);
 apiRouter.post('/register', userController.apiRegister);
+apiRouter.post('/changePassword', userController.apiChangePassword);
 
 apiRouter.post('/doesUsernameExist', userController.apiDoesUsernameExist);
 apiRouter.post('/doesEmailExist', userController.apiDoesEmailExist);

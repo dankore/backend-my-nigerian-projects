@@ -288,4 +288,36 @@ User.prototype.updateProfile = function () {
   });
 };
 
+User.changePassword = data => {
+  return new Promise(async (resolve, reject) => {
+    if (data.newPassword != data.reEnteredNewPassword) {
+      reject('Passwords do not match.');
+      return;
+    }
+    if (data.newPassword == '' || data.reEnteredNewPassword == '' || data.currentPassword == '') {
+      reject('Passwords fields cannot be empty.');
+      return;
+    }
+
+    usersCollection
+      .findOne({ _id: new ObjectID(data._id) })
+      .then(async userDoc => {
+        if (userDoc && bcrypt.compareSync(data.currentPassword, userDoc.password)) {
+          // HASH/SCRAMBLE PASSWORD
+          const salt = bcrypt.genSaltSync();
+          data.newPassword = bcrypt.hashSync(data.newPassword, salt);
+
+          // CHANGE PASSWORD
+          await usersCollection.findOneAndUpdate({ _id: new ObjectID(data._id) }, { $set: { password: data.newPassword } });
+          resolve('Success');
+        } else {
+          resolve('New password does not match current password.');
+        }
+      })
+      .catch(() => {
+        reject('Something went wrong while changing your password. Please try again.');
+      });
+  });
+};
+
 module.exports = User;
