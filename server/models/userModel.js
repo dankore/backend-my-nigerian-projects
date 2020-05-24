@@ -298,16 +298,24 @@ User.changePassword = data => {
       reject('Passwords fields cannot be empty.');
       return;
     }
+    if (data.newPassword.length < 6 || data.reEnteredNewPassword.length < 6) {
+      reject('Passwords must be at least 6 characters.');
+      return;
+    }
+    if (data.newPassword.length > 50 || data.reEnteredNewPassword.length > 50) {
+      reject('Passwords must be less than 50 characters.');
+      return;
+    }
 
     usersCollection
       .findOne({ _id: new ObjectID(data._id) })
       .then(async userDoc => {
         if (userDoc && bcrypt.compareSync(data.currentPassword, userDoc.password)) {
-          // HASH/SCRAMBLE PASSWORD
+          // HASH / SCRAMBLE PASSWORD
           const salt = bcrypt.genSaltSync();
           data.newPassword = bcrypt.hashSync(data.newPassword, salt);
 
-          // CHANGE PASSWORD
+          // SAVE NEW PASSWORD
           await usersCollection.findOneAndUpdate({ _id: new ObjectID(data._id) }, { $set: { password: data.newPassword } });
           resolve('Success');
         } else {
