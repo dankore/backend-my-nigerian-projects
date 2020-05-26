@@ -108,6 +108,7 @@ Project.prototype.actuallyUpdate = function () {
   return new Promise(async (resolve, reject) => {
     this.cleanUp();
     this.validate();
+    
     if (!this.errors.length) {
       await projectsCollection.findOneAndUpdate(
         { _id: new ObjectID(this.requestedProjectId) },
