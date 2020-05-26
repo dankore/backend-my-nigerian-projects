@@ -134,6 +134,7 @@ exports.profileBasicData = (req, res) => {
     profileUsername: req.profileUser.username,
     profileFirstName: req.profileUser.firstName,
     profileLastName: req.profileUser.lastName,
+    email: req.profileUser.email,
     profileAvatar: req.profileUser.avatar,
     isFollowing: req.isFollowing,
     counts: { projectCount: req.projectCount, followerCount: req.followerCount, followingCount: req.followingCount },
@@ -201,7 +202,6 @@ exports.updateProfileInfo = (req, res) => {
   user
     .updateProfile()
     .then(response => {
-      console.log(user.data);
       res.json({
         token: jwt.sign(
           {
