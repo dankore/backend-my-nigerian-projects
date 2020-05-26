@@ -49,8 +49,8 @@ Project.prototype.validate = function () {
   if (this.data.title == '') {
     this.errors.push('You must provide a title.');
   }
-  if(this.data.location == ''){
-    this.errors.push('You must provide a location.')
+  if (this.data.location == '') {
+    this.errors.push('You must provide a location.');
   }
   if (this.data.dateNeededBy == '') {
     this.errors.push('You must provide a date.');
@@ -109,7 +109,19 @@ Project.prototype.actuallyUpdate = function () {
     this.cleanUp();
     this.validate();
     if (!this.errors.length) {
-      await projectsCollection.findOneAndUpdate({ _id: new ObjectID(this.requestedProjectId) }, { $set: { title: this.data.title, description: this.data.description } });
+      await projectsCollection.findOneAndUpdate(
+        { _id: new ObjectID(this.requestedProjectId) },
+        {
+          $set: {
+            title: this.data.title,
+            location: this.data.location,
+            dateNeededBy: this.data.dateNeededBy,
+            description: this.data.description,
+            email: this.data.email,
+            phone: this.data.phone,
+          },
+        }
+      );
       resolve('success');
     } else {
       resolve('failure');
@@ -124,7 +136,11 @@ Project.reusableProjectQuery = function (uniqueOperations, visitorId) {
       {
         $project: {
           title: 1,
+          location: 1,
+          dateNeededBy: 1,
           description: 1,
+          email: 1,
+          phone: 1,
           firstName: 1,
           lastName: 1,
           createdDate: 1,

@@ -54,7 +54,7 @@ exports.search = function (req, res) {
     });
 };
 
-exports.reactApiViewSingle = async function (req, res) {
+exports.apiViewSingle = async function (req, res) {
   try {
     let project = await Project.findSingleById(req.params.id, 0);
     res.json(project);
