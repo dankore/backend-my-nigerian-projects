@@ -16,14 +16,30 @@ Project.prototype.cleanUp = function () {
   if (typeof this.data.title != 'string') {
     this.data.title = '';
   }
+  if (typeof this.data.location != 'string') {
+    this.data.location = '';
+  }
+  if (typeof this.data.dateNeededBy != 'string') {
+    this.data.dateNeededBy = '';
+  }
   if (typeof this.data.description != 'string') {
     this.data.description = '';
+  }
+  if (typeof this.data.email != 'string') {
+    this.data.email = '';
+  }
+  if (typeof this.data.phone != 'string') {
+    this.data.phone = '';
   }
 
   // get rid of any bogus properties
   this.data = {
     title: sanitizeHTML(this.data.title.trim(), { allowedTags: [], allowedAttributes: {} }),
+    location: sanitizeHTML(this.data.location.trim(), { allowedTags: [], allowedAttributes: {} }),
+    dateNeededBy: sanitizeHTML(this.data.dateNeededBy, { allowedTags: [], allowedAttributes: {} }),
     description: sanitizeHTML(this.data.description.trim(), { allowedTags: [], allowedAttributes: {} }),
+    email: sanitizeHTML(this.data.email.trim(), { allowedTags: [], allowedAttributes: {} }),
+    phone: this.data.phone,
     createdDate: new Date(),
     author: ObjectID(this.userid),
   };
@@ -33,8 +49,20 @@ Project.prototype.validate = function () {
   if (this.data.title == '') {
     this.errors.push('You must provide a title.');
   }
+  if(this.data.location == ''){
+    this.errors.push('You must provide a location.')
+  }
+  if (this.data.dateNeededBy == '') {
+    this.errors.push('You must provide a date.');
+  }
   if (this.data.description == '') {
-    this.errors.push('You must provide project content.');
+    this.errors.push('You must provide a description.');
+  }
+  if (this.data.email == '') {
+    this.errors.push('You must provide an email.');
+  }
+  if (this.data.phone == '') {
+    this.errors.push('You must provide a phone.');
   }
 };
 
