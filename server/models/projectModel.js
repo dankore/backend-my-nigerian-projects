@@ -19,8 +19,8 @@ Project.prototype.cleanUp = function () {
   if (typeof this.data.location != 'string') {
     this.data.location = '';
   }
-  if (typeof this.data.dateNeededBy != 'string') {
-    this.data.dateNeededBy = '';
+  if (typeof this.data.bidSubmissionDeadline != 'string') {
+    this.data.bidSubmissionDeadline = '';
   }
   if (typeof this.data.description != 'string') {
     this.data.description = '';
@@ -36,7 +36,7 @@ Project.prototype.cleanUp = function () {
   this.data = {
     title: sanitizeHTML(this.data.title.trim(), { allowedTags: [], allowedAttributes: {} }),
     location: sanitizeHTML(this.data.location.trim(), { allowedTags: [], allowedAttributes: {} }),
-    dateNeededBy: sanitizeHTML(this.data.dateNeededBy, { allowedTags: [], allowedAttributes: {} }),
+    bidSubmissionDeadline: sanitizeHTML(this.data.bidSubmissionDeadline, { allowedTags: [], allowedAttributes: {} }),
     description: sanitizeHTML(this.data.description.trim(), { allowedTags: [], allowedAttributes: {} }),
     email: sanitizeHTML(this.data.email.trim(), { allowedTags: [], allowedAttributes: {} }),
     phone: this.data.phone,
@@ -52,7 +52,7 @@ Project.prototype.validate = function () {
   if (this.data.location == '') {
     this.errors.push('You must provide a location.');
   }
-  if (this.data.dateNeededBy == '') {
+  if (this.data.bidSubmissionDeadline == '') {
     this.errors.push('You must provide a date.');
   }
   if (this.data.description == '') {
@@ -108,7 +108,7 @@ Project.prototype.actuallyUpdate = function () {
   return new Promise(async (resolve, reject) => {
     this.cleanUp();
     this.validate();
-    
+
     if (!this.errors.length) {
       await projectsCollection.findOneAndUpdate(
         { _id: new ObjectID(this.requestedProjectId) },
@@ -116,7 +116,7 @@ Project.prototype.actuallyUpdate = function () {
           $set: {
             title: this.data.title,
             location: this.data.location,
-            dateNeededBy: this.data.dateNeededBy,
+            bidSubmissionDeadline: this.data.bidSubmissionDeadline,
             description: this.data.description,
             email: this.data.email,
             phone: this.data.phone,
@@ -138,7 +138,7 @@ Project.reusableProjectQuery = function (uniqueOperations, visitorId) {
         $project: {
           title: 1,
           location: 1,
-          dateNeededBy: 1,
+          bidSubmissionDeadline: 1,
           description: 1,
           email: 1,
           phone: 1,
