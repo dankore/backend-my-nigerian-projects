@@ -70,6 +70,7 @@ Project.prototype.create = function () {
   return new Promise((resolve, reject) => {
     this.cleanUp();
     this.validate();
+    
     if (!this.errors.length) {
       // save project into database
       projectsCollection
