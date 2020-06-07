@@ -23,7 +23,8 @@ apiRouter.get('/profile/:username/projects', userController.ifUserExists, userCo
 apiRouter.get('/profile/:username/followers', userController.ifUserExists, userController.profileFollowers);
 apiRouter.get('/profile/:username/following', userController.ifUserExists, userController.profileFollowing);
 apiRouter.post('/updateProfileInfo', userController.updateProfileInfo);
-// follow routes
+
+// FOLLOW
 apiRouter.post('/addFollow/:username', userController.apiMustBeLoggedIn, followController.apiAddFollow);
 apiRouter.post('/removeFollow/:username', userController.apiMustBeLoggedIn, followController.apiRemoveFollow);
 
@@ -33,6 +34,9 @@ apiRouter.post('/project/:id/edit', userController.apiMustBeLoggedIn, projectCon
 apiRouter.delete('/project/:id', userController.apiMustBeLoggedIn, projectController.apiDelete);
 apiRouter.post('/create-project', userController.apiMustBeLoggedIn, projectController.apiCreate);
 apiRouter.post('/search', projectController.search);
+
+// BID
+apiRouter.post('/create-bid', userController.apiMustBeLoggedIn, projectController.createBid)
 
 // EXPORT ROUTER CODE
 module.exports = apiRouter;

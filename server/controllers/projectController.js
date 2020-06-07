@@ -62,3 +62,7 @@ exports.apiViewSingle = async function (req, res) {
     res.json(false);
   }
 };
+
+exports.createBid = (req, res) => {
+  console.log(req.body)
+}
