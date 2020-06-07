@@ -65,4 +65,5 @@ exports.apiViewSingle = async function (req, res) {
 
 exports.createBid = (req, res) => {
   console.log(req.body)
+  console.log(req.apiUser);
 }
