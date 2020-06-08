@@ -64,6 +64,13 @@ exports.apiViewSingle = async function (req, res) {
 };
 
 exports.createBid = (req, res) => {
-  console.log(req.body)
-  console.log(req.apiUser);
-}
+  let bid = new Project(req.body);
+  bid
+    .addBid()
+    .then(response => {
+      res.json(response);
+    })
+    .catch(error => {
+      res.json(error);
+    });
+};

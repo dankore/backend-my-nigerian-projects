@@ -70,7 +70,7 @@ Project.prototype.create = function () {
   return new Promise((resolve, reject) => {
     this.cleanUp();
     this.validate();
-    
+
     if (!this.errors.length) {
       // save project into database
       projectsCollection
@@ -252,4 +252,29 @@ Project.getFeed = async function (id) {
   return Project.reusableProjectQuery([{ $match: { author: { $in: followedUsers } } }, { $sort: { createdDate: -1 } }]);
 };
 
+Project.prototype.addBid = function () {
+  return new Promise(async (resolve, reject) => {
+    await projectsCollection.findOneAndUpdate(
+      { _id: new ObjectID(this.data.projectId) },
+      {
+        $push: {
+          bids: {
+            id: new ObjectID(),
+            whatBestDescribesYou: this.data.whatBestDescribesYou,
+            yearsOfExperience: this.data.yearsOfExperience,
+            items: this.data.items,
+            otherDetails: this.data.otherDetails,
+          },
+        },
+      }
+    )
+      .then(() => {
+        console.log('bid added!')
+        resolve('Bid added.');
+      })
+      .catch(() => {
+        reject(this.errors);
+      });
+  });
+};
 module.exports = Project;
