@@ -32,7 +32,7 @@ Project.prototype.cleanUp = function () {
     this.data.phone = '';
   }
 
-  // get rid of any bogus properties
+  // GET RID OF BOGUS PROPERTIES
   this.data = {
     title: sanitizeHTML(this.data.title.trim(), { allowedTags: [], allowedAttributes: {} }),
     location: sanitizeHTML(this.data.location.trim(), { allowedTags: [], allowedAttributes: {} }),
@@ -252,29 +252,69 @@ Project.getFeed = async function (id) {
   return Project.reusableProjectQuery([{ $match: { author: { $in: followedUsers } } }, { $sort: { createdDate: -1 } }]);
 };
 
+Project.prototype.cleanUpBid = function () {
+  if (typeof this.data.whatBestDescribesYou != 'string') {
+    this.data.whatBestDescribesYou = '';
+  }
+  if (typeof this.data.yearsOfExperience != 'string') {
+    this.data.yearsOfExperience = '';
+  }
+  if (typeof this.data.otherDetails != 'string') {
+    this.data.otherDetails = '';
+  }
+  if (!Array.isArray(this.data.items)) {
+    // TODO
+  }
+  // GET RID OF BOGUS PROPERTIES
+  this.data = {
+    projectId: ObjectID(this.data.projectId),
+    whatBestDescribesYou: sanitizeHTML(this.data.whatBestDescribesYou.trim(), { allowedTags: [], allowedAttributes: {} }),
+    yearsOfExperience: sanitizeHTML(this.data.yearsOfExperience.trim(), { allowedTags: [], allowedAttributes: {} }),
+    items: this.data.items,
+    otherDetails: sanitizeHTML(this.data.otherDetails.trim(), { allowedTags: [], allowedAttributes: {} }),
+  };
+};
+
+Project.prototype.validateBid = function () {
+  if (this.data.whatBestDescribesYou == '') {
+    this.errors.push('Please choose from the options.');
+  }
+  if (this.data.yearsOfExperience == '') {
+    this.errors.push('Years of experience required.');
+  }
+};
+
 Project.prototype.addBid = function () {
   return new Promise(async (resolve, reject) => {
-    await projectsCollection.findOneAndUpdate(
-      { _id: new ObjectID(this.data.projectId) },
-      {
-        $push: {
-          bids: {
-            id: new ObjectID(),
-            whatBestDescribesYou: this.data.whatBestDescribesYou,
-            yearsOfExperience: this.data.yearsOfExperience,
-            items: this.data.items,
-            otherDetails: this.data.otherDetails,
-          },
-        },
-      }
-    )
-      .then(() => {
-        console.log('bid added!')
-        resolve('Bid added.');
-      })
-      .catch(() => {
-        reject(this.errors);
-      });
+    this.validateBid();
+    this.cleanUpBid();
+
+    if (!this.errors.length) {
+      await projectsCollection
+        .findOneAndUpdate(
+          { _id: new ObjectID(this.data.projectId) },
+          {
+            $push: {
+              bids: {
+                id: new ObjectID(),
+                whatBestDescribesYou: this.data.whatBestDescribesYou,
+                yearsOfExperience: this.data.yearsOfExperience,
+                items: this.data.items,
+                otherDetails: this.data.otherDetails,
+              },
+            },
+          }
+        )
+        .then(() => {
+          console.log('Bid added!');
+          resolve('Bid added!');
+        })
+        .catch(() => {
+          reject('Adding bid failed.');
+        });
+    } else {
+      reject(this.errors);
+    }
   });
 };
 module.exports = Project;
