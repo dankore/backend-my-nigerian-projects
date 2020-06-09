@@ -262,9 +262,7 @@ Project.prototype.cleanUpBid = function () {
   if (typeof this.data.otherDetails != 'string') {
     this.data.otherDetails = '';
   }
-  if (!Array.isArray(this.data.items)) {
-    // TODO
-  }
+  
   // GET RID OF BOGUS PROPERTIES
   this.data = {
     projectId: ObjectID(this.data.projectId),
@@ -306,7 +304,6 @@ Project.prototype.addBid = function () {
           }
         )
         .then(() => {
-          console.log('Bid added!');
           resolve('Bid added!');
         })
         .catch(() => {
