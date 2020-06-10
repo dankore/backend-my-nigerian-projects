@@ -304,7 +304,7 @@ Project.prototype.addBid = function () {
           }
         )
         .then(() => {
-          resolve('Bid added!');
+          resolve('Success');
         })
         .catch(() => {
           reject('Adding bid failed.');
