@@ -146,6 +146,7 @@ Project.reusableProjectQuery = function (uniqueOperations, visitorId) {
           firstName: 1,
           lastName: 1,
           createdDate: 1,
+          bids: 1,
           authorId: '$author',
           author: { $arrayElemAt: ['$authorDocument', 0] },
         },
