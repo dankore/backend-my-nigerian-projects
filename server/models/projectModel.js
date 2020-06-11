@@ -271,6 +271,7 @@ Project.prototype.cleanUpBid = function () {
     yearsOfExperience: sanitizeHTML(this.data.yearsOfExperience.trim(), { allowedTags: [], allowedAttributes: {} }),
     items: this.data.items,
     otherDetails: sanitizeHTML(this.data.otherDetails.trim(), { allowedTags: [], allowedAttributes: {} }),
+    bidAuthor: this.data.bidAuthor,
   };
 };
 
@@ -300,6 +301,7 @@ Project.prototype.addBid = function () {
                 yearsOfExperience: this.data.yearsOfExperience,
                 items: this.data.items,
                 otherDetails: this.data.otherDetails,
+                bidAuthor: this.data.bidAuthor,
               },
             },
           }
