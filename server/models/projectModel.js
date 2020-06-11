@@ -315,4 +315,30 @@ Project.prototype.addBid = function () {
     }
   });
 };
+
+
+ Project.getSingleBid = (data) => {
+     return new Promise(async(resolve, reject)=>{
+        projectsCollection.findOne(
+           {_id: new ObjectID(data.projectId)},
+           {
+               projection: {
+                   bids: 1,
+                   _id: 0
+               }
+           }
+       )
+       .then(response=> {
+           const bid = response.bids.filter(bid=> bid.id == data.bidId)
+           resolve(bid)
+       })
+       .catch(()=>{
+           reject("failed.")
+       })
+
+        
+
+          
+     })
+ }
 module.exports = Project;

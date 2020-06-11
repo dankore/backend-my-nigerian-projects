@@ -74,3 +74,18 @@ exports.createBid = (req, res) => {
       res.json(error);
     });
 };
+
+
+exports.apiGetSingleBid = (req, res)=>{
+    const data = {
+        projectId: '5ed79f4a7b6b4c255c9990c1',
+        bidId: '5ede8ff45b28f13e60b01b8a'
+    }
+    Project.getSingleBid(data)
+    .then(response=>{
+        res.json(response);
+    })
+    .catch(error=>{
+        res.json(error);
+    })
+}
