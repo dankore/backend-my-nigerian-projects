@@ -316,9 +316,8 @@ Project.prototype.addBid = function () {
   });
 };
 
-
- Project.getSingleBid = (data) => {
-     return new Promise(async(resolve, reject)=>{
+Project.getSingleBid = data => {
+     return new Promise((resolve, reject)=>{
         projectsCollection.findOne(
            {_id: new ObjectID(data.projectId)},
            {
@@ -329,11 +328,11 @@ Project.prototype.addBid = function () {
            }
        )
        .then(response=> {
-           const bid = response.bids.filter(bid=> bid.id == data.bidId)
-           resolve(bid)
+           const bid = response.bids.filter(bid=> bid.id == data.bidId);
+           resolve(bid);
        })
        .catch(()=>{
-           reject("failed.")
+           reject("failed.");
        })
 
         
