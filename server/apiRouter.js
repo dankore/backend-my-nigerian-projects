@@ -37,7 +37,7 @@ apiRouter.post('/search', projectController.search);
 
 // BID
 apiRouter.post('/create-bid', userController.apiMustBeLoggedIn, projectController.createBid);
-apiRouter.get("/view-single-bid", projectController.apiGetSingleBid);
+apiRouter.post('/view-single-bid', userController.apiMustBeLoggedIn, projectController.apiGetSingleBid);
 
 // EXPORT ROUTER CODE
 module.exports = apiRouter;
