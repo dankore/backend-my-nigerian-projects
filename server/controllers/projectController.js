@@ -74,3 +74,13 @@ exports.createBid = (req, res) => {
       res.json(error);
     });
 };
+
+exports.apiGetSingleBid = (req, res) => {
+  Project.getSingleBid(req.body)
+    .then(response => {
+      res.json(response);
+    })
+    .catch(error => {
+      res.json(error);
+    });
+};

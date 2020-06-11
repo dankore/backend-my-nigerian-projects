@@ -263,7 +263,7 @@ Project.prototype.cleanUpBid = function () {
   if (typeof this.data.otherDetails != 'string') {
     this.data.otherDetails = '';
   }
-  
+
   // GET RID OF BOGUS PROPERTIES
   this.data = {
     projectId: ObjectID(this.data.projectId),
@@ -313,6 +313,28 @@ Project.prototype.addBid = function () {
     } else {
       reject(this.errors);
     }
+  });
+};
+
+Project.getSingleBid = data => {
+  return new Promise((resolve, reject) => {
+    projectsCollection
+      .findOne(
+        { _id: new ObjectID(data.projectId) },
+        {
+          projection: {
+            bids: 1,
+            _id: 0,
+          },
+        }
+      )
+      .then(response => {
+        const bid = response.bids.filter(bid => bid.id == data.bidId)[0];
+        resolve(bid);
+      })
+      .catch(() => {
+        reject('Getting bid failed. Please try again.');
+      });
   });
 };
 module.exports = Project;
