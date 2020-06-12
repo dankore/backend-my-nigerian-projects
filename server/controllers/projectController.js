@@ -64,11 +64,7 @@ exports.apiViewSingle = async function (req, res) {
 };
 
 exports.createBid = (req, res) => {
-  const bidAuthor = {
-    username: req.apiUser.username,
-    firstName: req.apiUser.firstName,
-    lastName: req.apiUser.lastName,
-  };
+  const bidAuthor = [req.apiUser._id,req.apiUser.username, req.apiUser.firstName, req.apiUser.lastName ];
   req.body.bidAuthor = bidAuthor;
   let bid = new Project(req.body);
 

@@ -1,4 +1,5 @@
 const usersCollection = require('../../db').db().collection('users');
+const projectsCollection = require('../../db').db().collection('projects');
 const ObjectID = require('mongodb').ObjectID;
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
@@ -274,11 +275,18 @@ User.prototype.updateProfile = function () {
             },
           },
           {
+            projection: {
+              username: 1,
+              firstName: 1,
+              lastName: 1,
+            },
             returnOriginal: false,
           }
         )
         .then(info => {
           resolve(info.value);
+          // UPDATE USER PROFILE INFO ON EVERY BID
+          // User.updateProfileInfo(info.value);
         })
         .catch(() => {
           reject('Profile Update failed.');
@@ -288,6 +296,31 @@ User.prototype.updateProfile = function () {
     }
   });
 };
+
+// User.updateProfileInfo = data => {
+//   console.log({ data });
+//   return new Promise(async (resolve, reject) => {
+//     try {
+//       await projectsCollection.updateMany(
+//         {},
+//         {
+//           $set: {
+//             'bids.$[].bidAuthor.$[elem].firstName': data.firstName,
+//           },
+//         },
+//         {
+//           arrayFilters: [{ "elem.authorId": data._id }],
+//           multi: true,
+//         }
+//       );
+//       console.log('complete');
+//       resolve();
+//     } catch (error) {
+//       console.log({ error });
+//       reject();
+//     }
+//   });
+// };
 
 User.changePassword = data => {
   return new Promise(async (resolve, reject) => {
