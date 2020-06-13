@@ -1,4 +1,5 @@
 const Project = require('../models/projectModel');
+const { response } = require('express');
 
 exports.apiCreate = function (req, res) {
   let project = new Project(req.body, req.apiUser._id);
@@ -68,7 +69,7 @@ exports.createBid = (req, res) => {
     authorId: req.apiUser._id,
     username: req.apiUser.username,
   };
- 
+
   req.body.bidAuthor = bidAuthor;
   let bid = new Project(req.body);
 
@@ -84,6 +85,16 @@ exports.createBid = (req, res) => {
 
 exports.apiGetSingleBid = (req, res) => {
   Project.getSingleBid(req.body)
+    .then(response => {
+      res.json(response);
+    })
+    .catch(error => {
+      res.json(error);
+    });
+};
+
+exports.apiDeleteBid = (req, res) => {
+  Project.deleteBid(req.body)
     .then(response => {
       res.json(response);
     })

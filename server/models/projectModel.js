@@ -339,4 +339,17 @@ Project.getSingleBid = data => {
       });
   });
 };
+
+Project.deleteBid = data => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      await projectsCollection.updateOne({ _id: new ObjectID(data.projectId) }, { $pull: { bids: { id: new ObjectID(data.bidId) } } });
+      resolve('Success');
+    } catch (error) {
+      reject("Sorry, your bid was not deleted. Please try again.");
+    }
+  });
+};
+
+// EXPORT THIS FILE
 module.exports = Project;
