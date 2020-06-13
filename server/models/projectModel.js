@@ -325,6 +325,7 @@ Project.getSingleBid = data => {
         { _id: new ObjectID(data.projectId) },
         {
           projection: {
+            title: 1,
             bids: 1,
             _id: 0,
           },
@@ -332,7 +333,7 @@ Project.getSingleBid = data => {
       )
       .then(response => {
         const bid = response.bids.filter(bid => bid.id == data.bidId)[0];
-        resolve(bid);
+        resolve({ projectTitle: response.title, bid });
       })
       .catch(() => {
         reject('Getting bid failed. Please try again.');
@@ -346,7 +347,7 @@ Project.deleteBid = data => {
       await projectsCollection.updateOne({ _id: new ObjectID(data.projectId) }, { $pull: { bids: { id: new ObjectID(data.bidId) } } });
       resolve('Success');
     } catch (error) {
-      reject("Sorry, your bid was not deleted. Please try again.");
+      reject('Sorry, your bid was not deleted. Please try again.');
     }
   });
 };
