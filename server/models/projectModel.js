@@ -263,6 +263,9 @@ Project.prototype.cleanUpBid = function () {
   if (typeof this.data.otherDetails != 'string') {
     this.data.otherDetails = '';
   }
+  if (typeof this.data.phone != 'string') {
+    this.data.phone = '';
+  }
 
   // GET RID OF BOGUS PROPERTIES
   this.data = {
@@ -271,6 +274,7 @@ Project.prototype.cleanUpBid = function () {
     yearsOfExperience: sanitizeHTML(this.data.yearsOfExperience.trim(), { allowedTags: [], allowedAttributes: {} }),
     items: this.data.items,
     otherDetails: sanitizeHTML(this.data.otherDetails.trim(), { allowedTags: [], allowedAttributes: {} }),
+    phone: sanitizeHTML(this.data.phone.trim(), { allowedTags: [], allowedAttributes: {} }),
     bidAuthor: this.data.bidAuthor,
   };
 };
@@ -281,6 +285,9 @@ Project.prototype.validateBid = function () {
   }
   if (this.data.yearsOfExperience == '') {
     this.errors.push('Years of experience required.');
+  }
+  if (this.data.phone == '') {
+    this.errors.push('Phone number is required.');
   }
 };
 
@@ -301,6 +308,7 @@ Project.prototype.addBid = function () {
                 yearsOfExperience: this.data.yearsOfExperience,
                 items: this.data.items,
                 otherDetails: this.data.otherDetails,
+                phone: this.data.phone,
                 bidAuthor: this.data.bidAuthor,
               },
             },
