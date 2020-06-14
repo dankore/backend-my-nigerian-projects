@@ -275,6 +275,7 @@ Project.prototype.cleanUpBid = function () {
     items: this.data.items,
     otherDetails: sanitizeHTML(this.data.otherDetails.trim(), { allowedTags: [], allowedAttributes: {} }),
     phone: sanitizeHTML(this.data.phone.trim(), { allowedTags: [], allowedAttributes: {} }),
+    email: sanitizeHTML(this.data.email.trim(), { allowedTags: [], allowedAttributes: {} }),
     bidAuthor: this.data.bidAuthor,
   };
 };
@@ -289,6 +290,9 @@ Project.prototype.validateBid = function () {
   if (this.data.phone == '') {
     this.errors.push('Phone number is required.');
   }
+   if (this.data.email == '') {
+     this.errors.push('Email is required.');
+   }
 };
 
 Project.prototype.addBid = function () {
@@ -309,6 +313,7 @@ Project.prototype.addBid = function () {
                 items: this.data.items,
                 otherDetails: this.data.otherDetails,
                 phone: this.data.phone,
+                email: this.data.email,
                 bidAuthor: this.data.bidAuthor,
               },
             },
