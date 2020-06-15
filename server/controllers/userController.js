@@ -2,6 +2,7 @@ const User = require('../models/userModel');
 const Project = require('../models/projectModel');
 const Follow = require('../models/followModel');
 const jwt = require('jsonwebtoken');
+const { ObjectID } = require('mongodb');
 
 // TOKEN EXPIRY
 const tokenLasts = '30d';
@@ -85,6 +86,7 @@ exports.apiLogin = (req, res) => {
         firstName: user.data.firstName,
         lastName: user.data.lastName,
         avatar: user.avatar,
+        createdDate: new Date(ObjectID(user.data._id).getTimestamp()).toISOString().substring(0, 10) ,
       });
     })
     .catch(() => {
