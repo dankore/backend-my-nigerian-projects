@@ -276,6 +276,7 @@ Project.prototype.cleanUpBid = function () {
     otherDetails: sanitizeHTML(this.data.otherDetails.trim(), { allowedTags: [], allowedAttributes: {} }),
     phone: sanitizeHTML(this.data.phone.trim(), { allowedTags: [], allowedAttributes: {} }),
     email: sanitizeHTML(this.data.email.trim(), { allowedTags: [], allowedAttributes: {} }),
+    userCreationDate: this.data.userCreationDate,
     bidAuthor: this.data.bidAuthor,
   };
 };
@@ -314,6 +315,7 @@ Project.prototype.addBid = function () {
                 otherDetails: this.data.otherDetails,
                 phone: this.data.phone,
                 email: this.data.email,
+                userCreationDate: this.data.userCreationDate,
                 bidAuthor: this.data.bidAuthor,
               },
             },

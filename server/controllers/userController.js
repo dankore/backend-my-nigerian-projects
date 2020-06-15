@@ -86,7 +86,7 @@ exports.apiLogin = (req, res) => {
         firstName: user.data.firstName,
         lastName: user.data.lastName,
         avatar: user.avatar,
-        createdDate: new Date(ObjectID(user.data._id).getTimestamp()).toISOString().substring(0, 10) ,
+        userCreationDate: new Date(ObjectID(user.data._id).getTimestamp()).toISOString().substring(0, 10),
       });
     })
     .catch(() => {
