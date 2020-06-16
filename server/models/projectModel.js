@@ -143,6 +143,7 @@ Project.reusableProjectQuery = function (uniqueOperations, visitorId) {
           description: 1,
           email: 1,
           phone: 1,
+          _id: 1,
           firstName: 1,
           lastName: 1,
           createdDate: 1,
@@ -161,6 +162,8 @@ Project.reusableProjectQuery = function (uniqueOperations, visitorId) {
       project.authorId = undefined;
 
       project.author = {
+        _id: project.author._id,
+        userCreationDate: new Date(ObjectID(project.author._id).getTimestamp()).toISOString().substring(0, 10),
         username: project.author.username,
         firstName: project.author.firstName,
         lastName: project.author.lastName,
@@ -184,6 +187,7 @@ Project.findSingleById = function (id, visitorId) {
     let projects = await Project.reusableProjectQuery([{ $match: { _id: new ObjectID(id) } }], visitorId);
 
     if (projects.length) {
+        console.log(projects[0]);
       resolve(projects[0]);
     } else {
       reject();
