@@ -235,3 +235,14 @@ exports.apiChangePassword = async (req, res) => {
       res.json(error);
     });
 };
+
+exports.apiGetProfileById = (req, res) => {
+    User.getProfileById('5ec9799fddc50c4014f3dea6')
+    .then(response=>{
+        res.json(response)
+    })
+    .catch(error => {
+        res.json(error)
+    })
+
+}

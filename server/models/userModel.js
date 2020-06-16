@@ -297,30 +297,6 @@ User.prototype.updateProfile = function () {
   });
 };
 
-// User.updateProfileInfo = data => {
-//   console.log({ data });
-//   return new Promise(async (resolve, reject) => {
-//     try {
-//       await projectsCollection.updateMany(
-//         {},
-//         {
-//           $set: {
-//             'bids.$[].bidAuthor.$[elem].firstName': data.firstName,
-//           },
-//         },
-//         {
-//           arrayFilters: [{ "elem.authorId": data._id }],
-//           multi: true,
-//         }
-//       );
-//       console.log('complete');
-//       resolve();
-//     } catch (error) {
-//       console.log({ error });
-//       reject();
-//     }
-//   });
-// };
 
 User.changePassword = data => {
   return new Promise(async (resolve, reject) => {
@@ -361,5 +337,24 @@ User.changePassword = data => {
       });
   });
 };
+
+User.getProfileById = (id) =>{
+    return new Promise(async(resolve, reject)=>{
+        try {
+            const userDoc = await usersCollection.findOne(
+                {_id: new ObjectID(id)},
+                {
+                    projection: {
+                        password: 0
+                    }
+                }
+            );
+            userDoc.avatar = `https://gravatar.com/avatar/${md5(userDoc.email)}?s=128`;
+            resolve(userDoc);
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
 
 module.exports = User;
