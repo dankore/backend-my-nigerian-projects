@@ -23,7 +23,7 @@ apiRouter.get('/profile/:username/projects', userController.ifUserExists, userCo
 apiRouter.get('/profile/:username/followers', userController.ifUserExists, userController.profileFollowers);
 apiRouter.get('/profile/:username/following', userController.ifUserExists, userController.profileFollowing);
 apiRouter.post('/updateProfileInfo', userController.apiMustBeLoggedIn, userController.updateProfileInfo);
-apiRouter.get('/getProfileById', /**userController.apiMustBeLoggedIn, */ userController.apiGetProfileById);
+apiRouter.post('/getProfileById',  userController.apiGetProfileById);
 
 // FOLLOW
 apiRouter.post('/addFollow/:username', userController.apiMustBeLoggedIn, followController.apiAddFollow);
