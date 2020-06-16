@@ -347,7 +347,10 @@ Project.getSingleBid = data => {
         }
       )
       .then(response => {
-        const bid = response.bids.filter(bid => bid.id == data.bidId)[0];
+        const bid = response.bids.filter(bid => {
+            bid.bidCreationDate = new Date(ObjectID(bid.id).getTimestamp()).toISOString().substring(0, 10)
+            return bid.id == data.bidId
+        })[0];
         resolve({ projectTitle: response.title, bid });
       })
       .catch(() => {
