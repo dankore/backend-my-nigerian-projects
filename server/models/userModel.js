@@ -1,5 +1,4 @@
 const usersCollection = require('../../db').db().collection('users');
-const projectsCollection = require('../../db').db().collection('projects');
 const ObjectID = require('mongodb').ObjectID;
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
