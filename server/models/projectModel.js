@@ -187,7 +187,6 @@ Project.findSingleById = function (id, visitorId) {
     let projects = await Project.reusableProjectQuery([{ $match: { _id: new ObjectID(id) } }], visitorId);
 
     if (projects.length) {
-        console.log(projects[0]);
       resolve(projects[0]);
     } else {
       reject();
