@@ -23,7 +23,10 @@ apiRouter.get('/profile/:username/projects', userController.ifUserExists, userCo
 apiRouter.get('/profile/:username/followers', userController.ifUserExists, userController.profileFollowers);
 apiRouter.get('/profile/:username/following', userController.ifUserExists, userController.profileFollowing);
 apiRouter.post('/updateProfileInfo', userController.apiMustBeLoggedIn, userController.updateProfileInfo);
-apiRouter.post('/getProfileById',  userController.apiGetProfileById);
+apiRouter.post('/getProfileById', userController.apiGetProfileById);
+
+// ACCOUNT
+apiRouter.post('/delete-account', userController.apiMustBeLoggedIn, userController.apiDeleteAccount);
 
 // FOLLOW
 apiRouter.post('/addFollow/:username', userController.apiMustBeLoggedIn, followController.apiAddFollow);
@@ -39,6 +42,6 @@ apiRouter.post('/search', projectController.search);
 // BID
 apiRouter.post('/create-bid', userController.apiMustBeLoggedIn, projectController.createBid);
 apiRouter.post('/view-single-bid', projectController.apiGetSingleBid);
-apiRouter.delete('/delete-bid', userController.apiMustBeLoggedIn, projectController.apiDeleteBid)
+apiRouter.delete('/delete-bid', userController.apiMustBeLoggedIn, projectController.apiDeleteBid);
 // EXPORT ROUTER CODE
 module.exports = apiRouter;

@@ -3,6 +3,7 @@ const ObjectID = require('mongodb').ObjectID;
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const md5 = require('md5');
+const { response } = require('express');
 
 let User = class user_ {
   constructor(data, getAvatar) {
@@ -296,7 +297,6 @@ User.prototype.updateProfile = function () {
   });
 };
 
-
 User.changePassword = data => {
   return new Promise(async (resolve, reject) => {
     if (data.newPassword != data.reEnteredNewPassword) {
@@ -337,23 +337,36 @@ User.changePassword = data => {
   });
 };
 
-User.getProfileById = (id) =>{
-    return new Promise(async(resolve, reject)=>{
-        try {
-            const userDoc = await usersCollection.findOne(
-                {_id: new ObjectID(id)},
-                {
-                    projection: {
-                        password: 0
-                    }
-                }
-            );
-            userDoc.avatar = `https://gravatar.com/avatar/${md5(userDoc.email)}?s=128`;
-            resolve(userDoc);
-        } catch (error) {
-            reject(error);
+User.getProfileById = id => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const userDoc = await usersCollection.findOne(
+        { _id: new ObjectID(id) },
+        {
+          projection: {
+            password: 0,
+          },
         }
-    })
-}
+      );
+      userDoc.avatar = `https://gravatar.com/avatar/${md5(userDoc.email)}?s=128`;
+      resolve(userDoc);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+User.deleteAccount = userId => {
+  return new Promise(async (resolve, reject) => {
+    usersCollection
+      .findOneAndDelete({ _id: new ObjectID(userId) })
+      .then(_ => {
+        resolve('Success');
+      })
+      .catch(error => {
+        reject(error);
+      });
+  });
+};
 
 module.exports = User;

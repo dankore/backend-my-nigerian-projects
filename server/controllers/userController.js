@@ -3,6 +3,7 @@ const Project = require('../models/projectModel');
 const Follow = require('../models/followModel');
 const jwt = require('jsonwebtoken');
 const { ObjectID } = require('mongodb');
+const { response, json } = require('express');
 
 // TOKEN EXPIRY
 const tokenLasts = '30d';
@@ -237,12 +238,21 @@ exports.apiChangePassword = async (req, res) => {
 };
 
 exports.apiGetProfileById = (req, res) => {
-    User.getProfileById(req.body.authorId)
-    .then(response=>{
-        res.json(response)
+  User.getProfileById(req.body.authorId)
+    .then(response => {
+      res.json(response);
     })
     .catch(error => {
-        res.json(error)
-    })
+      res.json(error);
+    });
+};
 
-}
+exports.apiDeleteAccount = (req, res) => {
+  User.deleteAccount(req.body.userId)
+    .then(response => {
+      res.json(response);
+    })
+    .catch(error => {
+      res.json(error);
+    });
+};
