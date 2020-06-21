@@ -364,6 +364,7 @@ User.deleteAccount = userId => {
       .then(async _ => {
         resolve('Success');
         await followsCollection.deleteMany({followedId: new ObjectID(userId)});
+        await followsCollection.deleteMany({authorId: new ObjectID(userId)});
       })
       .catch(error => {
         reject(error);
