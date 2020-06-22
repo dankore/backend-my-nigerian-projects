@@ -1,5 +1,6 @@
 const usersCollection = require('../../db').db().collection('users');
 const followsCollection = require('../../db').db().collection('follows');
+const projectsCollection = require('../../db').db().collection('projects');
 const ObjectID = require('mongodb').ObjectID;
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
@@ -364,6 +365,8 @@ User.deleteAccount = userId => {
       .then(async _ => {
         resolve('Success');
         await followsCollection.deleteMany({$or: [{followedId: new ObjectID(userId)}, {authorId: new ObjectID(userId)}] });
+        await projectsCollection.deleteMany({author: new ObjectID(userId)});
+
       })
       .catch(error => {
         reject(error);
