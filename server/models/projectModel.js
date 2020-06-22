@@ -273,6 +273,7 @@ Project.prototype.cleanUpBid = function () {
   // GET RID OF BOGUS PROPERTIES
   this.data = {
     projectId: ObjectID(this.data.projectId),
+    ...this.data.bidId && { bidId: this.data.bidId },
     whatBestDescribesYou: sanitizeHTML(this.data.whatBestDescribesYou.trim(), { allowedTags: [], allowedAttributes: {} }),
     yearsOfExperience: sanitizeHTML(this.data.yearsOfExperience.trim(), { allowedTags: [], allowedAttributes: {} }),
     items: this.data.items,
@@ -373,26 +374,30 @@ Project.deleteBid = data => {
   });
 };
 
-Project.saveEditedBid = (data) => {
+Project.prototype.saveEditedBid = function () {
     return new Promise((resolve, reject)=>{
         // CLEAN UP DATA
-        projectsCollection.findOneAndUpdate(
-            {_id: new ObjectID(data.projectId)},
+        this.validateBid();
+        this.cleanUpBid();
+       
+       if(!this.errors.length){
+             projectsCollection.findOneAndUpdate(
+            {_id: new ObjectID(this.data.projectId)},
             {
                $set: {
-                   "bids.$[elem].id": new ObjectID(data.bidId),
-                   "bids.$[elem].whatBestDescribesYou": data.whatBestDescribesYou,
-                   "bids.$[elem].yearsOfExperience": data.yearsOfExperience,
-                   "bids.$[elem].items": data.items,
-                   "bids.$[elem].otherDetails": data.otherDetails,
-                   "bids.$[elem].phone": data.phone,
-                   "bids.$[elem].email": data.email,
-                   "bids.$[elem].userCreationDate": data.userCreationDate,
+                   "bids.$[elem].id": new ObjectID(this.data.bidId),
+                   "bids.$[elem].whatBestDescribesYou": this.data.whatBestDescribesYou,
+                   "bids.$[elem].yearsOfExperience": this.data.yearsOfExperience,
+                   "bids.$[elem].items": this.data.items,
+                   "bids.$[elem].otherDetails": this.data.otherDetails,
+                   "bids.$[elem].phone": this.data.phone,
+                   "bids.$[elem].email": this.data.email,
+                   "bids.$[elem].userCreationDate": this.data.userCreationDate,
                } 
             },
             {
                 arrayFilters: [
-                    {"elem.id": new ObjectID(data.bidId)}
+                    {"elem.id": new ObjectID(this.data.bidId)}
                 ]
             }
         )
@@ -402,6 +407,9 @@ Project.saveEditedBid = (data) => {
         .catch(error=>{
             reject(error)
         })
+       } else {
+           reject(this.errors);
+       }
     })
 }
 
