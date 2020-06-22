@@ -102,3 +102,13 @@ exports.apiDeleteBid = (req, res) => {
       res.json(error);
     });
 };
+
+exports.apiEditBid = (req, res) => {
+    Project.saveEditedBid(req.body)
+    .then(response => {
+        res.json(response);
+    })
+    .catch(error=>{
+        res.json(error);
+    })
+}

@@ -373,5 +373,37 @@ Project.deleteBid = data => {
   });
 };
 
+Project.saveEditedBid = (data) => {
+    return new Promise((resolve, reject)=>{
+        // CLEAN UP DATA
+        projectsCollection.findOneAndUpdate(
+            {_id: new ObjectID(data.projectId)},
+            {
+               $set: {
+                   "bids.$[elem].id": new ObjectID(data.bidId),
+                   "bids.$[elem].whatBestDescribesYou": data.whatBestDescribesYou,
+                   "bids.$[elem].yearsOfExperience": data.yearsOfExperience,
+                   "bids.$[elem].items": data.items,
+                   "bids.$[elem].otherDetails": data.otherDetails,
+                   "bids.$[elem].phone": data.phone,
+                   "bids.$[elem].email": data.email,
+                   "bids.$[elem].userCreationDate": data.userCreationDate,
+               } 
+            },
+            {
+                arrayFilters: [
+                    {"elem.id": new ObjectID(data.bidId)}
+                ]
+            }
+        )
+        .then(_=>{
+            resolve('Success')
+        })
+        .catch(error=>{
+            reject(error)
+        })
+    })
+}
+
 // EXPORT THIS FILE
 module.exports = Project;
