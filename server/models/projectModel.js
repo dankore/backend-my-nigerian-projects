@@ -323,6 +323,7 @@ Project.prototype.addBid = function () {
                 email: this.data.email,
                 userCreationDate: this.data.userCreationDate,
                 bidAuthor: this.data.bidAuthor,
+                bidCreationDate: new Date(),
               },
             },
           }
@@ -354,7 +355,6 @@ Project.getSingleBid = data => {
       )
       .then(response => {
         const bid = response.bids.filter(bid => {
-          bid.bidCreationDate = new Date(ObjectID(bid.id).getTimestamp()).toISOString().substring(0, 10);
           return bid.id == data.bidId;
         })[0];
         resolve({ projectTitle: response.title, bid });
@@ -377,27 +377,28 @@ Project.deleteBid = data => {
 };
 
 Project.prototype.saveEditedBid = function () {
-    return new Promise((resolve, reject)=>{
-        // CLEAN UP DATA
-        this.validateBid();
-        this.cleanUpBid();
-       
-       if(!this.errors.length){
-             projectsCollection.findOneAndUpdate(
-            {_id: new ObjectID(this.data.projectId)},
-            {
-               $set: {
-                   "bids.$[elem].id": new ObjectID(this.data.bidId),
-                   "bids.$[elem].whatBestDescribesYou": this.data.whatBestDescribesYou,
-                   "bids.$[elem].yearsOfExperience": this.data.yearsOfExperience,
-                   "bids.$[elem].items": this.data.items,
-                   "bids.$[elem].otherDetails": this.data.otherDetails,
-                   "bids.$[elem].phone": this.data.phone,
-                   "bids.$[elem].email": this.data.email,
-                   "bids.$[elem].userCreationDate": this.data.userCreationDate,
-                   "bids.$[elem].updatedDate": new Date(),
-               } 
+  return new Promise((resolve, reject) => {
+    // CLEAN UP DATA
+    this.validateBid();
+    this.cleanUpBid();
+
+    if (!this.errors.length) {
+      projectsCollection
+        .findOneAndUpdate(
+          { _id: new ObjectID(this.data.projectId) },
+          {
+            $set: {
+              'bids.$[elem].id': new ObjectID(this.data.bidId),
+              'bids.$[elem].whatBestDescribesYou': this.data.whatBestDescribesYou,
+              'bids.$[elem].yearsOfExperience': this.data.yearsOfExperience,
+              'bids.$[elem].items': this.data.items,
+              'bids.$[elem].otherDetails': this.data.otherDetails,
+              'bids.$[elem].phone': this.data.phone,
+              'bids.$[elem].email': this.data.email,
+              'bids.$[elem].userCreationDate': this.data.userCreationDate,
+              'bids.$[elem].updatedDate': new Date(),
             },
+          },
           {
             arrayFilters: [{ 'elem.id': new ObjectID(this.data.bidId) }],
           }
