@@ -273,7 +273,7 @@ Project.prototype.cleanUpBid = function () {
   // GET RID OF BOGUS PROPERTIES
   this.data = {
     projectId: ObjectID(this.data.projectId),
-    ...this.data.bidId && { bidId: this.data.bidId },
+    ...(this.data.bidId && { bidId: this.data.bidId }),
     whatBestDescribesYou: sanitizeHTML(this.data.whatBestDescribesYou.trim(), { allowedTags: [], allowedAttributes: {} }),
     yearsOfExperience: sanitizeHTML(this.data.yearsOfExperience.trim(), { allowedTags: [], allowedAttributes: {} }),
     items: this.data.items,
@@ -295,9 +295,9 @@ Project.prototype.validateBid = function () {
   if (this.data.phone == '') {
     this.errors.push('Phone number is required.');
   }
-   if (this.data.email == '') {
-     this.errors.push('Email is required.');
-   }
+  if (this.data.email == '') {
+    this.errors.push('Email is required.');
+  }
 };
 
 Project.prototype.addBid = function () {
@@ -352,8 +352,8 @@ Project.getSingleBid = data => {
       )
       .then(response => {
         const bid = response.bids.filter(bid => {
-            bid.bidCreationDate = new Date(ObjectID(bid.id).getTimestamp()).toISOString().substring(0, 10)
-            return bid.id == data.bidId
+          bid.bidCreationDate = new Date(ObjectID(bid.id).getTimestamp()).toISOString().substring(0, 10);
+          return bid.id == data.bidId;
         })[0];
         resolve({ projectTitle: response.title, bid });
       })
@@ -396,23 +396,21 @@ Project.prototype.saveEditedBid = function () {
                    "bids.$[elem].updatedDate": new Date(),
                } 
             },
-            {
-                arrayFilters: [
-                    {"elem.id": new ObjectID(this.data.bidId)}
-                ]
-            }
+          {
+            arrayFilters: [{ 'elem.id': new ObjectID(this.data.bidId) }],
+          }
         )
-        .then(_=>{
-            resolve('Success')
+        .then(_ => {
+          resolve('Success');
         })
-        .catch(error=>{
-            reject(error)
-        })
-       } else {
-           reject(this.errors);
-       }
-    })
-}
+        .catch(error => {
+          reject(error);
+        });
+    } else {
+      reject(this.errors);
+    }
+  });
+};
 
 // EXPORT THIS FILE
 module.exports = Project;

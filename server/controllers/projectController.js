@@ -104,14 +104,14 @@ exports.apiDeleteBid = (req, res) => {
 };
 
 exports.apiEditBid = (req, res) => {
-    let editedBid = new Project(req.body);
-    
-    editedBid
-        .saveEditedBid()
-        .then(response => {
-            res.json(response);
-        })
-        .catch(error=>{
-            res.json(error);
-        })
-}
+  let editedBid = new Project(req.body);
+
+  editedBid
+    .saveEditedBid()
+    .then(response => {
+      res.json(response);
+    })
+    .catch(error => {
+      res.json(error);
+    });
+};
