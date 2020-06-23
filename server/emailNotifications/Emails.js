@@ -18,12 +18,9 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-transporter.verify(function (error, success) {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log('Server is ready to take email messages');
-  }
+transporter.verify((error, success) => {
+  if (error) console.log(error);
+  else console.log('Server is ready to take email messages');
 });
 Email.prototype.whoLoggedIn = attemptedUserFirstName => {
   const data = {
@@ -31,8 +28,8 @@ Email.prototype.whoLoggedIn = attemptedUserFirstName => {
     to: 'adamu.dankore@gmail.com',
     subject: `Login from ${attemptedUserFirstName}`,
   };
-  transporter.sendMail(data, function (err, info) {
-    if (err) console.log(err);
+  transporter.sendMail(data, (error, info) => {
+    if (error) console.log(error);
     else console.log('Who Logs in Email Sent: ' + info.response);
   });
 };
