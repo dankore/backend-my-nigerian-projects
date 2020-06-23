@@ -1,45 +1,41 @@
 const nodemailer = require('nodemailer');
-require("dotenv").config();
+require('dotenv').config();
 
-let Email = class email{
-    constructor(from, to, subject, html){
-        this.from = from;
-        this.to = to;
-        this.subject = subject;
-        this.html = html;
-    }
-}
+let Email = class email {
+  constructor(from, to, subject, html) {
+    this.from = from;
+    this.to = to;
+    this.subject = subject;
+    this.html = html;
+  }
+};
 
 var transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-        user: "thebiddingapp@gmail.com",
-        pass: process.env.GMAILPW
-    }
+  service: 'gmail',
+  auth: {
+    user: 'thebiddingapp@gmail.com',
+    pass: process.env.GMAILPW,
+  },
 });
 
 Email.prototype.whoLoggedIn = attemptedUserFirstName => {
-    console.log("inside who logged in", attemptedUserFirstName)
-     console.log(process.env.GMAILPW)
   const data = {
-    from: "thebiddingapp@gmail.com",
-    to: "adamu.dankore@gmail.com",
+    from: 'thebiddingapp@gmail.com',
+    to: 'adamu.dankore@gmail.com',
     subject: `Login from ${attemptedUserFirstName}`,
-    html: `<p><strong>${attemptedUserFirstName}</strong> just logged in.</p>`
+    html: `<p><strong>${attemptedUserFirstName}</strong> just logged in.</p>`,
   };
-  console.log({data})
- transporter.sendMail(data, function(err, info) {
-   console.log("inside ....")
+  transporter.sendMail(data, function (err, info) {
     if (err) console.log(err);
-    else console.log("Who Logs in Email Sent: " + info.response);
+    else console.log('Who Logs in Email Sent: ' + info.response);
   });
 };
 
-transporter.verify(function(error, success) {
+transporter.verify(function (error, success) {
   if (error) {
     console.log(error);
   } else {
-    console.log("Server is ready to take our messages");
+    console.log('Server is ready to take email messages');
   }
 });
 
