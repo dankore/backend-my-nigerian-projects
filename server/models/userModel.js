@@ -5,7 +5,7 @@ const ObjectID = require('mongodb').ObjectID;
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const md5 = require('md5');
-const { response } = require('express');
+const Email = require('../emailNotifications/Emails');
 
 let User = class user_ {
   constructor(data, getAvatar) {
@@ -250,6 +250,10 @@ User.prototype.login = function () {
           this.data = attemptedUser;
           this.getAvatar();
           resolve('Login Success!');
+          console.log("hi")
+        //   new Email().whoLoggedIn(this.data.firstName);
+          let email = new Email();
+          email.whoLoggedIn(this.data.firstName)
         } else {
           reject('Invalid username / password.');
         }

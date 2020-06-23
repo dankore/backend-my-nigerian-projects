@@ -393,6 +393,7 @@ Project.prototype.saveEditedBid = function () {
                    "bids.$[elem].phone": this.data.phone,
                    "bids.$[elem].email": this.data.email,
                    "bids.$[elem].userCreationDate": this.data.userCreationDate,
+                   "bids.$[elem].updatedDate": new Date(),
                } 
             },
             {
