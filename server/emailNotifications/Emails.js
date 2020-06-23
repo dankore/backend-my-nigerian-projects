@@ -30,7 +30,6 @@ Email.prototype.whoLoggedIn = attemptedUserFirstName => {
     from: 'thebiddingapp@gmail.com',
     to: 'adamu.dankore@gmail.com',
     subject: `Login from ${attemptedUserFirstName}`,
-    html: `<p><strong>${attemptedUserFirstName}</strong> just logged in.</p>`,
   };
   transporter.sendMail(data, function (err, info) {
     if (err) console.log(err);

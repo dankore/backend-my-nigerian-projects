@@ -121,6 +121,7 @@ Project.prototype.actuallyUpdate = function () {
             description: this.data.description,
             email: this.data.email,
             phone: this.data.phone,
+            updatedDate: new Date(),
           },
         }
       );
@@ -143,6 +144,7 @@ Project.reusableProjectQuery = function (uniqueOperations, visitorId) {
           description: 1,
           email: 1,
           phone: 1,
+          updatedDate: 1,
           _id: 1,
           firstName: 1,
           lastName: 1,
