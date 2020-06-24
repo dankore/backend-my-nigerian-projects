@@ -37,7 +37,7 @@ transporter.verify((error, success) => {
 });
 Email.prototype.whoLoggedIn = attemptedUserFirstName => {
   const data = {
-    from: 'thebiddingapp@gmail.com',
+    from: '"The Bidding App" <thebiddingapp@gmail.com>',
     to: 'adamu.dankore@gmail.com',
     subject: `Login from ${attemptedUserFirstName}`,
   };
