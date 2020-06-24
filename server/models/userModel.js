@@ -408,9 +408,9 @@ User.prototype.resetPassword = function (url) {
       );
       // SEND ATTEMPTED USER THE TOKEN
       new Email().sendResetPasswordToken(this.data.email, userDoc.firstName, url, token);
-      resolve(`Success! Check your email inbox at ${this.data.email} for further instruction. Check your SPAM folder too. `);
+      resolve("Success");
     } else {
-      console.log('problem');
+      reject(this.errors);
     }
   });
 };
