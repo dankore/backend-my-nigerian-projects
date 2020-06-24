@@ -3,7 +3,6 @@ const Project = require('../models/projectModel');
 const Follow = require('../models/followModel');
 const jwt = require('jsonwebtoken');
 const { ObjectID } = require('mongodb');
-const { response, json } = require('express');
 
 // TOKEN EXPIRY
 const tokenLasts = '30d';
@@ -256,3 +255,14 @@ exports.apiDeleteAccount = (req, res) => {
       res.json(error);
     });
 };
+
+exports.apiResetPassword = (req, res) => {
+    let user = new User(req.body);
+    user.resetPassword()
+    .then(response=> {
+        res.json(response);
+    })
+    .catch(error=>{
+        res.json(error)
+    })
+}

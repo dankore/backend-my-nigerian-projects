@@ -377,4 +377,27 @@ User.deleteAccount = userId => {
   });
 };
 
+User.prototype.resetPassword = function(){
+    return new Promise(async(resolve, reject)=>{
+        // CHECK EMAIL
+        if(!validator.isEmail(this.data.email)){
+            reject("Please provide a valid email.");
+            return;
+        }
+        // CHECK IF EMAIL EXIST IN DB 
+        let userDoc = await usersCollection.findOne({email: this.data.email});
+        if(!userDoc){
+            this.errors.push("No account with that email address exists.");
+        }
+
+        if(!this.errors.length){
+            console.log("no errs")
+        } else {
+            console.log("problem")
+        }
+
+        
+    })
+}
+
 module.exports = User;

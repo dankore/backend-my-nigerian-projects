@@ -28,6 +28,8 @@ apiRouter.post('/getProfileById', userController.apiGetProfileById);
 // ACCOUNT
 apiRouter.post('/delete-account', userController.apiMustBeLoggedIn, userController.apiDeleteAccount);
 
+// PASSWORD RESET
+apiRouter.post("/reset-password", userController.apiResetPassword);
 // FOLLOW
 apiRouter.post('/addFollow/:username', userController.apiMustBeLoggedIn, followController.apiAddFollow);
 apiRouter.post('/removeFollow/:username', userController.apiMustBeLoggedIn, followController.apiRemoveFollow);
