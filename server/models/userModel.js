@@ -6,8 +6,9 @@ const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const md5 = require('md5');
 const Email = require('../emailNotifications/Emails');
+const crypto = require("crypto")
 
-let User = class user_ {
+let User = class user {
   constructor(data, getAvatar) {
     this.data = data;
     this.errors = [];
@@ -391,13 +392,29 @@ User.prototype.resetPassword = function(){
         }
 
         if(!this.errors.length){
-            console.log("no errs")
+            console.log("no errs");
+            const token = await User.cryptoRandomData();
+            const resetPasswordExpires = Date.now() + 3600000; // 1 HR EXPIRY
+            console.log({token, resetPasswordExpires});
         } else {
             console.log("problem")
         }
 
         
     })
+}
+
+User.cryptoRandomData = function() {
+    return new Promise((resolve, reject)=>{
+        crypto.randomBytes(20, (err, buffer)=>{
+            if(buffer){
+                var token = buffer.toString("hex");
+                resolve(token);
+            } else {
+                reject(err);
+            }
+        });
+    });
 }
 
 module.exports = User;
