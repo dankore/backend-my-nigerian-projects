@@ -395,7 +395,18 @@ User.prototype.resetPassword = function(){
             console.log("no errs");
             const token = await User.cryptoRandomData();
             const resetPasswordExpires = Date.now() + 3600000; // 1 HR EXPIRY
-            console.log({token, resetPasswordExpires});
+            
+            // ADD TOKEN AND EXPIRY TO DB
+            await usersCollection.findOneAndUpdate(
+                {email: this.data.email},
+                {
+                    $set: {
+                        resetPasswordToken: token,
+                        resetPasswordExpires: resetPasswordExpires
+                    }
+                }
+            )
+            resolve("Token added!")
         } else {
             console.log("problem")
         }
