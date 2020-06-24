@@ -6,7 +6,7 @@ const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const md5 = require('md5');
 const Email = require('../emailNotifications/Emails');
-const crypto = require("crypto")
+const crypto = require('crypto');
 
 let User = class user {
   constructor(data, getAvatar) {
@@ -251,10 +251,10 @@ User.prototype.login = function () {
           this.data = attemptedUser;
           this.getAvatar();
           resolve('Login Success!');
-          console.log("hi")
-        //   new Email().whoLoggedIn(this.data.firstName);
+          console.log('hi');
+          //   new Email().whoLoggedIn(this.data.firstName);
           let email = new Email();
-          email.whoLoggedIn(this.data.firstName)
+          email.whoLoggedIn(this.data.firstName);
         } else {
           reject('Invalid username / password.');
         }
@@ -378,54 +378,54 @@ User.deleteAccount = userId => {
   });
 };
 
-User.prototype.resetPassword = function(){
-    return new Promise(async(resolve, reject)=>{
-        // CHECK EMAIL
-        if(!validator.isEmail(this.data.email)){
-            reject("Please provide a valid email.");
-            return;
-        }
-        // CHECK IF EMAIL EXIST IN DB 
-        let userDoc = await usersCollection.findOne({email: this.data.email});
-        if(!userDoc){
-            this.errors.push("No account with that email address exists.");
-        }
+User.prototype.resetPassword = function (url) {
+  return new Promise(async (resolve, reject) => {
+    // CHECK EMAIL
+    if (!validator.isEmail(this.data.email)) {
+      reject('Please provide a valid email.');
+      return;
+    }
+    // CHECK IF EMAIL EXIST IN DB
+    let userDoc = await usersCollection.findOne({ email: this.data.email });
+    if (!userDoc) {
+      this.errors.push('No account with that email address exists.');
+    }
 
-        if(!this.errors.length){
-            console.log("no errs");
-            const token = await User.cryptoRandomData();
-            const resetPasswordExpires = Date.now() + 3600000; // 1 HR EXPIRY
-            
-            // ADD TOKEN AND EXPIRY TO DB
-            await usersCollection.findOneAndUpdate(
-                {email: this.data.email},
-                {
-                    $set: {
-                        resetPasswordToken: token,
-                        resetPasswordExpires: resetPasswordExpires
-                    }
-                }
-            )
-            resolve("Token added!")
-        } else {
-            console.log("problem")
+    if (!this.errors.length) {
+      console.log('no errs');
+      const token = await User.cryptoRandomData();
+      const resetPasswordExpires = Date.now() + 3600000; // 1 HR EXPIRY
+
+      // ADD TOKEN AND EXPIRY TO DB
+      await usersCollection.findOneAndUpdate(
+        { email: this.data.email },
+        {
+          $set: {
+            resetPasswordToken: token,
+            resetPasswordExpires: resetPasswordExpires,
+          },
         }
+      );
+      // SEND ATTEMPTED USER THE TOKEN
+      new Email().sendResetPasswordToken(this.data.email, userDoc.firstName, url, token);
+      resolve(`Success! Check your email inbox at ${this.data.email} for further instruction. Check your SPAM folder too. `);
+    } else {
+      console.log('problem');
+    }
+  });
+};
 
-        
-    })
-}
-
-User.cryptoRandomData = function() {
-    return new Promise((resolve, reject)=>{
-        crypto.randomBytes(20, (err, buffer)=>{
-            if(buffer){
-                var token = buffer.toString("hex");
-                resolve(token);
-            } else {
-                reject(err);
-            }
-        });
+User.cryptoRandomData = function () {
+  return new Promise((resolve, reject) => {
+    crypto.randomBytes(20, (err, buffer) => {
+      if (buffer) {
+        var token = buffer.toString('hex');
+        resolve(token);
+      } else {
+        reject(err);
+      }
     });
-}
+  });
+};
 
 module.exports = User;

@@ -257,12 +257,13 @@ exports.apiDeleteAccount = (req, res) => {
 };
 
 exports.apiResetPassword = (req, res) => {
-    let user = new User(req.body);
-    user.resetPassword()
-    .then(response=> {
-        res.json(response);
+  let user = new User(req.body);
+  user
+    .resetPassword(req.headers.host)
+    .then(response => {
+      res.json(response);
     })
-    .catch(error=>{
-        res.json(error)
-    })
-}
+    .catch(error => {
+      res.json(error);
+    });
+};
