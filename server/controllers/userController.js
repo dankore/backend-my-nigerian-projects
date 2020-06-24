@@ -259,7 +259,7 @@ exports.apiDeleteAccount = (req, res) => {
 exports.apiResetPassword = (req, res) => {
   let user = new User(req.body);
   user
-    .resetPassword(req.headers.host)
+    .resetPassword('localhost:3000')
     .then(response => {
       res.json(response);
     })
