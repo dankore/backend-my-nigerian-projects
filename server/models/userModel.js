@@ -450,6 +450,9 @@ User.prototype.passwordResetValidation = function () {
   if (typeof this.data.reEnteredPassword != 'string') {
     this.data.reEnteredPassword = '';
   }
+  if (typeof this.data.token != 'string') {
+    this.data.token = '';
+  }
   if (this.data.password == '' || this.data.reEnteredPassword == '') {
     this.errors.push('Password field is empty.');
   }
@@ -459,18 +462,37 @@ User.prototype.passwordResetValidation = function () {
   if (this.data.password != this.data.reEnteredPassword) {
     this.errors.push('Passwords do not match.');
   }
+  if (this.data.token == '') {
+    this.errors.push('Token is not provided by your browser.');
+  }
 
   // REMOVE BOGUS PROPERTIES
   this.data = {
-    password: this.data.password,
     reEnteredPassword: this.data.reEnteredPassword,
+    token: this.data.token,
   };
 };
 
 User.prototype.saveNewPassword = function () {
   return new Promise(async (resolve, reject) => {
     this.passwordResetValidation();
-   
+
+    if (!this.errors.length) {
+      let response = await User.verifyPasswordResetToken(this.data.token);
+      console.log(response);
+      if (response != 'Success') {
+        reject('Password reset token is invalid or has expired. Please generate another token below.');
+        return;
+      }
+      // HASH PASSWORD
+      let salt = bcrypt.genSaltSync();
+      this.data.reEnteredPassword = bcrypt.hashSync(this.data.reEnteredPassword, salt);
+      
+      // REPLACE NEW PASSWORD WITH OLD
+      
+    } else {
+      reject(this.errors);
+    }
   });
 };
 
