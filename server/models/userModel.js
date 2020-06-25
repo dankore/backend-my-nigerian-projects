@@ -430,7 +430,14 @@ User.cryptoRandomData = function () {
 
 User.verifyPasswordResetToken = token =>{
     return new Promise(async(resolve, reject)=>{
-        console.log({token})
+        let user = await usersCollection.findOne(
+            {
+                resetPasswordToken: token,
+                resetPasswordExpires: { $gt: Date.now() }
+            }
+        );
+        if(user)resolve("Success");
+        else reject("Password reset token is invalid or has expired. Please generate another token below.");
     })
 }
 
