@@ -277,3 +277,15 @@ exports.apiVerifyPasswordResetToken = (req, res) => {
       res.json(error);
     });
 };
+
+exports.apiSaveNewPassword = (req, res) => {
+  let user = new User(req.body);
+  user
+    .saveNewPassword()
+    .then(response => {
+      res.json(response);
+    })
+    .catch(error => {
+      res.json(error);
+    });
+};

@@ -32,6 +32,8 @@ apiRouter.post('/delete-account', userController.apiMustBeLoggedIn, userControll
 apiRouter.post('/reset-password', userController.apiResetPassword);
 apiRouter.get('/reset-password/:token');
 apiRouter.post('/choose-new-password', userController.apiVerifyPasswordResetToken);
+apiRouter.post('/save-new-password', userController.apiSaveNewPassword);
+
 // FOLLOW
 apiRouter.post('/addFollow/:username', userController.apiMustBeLoggedIn, followController.apiAddFollow);
 apiRouter.post('/removeFollow/:username', userController.apiMustBeLoggedIn, followController.apiRemoveFollow);

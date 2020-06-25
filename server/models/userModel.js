@@ -434,11 +434,43 @@ User.verifyPasswordResetToken = token => {
         resetPasswordToken: token,
         resetPasswordExpires: { $gt: Date.now() },
       });
-      if (user) resolve('Success');
-      else reject('Password reset token is invalid or has expired. Please generate another token below.');
+      resolve('Success');
+      // if (user) resolve('Success');
+      // else reject('Password reset token is invalid or has expired. Please generate another token below.');
     } catch (error) {
       reject();
     }
+  });
+};
+
+User.prototype.passwordResetValidation = function () {
+  if (typeof this.data.password != 'string') {
+    this.data.password = '';
+  }
+  if (typeof this.data.reEnteredPassword != 'string') {
+    this.data.reEnteredPassword = '';
+  }
+  if (this.data.password == '' || this.data.reEnteredPassword == '') {
+    this.errors.push('Password field is empty.');
+  }
+  if (!validator.isLength(this.data.password, { min: 6, max: 50 })) {
+    this.errors.push('Password must be at least 6 characters.');
+  }
+  if (this.data.password != this.data.reEnteredPassword) {
+    this.errors.push('Passwords do not match.');
+  }
+
+  // REMOVE BOGUS PROPERTIES
+  this.data = {
+    password: this.data.password,
+    reEnteredPassword: this.data.reEnteredPassword,
+  };
+};
+
+User.prototype.saveNewPassword = function () {
+  return new Promise(async (resolve, reject) => {
+    this.passwordResetValidation();
+   
   });
 };
 
