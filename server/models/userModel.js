@@ -392,10 +392,9 @@ User.prototype.resetPassword = function (url) {
     }
 
     if (!this.errors.length) {
-      console.log('no errs');
+     
       const token = await User.cryptoRandomData();
       const resetPasswordExpires = Date.now() + 3600000; // 1 HR EXPIRY
-
       // ADD TOKEN AND EXPIRY TO DB
       await usersCollection.findOneAndUpdate(
         { email: this.data.email },
@@ -407,7 +406,8 @@ User.prototype.resetPassword = function (url) {
         }
       );
       // SEND ATTEMPTED USER THE TOKEN
-      new Email().sendResetPasswordToken(this.data.email, userDoc.firstName, url, token);
+    //   new Email().sendResetPasswordToken(this.data.email, userDoc.firstName, url, token);
+     console.log("success");
       resolve("Success");
     } else {
       reject(this.errors);
