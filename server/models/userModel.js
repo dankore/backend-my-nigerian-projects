@@ -406,7 +406,7 @@ User.prototype.resetPassword = function (url) {
         }
       );
       // SEND ATTEMPTED USER THE TOKEN
-    //   new Email().sendResetPasswordToken(this.data.email, userDoc.firstName, url, token);
+      new Email().sendResetPasswordToken(this.data.email, userDoc.firstName, url, token);
      console.log("success");
       resolve("Success");
     } else {
