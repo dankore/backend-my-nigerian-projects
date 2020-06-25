@@ -435,8 +435,8 @@ User.verifyPasswordResetToken = token => {
         resetPasswordExpires: { $gt: Date.now() },
       });
       resolve('Success');
-      // if (user) resolve('Success');
-      // else reject('Password reset token is invalid or has expired. Please generate another token below.');
+      if (user) resolve('Success');
+      else reject('Password reset token is invalid or has expired. Please generate another token below.');
     } catch (error) {
       reject();
     }
@@ -489,7 +489,7 @@ User.prototype.saveNewPassword = function () {
       this.data.reEnteredPassword = bcrypt.hashSync(this.data.reEnteredPassword, salt);
       
       // REPLACE NEW PASSWORD WITH OLD
-      
+
     } else {
       reject(this.errors);
     }
