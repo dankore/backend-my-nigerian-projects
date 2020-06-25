@@ -428,4 +428,10 @@ User.cryptoRandomData = function () {
   });
 };
 
+User.verifyPasswordResetToken = token =>{
+    return new Promise(async(resolve, reject)=>{
+        console.log({token})
+    })
+}
+
 module.exports = User;
