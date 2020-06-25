@@ -269,11 +269,11 @@ exports.apiResetPassword = (req, res) => {
 };
 
 exports.apiVerifyPasswordResetToken = (req, res) => {
-    User.verifyPasswordResetToken(req.body.passwordResetToken)
-    .then(response=>{
-        res.json(response);
+  User.verifyPasswordResetToken(req.body.passwordResetToken)
+    .then(response => {
+      res.json(response);
     })
-    .catch(error=>{
-        res.json(error)
-    })
-}
+    .catch(error => {
+      res.json(error);
+    });
+};

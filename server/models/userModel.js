@@ -392,7 +392,6 @@ User.prototype.resetPassword = function (url) {
     }
 
     if (!this.errors.length) {
-     
       const token = await User.cryptoRandomData();
       const resetPasswordExpires = Date.now() + 3600000; // 1 HR EXPIRY
       // ADD TOKEN AND EXPIRY TO DB
@@ -407,8 +406,8 @@ User.prototype.resetPassword = function (url) {
       );
       // SEND ATTEMPTED USER THE TOKEN
       new Email().sendResetPasswordToken(this.data.email, userDoc.firstName, url, token);
-     console.log("success");
-      resolve("Success");
+      console.log('success');
+      resolve('Success');
     } else {
       reject(this.errors);
     }
@@ -428,21 +427,19 @@ User.cryptoRandomData = function () {
   });
 };
 
-User.verifyPasswordResetToken = token =>{
-    return new Promise(async(resolve, reject)=>{
-        try {
-            let user = await usersCollection.findOne(
-            {
-                resetPasswordToken: token,
-                resetPasswordExpires: { $gt: Date.now() }
-            }
-        );
-        if(user)resolve("Success");
-        else reject("Password reset token is invalid or has expired. Please generate another token below.");
-        } catch (error) {
-            reject();
-        }
-    })
-}
+User.verifyPasswordResetToken = token => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let user = await usersCollection.findOne({
+        resetPasswordToken: token,
+        resetPasswordExpires: { $gt: Date.now() },
+      });
+      if (user) resolve('Success');
+      else reject('Password reset token is invalid or has expired. Please generate another token below.');
+    } catch (error) {
+      reject();
+    }
+  });
+};
 
 module.exports = User;
