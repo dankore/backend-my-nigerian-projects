@@ -7,6 +7,8 @@ const bcrypt = require('bcryptjs');
 const md5 = require('md5');
 const Email = require('../emailNotifications/Emails');
 const crypto = require('crypto');
+const { promises } = require('fs');
+const { resolve } = require('path');
 
 let User = class user {
   constructor(data, getAvatar) {
@@ -406,7 +408,6 @@ User.prototype.resetPassword = function (url) {
       );
       // SEND ATTEMPTED USER THE TOKEN
       new Email().sendResetPasswordToken(this.data.email, userDoc.firstName, url, token);
-      console.log('success');
       resolve('Success');
     } else {
       reject(this.errors);
@@ -434,11 +435,10 @@ User.verifyPasswordResetToken = token => {
         resetPasswordToken: token,
         resetPasswordExpires: { $gt: Date.now() },
       });
-      resolve('Success');
       if (user) resolve('Success');
       else reject('Password reset token is invalid or has expired. Please generate another token below.');
     } catch (error) {
-      reject();
+      reject(error);
     }
   });
 };
@@ -478,20 +478,51 @@ User.prototype.saveNewPassword = function () {
     this.passwordResetValidation();
 
     if (!this.errors.length) {
-      let response = await User.verifyPasswordResetToken(this.data.token);
-      console.log(response);
+      const response = await User.verifyPasswordResetToken(this.data.token);
       if (response != 'Success') {
         reject('Password reset token is invalid or has expired. Please generate another token below.');
         return;
-      }
-      // HASH PASSWORD
-      let salt = bcrypt.genSaltSync();
-      this.data.reEnteredPassword = bcrypt.hashSync(this.data.reEnteredPassword, salt);
-      
-      // REPLACE NEW PASSWORD WITH OLD
+      } else {
+        // HASH PASSWORD
+        const salt = bcrypt.genSaltSync();
+        this.data.reEnteredPassword = bcrypt.hashSync(this.data.reEnteredPassword, salt);
 
+        // REPLACE NEW PASSWORD WITH OLD
+        const status = await this.replaceOldPasswordWithNew();
+        resolve(status);
+      }
     } else {
       reject(this.errors);
+    }
+  });
+};
+
+User.prototype.replaceOldPasswordWithNew = function () {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let user = await usersCollection.findOneAndUpdate(
+        { resetPasswordToken: this.data.token },
+        {
+          $set: {
+            password: this.data.reEnteredPassword,
+            resetPasswordToken: null,
+            resetPasswordExpires: null,
+          },
+        },
+        {
+          projection: {
+            _id: 0,
+            firstName: 1,
+            lastName: 1,
+            email: 1,
+          },
+          returnOriginal: false,
+        }
+      );
+      console.log({ user: user.value, msg: `<<<Send email here line 523>>>` });
+      resolve('Success');
+    } catch (error) {
+      reject(error);
     }
   });
 };
