@@ -18,19 +18,6 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-Email.prototype.sendResetPasswordToken = (email, firstName, url, token) => {
-  const data = {
-    to: email,
-    from: '"The Bidding App" <thebiddingapp@gmail.com>',
-    subject: `${firstName}, Reset Your Password - The Bidding App`,
-    html: `Hello ${firstName},` + '<br><br>' + 'Please click on the following link to complete the process:\n' + '<a href="https://' + url + '/reset-password/' + token + '">Reset your password</a><br>' + 'OR' + '<br>' + 'Paste the below URL into your browser to complete the process:' + '<br>' + 'https://' + url + '/reset-password/' + token + '<br><br>' + 'If you did not request this, please ignore this email and your password will remain unchanged.\n',
-  };
-  transporter.sendMail(data, (err, info) => {
-    if (err) console.log(err);
-    else console.log('Reset Password Token Sent Via Email: ' + info.response);
-  });
-};
-
 transporter.verify((error, success) => {
   if (error) console.log(error);
   else console.log('Server is ready to take email messages');
@@ -52,7 +39,7 @@ Email.prototype.sendResetPasswordToken = (email, firstName, url, token) => {
     from: '"The Bidding App" <thebiddingapp@gmail.com>',
     to: email,
     subject: `${firstName}, Reset Your Password - The Bidding App`,
-    html: `Hello ${firstName},` + '<br><br>' + 'Please click on the following link to complete the process:\n' + '<a href="https://' + url + '/reset-password/' + token + '">Reset your password</a><br>' + 'OR' + '<br>' + 'Paste the below URL into your browser to complete the process:' + '<br>' + 'https://' + url + '/reset-password/' + token + '<br><br>' + 'If you did not request this, please ignore this email and your password will remain unchanged.\n',
+    html: `Hello ${firstName},` + '<br><br>' + 'Please click on the following link to complete the process:\n' + '<a href="' + url + '/reset-password/' + token + '">Reset your password</a><br>' + 'OR' + '<br>' + 'Paste the below URL into your browser to complete the process:' + '<br>' + url + '/reset-password/' + token + '<br><br>' + 'If you did not request this, please ignore this email and your password will remain unchanged.\n',
   };
   transporter.sendMail(data, (err, info) => {
     if (err) console.log(err);
