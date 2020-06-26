@@ -253,10 +253,8 @@ User.prototype.login = function () {
           this.data = attemptedUser;
           this.getAvatar();
           resolve('Login Success!');
-          console.log('hi');
-          //   new Email().whoLoggedIn(this.data.firstName);
-          let email = new Email();
-          email.whoLoggedIn(this.data.firstName);
+          // EMAIL ME WHO LOGS IN
+          new Email().whoLoggedIn(this.data.firstName);
         } else {
           reject('Invalid username / password.');
         }
