@@ -326,10 +326,17 @@ Project.prototype.addBid = function () {
                 bidCreationDate: new Date(),
               },
             },
+          },
+          {
+            projection: {
+              _id: 0,
+              bids: 1,
+            },
+            returnOriginal: false,
           }
         )
-        .then(() => {
-          resolve('Success');
+        .then(info => {
+          resolve({ status: 'Success', bidId: info.value.bids[info.value.bids.length - 1].id });
         })
         .catch(() => {
           reject('Adding bid failed.');
