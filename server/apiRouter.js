@@ -46,7 +46,7 @@ apiRouter.post('/create-project', userController.apiMustBeLoggedIn, projectContr
 apiRouter.post('/search', projectController.search);
 
 // BID
-apiRouter.post('/create-bid', userController.apiMustBeLoggedIn, projectController.createBid);
+apiRouter.post('/create-bid', userController.apiMustBeLoggedIn, projectController.apiCreateBid);
 apiRouter.post('/view-single-bid', projectController.apiGetSingleBid);
 apiRouter.delete('/delete-bid', userController.apiMustBeLoggedIn, projectController.apiDeleteBid);
 apiRouter.post('/edit-bid', userController.apiMustBeLoggedIn, projectController.apiEditBid);

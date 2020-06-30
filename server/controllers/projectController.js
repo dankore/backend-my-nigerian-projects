@@ -64,7 +64,7 @@ exports.apiViewSingle = async function (req, res) {
   }
 };
 
-exports.createBid = (req, res) => {
+exports.apiCreateBid = (req, res) => {
   const bidAuthor = {
     authorId: req.apiUser._id,
     username: req.apiUser.username,
