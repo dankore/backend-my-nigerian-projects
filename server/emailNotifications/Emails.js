@@ -119,28 +119,20 @@ View on the Bidding App
        <tbody><tr>
                      <td width="640" align="center" style="padding-top:10px;background-color:#000000">
 
-       <table cellspacing="0" cellpadding="0">
-                       <tbody><tr>
-                        <td align="center" style="font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;font-size:14px;line-height:18px;color:#ffffff;padding:0 20px 30px">
-                                      
-          <br><br>You're receiving this email because you are a member of the Bidding App.<br><br>
-                                  </td>
-                                </tr>
-          </tbody></table>
-                                <table cellspacing="0" cellpadding="0">
-                       <tbody><tr>
+                        <table cellspacing="0" cellpadding="0">
+                       <tbody>
+                       <tr>
                         <td align="center" style="font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;font-size:14px;line-height:18px;color:#ffffff;padding:0 20px 40px">
-                         
+                        <br><br>You're receiving this email because you are a member of the Bidding App.<br><br>
                           <br>
-                            <a href="https://bidding.netlify.app/register" style="color:#ffffff;font-weight:bold" target="_blank">Join The Bidding App</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://bidding.netlify.app/login" style="color:#ffffff;font-weight:bold" target="_blank>Login</a>
-                          <br>
+                            <a href="https://bidding.netlify.app/register" style="color:#ffffff;font-weight:bold" target="_blank">Join The Bidding App</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                            <a href="https://bidding.netlify.app/login" style="color:#ffffff;font-weight:bold" target="_blank">Login</a>
                             <br>
-                          <br>
-                         PO Box 511, Charles City, Iowa 50616
+                            PO Box 511, Charles City, Iowa 50616
                          <br>
-                         <a href="https://bidding.netlify.app/terms" style="color:#ffffff" target="_blank">Terms</a> • <a href="https://bidding.netlify.app/privacy" style="color:#ffffff" target="_blank">Privacy</a>
-                          
-                            </td>
+                         <a href="https://bidding.netlify.app/terms" style="color:#ffffff" target="_blank">Terms</a> • 
+                         <a href="https://bidding.netlify.app/privacy" style="color:#ffffff" target="_blank">Privacy</a>
+                          </td>
                        </tr>
                       </tbody></table>
                      </td>
