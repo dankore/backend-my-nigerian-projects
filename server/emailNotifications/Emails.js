@@ -92,43 +92,26 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
 
 
   
-<a href="https://click.e.mozilla.org/?qs=2c8d0a61f4cf2e39e0c100144aa7939659b1430c9749123c08510f3fb209f5022042342fc4af35ce1ce9feaa40cb5960de539a93b463ab3f" style="font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;line-height:34px;font-size:22px;font-weight:bold" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://click.e.mozilla.org/?qs%3D2c8d0a61f4cf2e39e0c100144aa7939659b1430c9749123c08510f3fb209f5022042342fc4af35ce1ce9feaa40cb5960de539a93b463ab3f&amp;source=gmail&amp;ust=1593570060273000&amp;usg=AFQjCNHmUH52lb7EarDQYVrg_9D97qbp8w">
-
-Compiler Compiler: A Twitch series about working on a JavaScript engine
-  
-</a>
+<h1 style="font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;line-height:34px;font-size:22px;font-weight:bold">
+  ${projectData.title}
+</h1>
 
 
 
 <br><br>
 <span style="font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;font-size:16px;line-height:28px;color:#555555;padding-top:0px">
-
-
-SpiderMonkey is the JavaScript engine for Firefox. <a href="https://click.e.mozilla.org/?qs=2c8d0a61f4cf2e396b7ee65522e4e5d070afac0b800bd37f894f071667f45fae2c9a3c9fa86ffd61737bd366e69d5c99b1194ceb4dc4ae8a" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://click.e.mozilla.org/?qs%3D2c8d0a61f4cf2e396b7ee65522e4e5d070afac0b800bd37f894f071667f45fae2c9a3c9fa86ffd61737bd366e69d5c99b1194ceb4dc4ae8a&amp;source=gmail&amp;ust=1593570060274000&amp;usg=AFQjCNHAArekJr3m0k93hFakP14BIlh4Ug">Compiler Compiler</a> is a guided, interactive tour of work on this engine. 
-
-The primary goal of this series is to introduce people to the world of language specification and implementation through SpiderMonkey.
-  <br><br>
-  
-Every session is 90 minutes long (60 min talk, 30 min dedicated Q&amp;A in chat) and streamed at 15:00 UTC (8am PST, 17:00 CEST) via the Twitch channel <a href="https://click.e.mozilla.org/?qs=2c8d0a61f4cf2e3984df2b7144da41f0eb9e67caa0405b13611c77e59ec8760ff30bf877516b07ea3e29fd6b5f5955c339c72a024b4cc54c" style="font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#0060df" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://click.e.mozilla.org/?qs%3D2c8d0a61f4cf2e3984df2b7144da41f0eb9e67caa0405b13611c77e59ec8760ff30bf877516b07ea3e29fd6b5f5955c339c72a024b4cc54c&amp;source=gmail&amp;ust=1593570060274000&amp;usg=AFQjCNFVlMqXdCUkNz285eL_Ed-Jh9GzHg">codehag</a>.
-  <br><br>
-
-The next episode is June 26.
-
-
+${projectData.description}
 </span>
 </td></tr>
 <tr>
-
-
-                
+          
 <td style="font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;font-size:16px;padding:0px 30px 45px" align="left">
  
-  
-<a href="https://click.e.mozilla.org/?qs=2c8d0a61f4cf2e39725990b8ba147042d93541736cde24bcc1362208e5a007c1cfe1a09ddf1e7b65d57290daf2fad1221cb337945b496aff" style="background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://click.e.mozilla.org/?qs%3D2c8d0a61f4cf2e39725990b8ba147042d93541736cde24bcc1362208e5a007c1cfe1a09ddf1e7b65d57290daf2fad1221cb337945b496aff&amp;source=gmail&amp;ust=1593570060274000&amp;usg=AFQjCNFgws4w03EvrzIAFLZ-KFsyqCg4OQ">
+<a href="https://bidding.netlify.app/${
+      projectData._id
+    }" style="background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block" target="_blank">
 Read More . . . 
 </a>  
-
-
 </td>
 
 
