@@ -79,7 +79,7 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
                     <tbody><tr>
                         <td width="640">
                             <table style="background-color:transparent;min-width:100%" width="100%" cellspacing="0" cellpadding="0"><tbody><tr><td style="padding:11px"><table width="100%" cellspacing="0" cellpadding="0"><tbody><tr><td align="center">
-                            <a href="https://bidding.netlify.app" target="_blank"><img src="https://i.ibb.co/8Y5hL2d/bgg.jpg" alt="bgg"style="display:block;padding:0px;text-align:center;height:auto;width:100%" width="650"></a>
+                            <a href="https://bidding.netlify.app" target="_blank"><img src="https://i.ibb.co/8Y5hL2d/bgg.jpg" alt="bgg"style="display:block;padding:0px;text-align:center;height:30%;width:100%" width="650"></a>
                             </td></tr>
 </tbody></table></td></tr></tbody></table></td>
                     </tr>
@@ -102,7 +102,7 @@ ${projectData.description}
           
 <td style="font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;font-size:16px;padding:0px 30px 45px" align="left">
  
-<a href="https://bidding.netlify.app/${
+<a href="https://bidding.netlify.app/project/${
       projectData._id
     }" style="background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block" target="_blank">
 View on the Bidding App
