@@ -71,11 +71,11 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
     subject: `Your project, ${
       projectData.title
     }, was created - The Bidding App`,
-    html: `<div style="width: 500px;">
+    html: `<div style="margin: 0px auto; width: vw;"><div style="width: 500px;">
     <p>The Bidding App</p>
       <hr style="margin-bottom: 50px;">
       <div style="padding: 10px; margin-bottom: 10px; overflow-wrap: break-word; min-width: 0px; background-color: #F2F3F5; border-radius: 5px;">
-        <p style="height: 60px; border-radius: 5px; font-size: 20px;" alt="profile photo"><strong>${
+        <p style="margin-bottom: 10px;; border-radius: 5px; font-size: 20px;"><strong>${
           projectData.title
         }</strong>
         </p>
@@ -86,7 +86,7 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
       style="text-decoration: none; padding: 10px; background-color: #38a169; border-radius: 5px; color: white; 
         font-size: 15px; width: 300px; text-align: center; display:inline-block;">View on the Bidding App
       </a>
-    </div>`
+    </div></div>`
   };
   transporter.sendMail(data, (err, info) => {
     if (err) console.log(err);
