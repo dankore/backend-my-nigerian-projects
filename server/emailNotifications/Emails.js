@@ -22,6 +22,7 @@ transporter.verify((error, success) => {
   if (error) console.log(error);
   else console.log('Server is ready to take email messages');
 });
+
 Email.prototype.whoLoggedIn = attemptedUserFirstName => {
   const data = {
     from: '"The Bidding App" <thebiddingapp@gmail.com>',
@@ -51,30 +52,12 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
   const data = {
     from: '"The Bidding App" <thebiddingapp@gmail.com>',
     to: projectData.email,
-    subject: `Your project, ${projectData.title}, was created - The Bidding App`,
+    subject: `Congrats, Your New Project - ${projectData.title} is live! - The Bidding App`,
     html: `<div style='background:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:1em'>
       <table width='100%' cellspacing='0' cellpadding='0' border='0' style='background:#ffffff'>
         <tbody>
 
-          <tr>
-            <td width='640'>
-              <table style='background-color:transparent;min-width:100%' width='100%' cellspacing='0' cellpadding='0'>
-                <tbody>
-                  <tr>
-                    <td style='padding:11px'>
-                      <table width='100%' cellspacing='0' cellpadding='0'>
-                        <tbody>
-                          <tr>
-                            <td align='center'>
-                              <a href='https://bidding.netlify.app' target='_blank'>
-                                <img src='https://i.ibb.co/8Y5hL2d/bgg.jpg' alt='background' style='display:block; position: relative; padding:0px;text-align:center;height:30%;width:100%' width='650' />
-                              </a>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
+        ${emailHeader}
 
                   <tr>
                     <td>
@@ -98,7 +81,43 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
                     </td>
                   </tr>
 
+                  ${emailFooter}
+                  
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>`,
+  };
+  transporter.sendMail(data, (err, info) => {
+    if (err) console.log(err);
+    else console.log('Project Creation Success Sent Via Email: ' + info.response);
+  });
+};
+
+const emailHeader = `<tr>
+            <td width='640'>
+              <table style='background-color:transparent;min-width:100%' width='100%' cellspacing='0' cellpadding='0'>
+                <tbody>
                   <tr>
+                    <td style='padding:11px'>
+                      <table width='100%' cellspacing='0' cellpadding='0'>
+                        <tbody>
+                          <tr>
+                            <td align='center'>
+                              <a href='https://bidding.netlify.app' target='_blank'>
+                                <img src='https://i.ibb.co/8Y5hL2d/bgg.jpg' alt='background' style='display:block; position: relative; padding:0px;text-align:center;height:30%;width:100%' width='650' />
+                              </a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>`;
+
+const emailFooter = `<tr>
                     <td width='640' align='center' style='padding-top:10px;background-color:#000000'>
                       <table cellspacing='0' cellpadding='0'>
                         <tbody>
@@ -132,20 +151,7 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
                       </table>
                     </td>
                   </tr>
-                  
-                </tbody>
-              </table>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>`,
-  };
-  transporter.sendMail(data, (err, info) => {
-    if (err) console.log(err);
-    else console.log('Project Creation Success Sent Via Email: ' + info.response);
-  });
-};
+                  `;
 
 // EXPORT CODE
 module.exports = Email;
