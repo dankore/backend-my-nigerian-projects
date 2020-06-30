@@ -148,19 +148,14 @@ Read More . . .
                        <tbody><tr>
                         <td align="center" style="font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;font-size:14px;line-height:18px;color:#ffffff;padding:0 20px 30px">
                                       
-<br><br>You're receiving this email because you subscribed to the Developer Newsletter.<br><br>You can <a href="https://click.e.mozilla.org/?qs=2c8d0a61f4cf2e395810b5724f2ef3aa5649a0b39a54ca9ca2df86a9cba0240c7bc93dcefae5f32418f8ff8592a9aa2e38b786d3a667d50d" style="color:#ffffff" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://click.e.mozilla.org/?qs%3D2c8d0a61f4cf2e395810b5724f2ef3aa5649a0b39a54ca9ca2df86a9cba0240c7bc93dcefae5f32418f8ff8592a9aa2e38b786d3a667d50d&amp;source=gmail&amp;ust=1593570060274000&amp;usg=AFQjCNEoJtXs6n1kyRocWwU5OKqE1YxOZw">unsubscribe</a> or <a href="https://click.e.mozilla.org/?qs=2c8d0a61f4cf2e3932e5729cb29876f28b5e28467fa159c5131f77bdcce99ab07d15b662c80f1e4bfedf1bd2b94b1dc80feceb64b3a6e299" style="color:#ffffff" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://click.e.mozilla.org/?qs%3D2c8d0a61f4cf2e3932e5729cb29876f28b5e28467fa159c5131f77bdcce99ab07d15b662c80f1e4bfedf1bd2b94b1dc80feceb64b3a6e299&amp;source=gmail&amp;ust=1593570060274000&amp;usg=AFQjCNE8Gkq0jh3XROL5tGWLJaEBKWY9qw">manage your communication preferences</a> at any time.<br><br>
-                      
-
-
-                        </td>
-                       </tr>
-</tbody></table>
-                      <table cellspacing="0" cellpadding="0">
+          <br><br>You're receiving this email because you are a member of the Bidding App.<br><br>
+                                  </td>
+                                </tr>
+          </tbody></table>
+                                <table cellspacing="0" cellpadding="0">
                        <tbody><tr>
                         <td align="center" style="font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;font-size:14px;line-height:18px;color:#ffffff;padding:0 20px 40px">
-                         <a href="https://click.e.mozilla.org/?qs=2c8d0a61f4cf2e39df7fe67b96734fa3ac77b7395e87665b87e19d47618d751b1fd409f525b726085e8d3a7d8fc25c6671ecf4e0318a9e3c" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://click.e.mozilla.org/?qs%3D2c8d0a61f4cf2e39df7fe67b96734fa3ac77b7395e87665b87e19d47618d751b1fd409f525b726085e8d3a7d8fc25c6671ecf4e0318a9e3c&amp;source=gmail&amp;ust=1593570060274000&amp;usg=AFQjCNH6a7OXyL2jXedn6hlkgDfoRnU1Zw"><img src="https://ci5.googleusercontent.com/proxy/0Yl2Wwsdpf7vutuaAs3u5dPUHGo76wRtes5CTh5mMjQaclReB2VTf1nkC1MaOS7IhjdcFx-OER-Gndc_OIJUYgocyq-cGlzrhNFf7_q4kCYkWIY697yglOR-c0-3ELqoD3wgrSo8v1ptBBkV-A-8w8GX=s0-d-e1-ft#https://image.e.mozilla.org/lib/fe9915707361037e75/m/5/75347105-3854-4a13-902c-4b45cd80bf54.png" width="150" alt="Mozilla" style="display:block;border:0" class="CToWUd"></a>
-           <br>
-
+                         
                           <br>
                             <a href="https://bidding.netlify.app/register" style="color:#ffffff;font-weight:bold" target="_blank">Join The Bidding App</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://bidding.netlify.app/login" style="color:#ffffff;font-weight:bold" target="_blank>Login</a>
                           <br>
