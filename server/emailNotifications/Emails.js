@@ -71,22 +71,125 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
     subject: `Your project, ${
       projectData.title
     }, was created - The Bidding App`,
-    html: `<div style="margin: 0px auto; width: vw;"><div style="width: 500px;">
-    <p>The Bidding App</p>
-      <hr style="margin-bottom: 50px;">
-      <div style="padding: 10px; margin-bottom: 10px; overflow-wrap: break-word; min-width: 0px; background-color: #F2F3F5; border-radius: 5px;">
-        <p style="margin-bottom: 10px;; border-radius: 5px; font-size: 20px;"><strong>${
-          projectData.title
-        }</strong>
-        </p>
-      <p style="font-size: 15px;">${projectData.description}</p>
-      </div>
-      <a 
-      href="https://bidding.netlify.app/project/${projectData._id}" 
-      style="text-decoration: none; padding: 10px; background-color: #38a169; border-radius: 5px; color: white; 
-        font-size: 15px; width: 300px; text-align: center; display:inline-block;">View on the Bidding App
-      </a>
-    </div></div>`
+    html: `<div style="background:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:1em">
+    <table id="m_-1754539424995552259backgroundTable" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:#ffffff">
+        <tbody><tr>
+            <td align="center" valign="top" style="background:#ffffff" width="100%">
+                <table cellpadding="0" cellspacing="0">
+                    <tbody><tr>
+                        <td width="640">
+                            <table style="background-color:transparent;min-width:100%" width="100%" cellspacing="0" cellpadding="0"><tbody><tr><td style="padding:11px"><table width="100%" cellspacing="0" cellpadding="0"><tbody><tr><td align="center"><a href="https://click.e.mozilla.org/?qs=2c8d0a61f4cf2e39b7bb139a7c61c10a27dcc1e6d145fd1acd95bc89c989f40de2d40825c364650f89049a482add81eb112a0ee5be4de472" title="MDN Web Docs" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://click.e.mozilla.org/?qs%3D2c8d0a61f4cf2e39b7bb139a7c61c10a27dcc1e6d145fd1acd95bc89c989f40de2d40825c364650f89049a482add81eb112a0ee5be4de472&amp;source=gmail&amp;ust=1593570060273000&amp;usg=AFQjCNFqoH32-Qarfg9jS_6dWj-YfcCH1g"><img src="https://ci4.googleusercontent.com/proxy/prOW3MzzBuJlYPD25ZOFUmQn9QkGMj3MhGwVQlStBuyPwpW-OoaNw9g3hEV0ET2dcVNd_AisYGxyLLQ5l3mWvqKaXnhFsMpYsZb5PM4ppATHNhpEe9xSpISNnoMe5CMPhkfrJUqoyONgzFFD6O7FX8Yt=s0-d-e1-ft#https://image.e.mozilla.org/lib/fe9915707361037e75/m/3/6f6ace74-1303-44c1-b599-e44cec1c0b6a.png" alt="Mozilla Developer Newsletter" style="display:block;padding:0px;text-align:center;height:auto;width:100%" width="650" class="CToWUd"></a></td></tr>
+</tbody></table></td></tr></tbody></table></td>
+                    </tr>
+                    <tr>
+                        <td width="640" align="center" style="padding:0 10px">
+                            <table style="min-width:100%" width="100%" cellspacing="0" cellpadding="0"><tbody><tr><td><table cellspacing="0" cellpadding="0" bgcolor="#ffffff">
+<tbody><tr>
+<td style="padding:32px 30px 45px">
+
+
+
+
+
+  
+<a href="https://click.e.mozilla.org/?qs=2c8d0a61f4cf2e39e0c100144aa7939659b1430c9749123c08510f3fb209f5022042342fc4af35ce1ce9feaa40cb5960de539a93b463ab3f" style="font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;line-height:34px;font-size:22px;font-weight:bold" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://click.e.mozilla.org/?qs%3D2c8d0a61f4cf2e39e0c100144aa7939659b1430c9749123c08510f3fb209f5022042342fc4af35ce1ce9feaa40cb5960de539a93b463ab3f&amp;source=gmail&amp;ust=1593570060273000&amp;usg=AFQjCNHmUH52lb7EarDQYVrg_9D97qbp8w">
+
+Compiler Compiler: A Twitch series about working on a JavaScript engine
+  
+</a>
+
+
+
+<br><br>
+<span style="font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;font-size:16px;line-height:28px;color:#555555;padding-top:0px">
+
+
+SpiderMonkey is the JavaScript engine for Firefox. <a href="https://click.e.mozilla.org/?qs=2c8d0a61f4cf2e396b7ee65522e4e5d070afac0b800bd37f894f071667f45fae2c9a3c9fa86ffd61737bd366e69d5c99b1194ceb4dc4ae8a" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://click.e.mozilla.org/?qs%3D2c8d0a61f4cf2e396b7ee65522e4e5d070afac0b800bd37f894f071667f45fae2c9a3c9fa86ffd61737bd366e69d5c99b1194ceb4dc4ae8a&amp;source=gmail&amp;ust=1593570060274000&amp;usg=AFQjCNHAArekJr3m0k93hFakP14BIlh4Ug">Compiler Compiler</a> is a guided, interactive tour of work on this engine. 
+
+The primary goal of this series is to introduce people to the world of language specification and implementation through SpiderMonkey.
+  <br><br>
+  
+Every session is 90 minutes long (60 min talk, 30 min dedicated Q&amp;A in chat) and streamed at 15:00 UTC (8am PST, 17:00 CEST) via the Twitch channel <a href="https://click.e.mozilla.org/?qs=2c8d0a61f4cf2e3984df2b7144da41f0eb9e67caa0405b13611c77e59ec8760ff30bf877516b07ea3e29fd6b5f5955c339c72a024b4cc54c" style="font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#0060df" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://click.e.mozilla.org/?qs%3D2c8d0a61f4cf2e3984df2b7144da41f0eb9e67caa0405b13611c77e59ec8760ff30bf877516b07ea3e29fd6b5f5955c339c72a024b4cc54c&amp;source=gmail&amp;ust=1593570060274000&amp;usg=AFQjCNFVlMqXdCUkNz285eL_Ed-Jh9GzHg">codehag</a>.
+  <br><br>
+
+The next episode is June 26.
+
+
+</span>
+</td></tr>
+<tr>
+
+
+                
+<td style="font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;font-size:16px;padding:0px 30px 45px" align="left">
+ 
+  
+<a href="https://click.e.mozilla.org/?qs=2c8d0a61f4cf2e39725990b8ba147042d93541736cde24bcc1362208e5a007c1cfe1a09ddf1e7b65d57290daf2fad1221cb337945b496aff" style="background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://click.e.mozilla.org/?qs%3D2c8d0a61f4cf2e39725990b8ba147042d93541736cde24bcc1362208e5a007c1cfe1a09ddf1e7b65d57290daf2fad1221cb337945b496aff&amp;source=gmail&amp;ust=1593570060274000&amp;usg=AFQjCNFgws4w03EvrzIAFLZ-KFsyqCg4OQ">
+Read More . . . 
+</a>  
+
+
+</td>
+
+
+</tr>
+
+</tbody></table><br>
+
+
+  </td></tr></tbody></table>
+
+   
+ <table cellspacing="0" cellpadding="0">
+       <tbody><tr>
+                     <td width="640" align="center" style="padding-top:10px;background-color:#000000">
+
+       <table cellspacing="0" cellpadding="0">
+                       <tbody><tr>
+                        <td align="center" style="font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;font-size:14px;line-height:18px;color:#ffffff;padding:0 20px 30px">
+                                      
+<br><br>You're receiving this email because you subscribed to the Developer Newsletter.<br><br>You can <a href="https://click.e.mozilla.org/?qs=2c8d0a61f4cf2e395810b5724f2ef3aa5649a0b39a54ca9ca2df86a9cba0240c7bc93dcefae5f32418f8ff8592a9aa2e38b786d3a667d50d" style="color:#ffffff" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://click.e.mozilla.org/?qs%3D2c8d0a61f4cf2e395810b5724f2ef3aa5649a0b39a54ca9ca2df86a9cba0240c7bc93dcefae5f32418f8ff8592a9aa2e38b786d3a667d50d&amp;source=gmail&amp;ust=1593570060274000&amp;usg=AFQjCNEoJtXs6n1kyRocWwU5OKqE1YxOZw">unsubscribe</a> or <a href="https://click.e.mozilla.org/?qs=2c8d0a61f4cf2e3932e5729cb29876f28b5e28467fa159c5131f77bdcce99ab07d15b662c80f1e4bfedf1bd2b94b1dc80feceb64b3a6e299" style="color:#ffffff" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://click.e.mozilla.org/?qs%3D2c8d0a61f4cf2e3932e5729cb29876f28b5e28467fa159c5131f77bdcce99ab07d15b662c80f1e4bfedf1bd2b94b1dc80feceb64b3a6e299&amp;source=gmail&amp;ust=1593570060274000&amp;usg=AFQjCNE8Gkq0jh3XROL5tGWLJaEBKWY9qw">manage your communication preferences</a> at any time.<br><br>
+                      
+
+
+                        </td>
+                       </tr>
+</tbody></table>
+                      <table cellspacing="0" cellpadding="0">
+                       <tbody><tr>
+                        <td align="center" style="font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;font-size:14px;line-height:18px;color:#ffffff;padding:0 20px 40px">
+                         <a href="https://click.e.mozilla.org/?qs=2c8d0a61f4cf2e39df7fe67b96734fa3ac77b7395e87665b87e19d47618d751b1fd409f525b726085e8d3a7d8fc25c6671ecf4e0318a9e3c" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://click.e.mozilla.org/?qs%3D2c8d0a61f4cf2e39df7fe67b96734fa3ac77b7395e87665b87e19d47618d751b1fd409f525b726085e8d3a7d8fc25c6671ecf4e0318a9e3c&amp;source=gmail&amp;ust=1593570060274000&amp;usg=AFQjCNH6a7OXyL2jXedn6hlkgDfoRnU1Zw"><img src="https://ci5.googleusercontent.com/proxy/0Yl2Wwsdpf7vutuaAs3u5dPUHGo76wRtes5CTh5mMjQaclReB2VTf1nkC1MaOS7IhjdcFx-OER-Gndc_OIJUYgocyq-cGlzrhNFf7_q4kCYkWIY697yglOR-c0-3ELqoD3wgrSo8v1ptBBkV-A-8w8GX=s0-d-e1-ft#https://image.e.mozilla.org/lib/fe9915707361037e75/m/5/75347105-3854-4a13-902c-4b45cd80bf54.png" width="150" alt="Mozilla" style="display:block;border:0" class="CToWUd"></a>
+           <br>
+
+                          <br>
+                            <a href="https://bidding.netlify.app/register" style="color:#ffffff;font-weight:bold" target="_blank">Join The Bidding App</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://bidding.netlify.app/login" style="color:#ffffff;font-weight:bold" target="_blank>Login</a>
+                          <br>
+                            <br>
+                          <br>
+                         PO Box 511, Charles City, Iowa 50616
+                         <br>
+                         <a href="https://bidding.netlify.app/terms" style="color:#ffffff" target="_blank">Terms</a> • <a href="https://bidding.netlify.app/privacy" style="color:#ffffff" target="_blank">Privacy</a>
+                          
+                            </td>
+                       </tr>
+                      </tbody></table>
+                     </td>
+          </tr>
+        </tbody></table>
+    </td>
+    </tr>
+           </tbody></table>              
+                       
+                       
+                     </td>
+                    </tr>
+                          </tbody></table>
+                        
+                
+      </td>
+    </tr></tbody></table>
+          </td></tr></tbody></table>
+</div>`
   };
   transporter.sendMail(data, (err, info) => {
     if (err) console.log(err);
