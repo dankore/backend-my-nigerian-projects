@@ -65,29 +65,26 @@ Email.prototype.sendResetPasswordToken = (email, firstName, url, token) => {
 };
 
 Email.prototype.projectSuccessfullyCreated = projectData => {
-  console.log({ projectData });
   const data = {
     from: '"The Bidding App" <thebiddingapp@gmail.com>',
     to: projectData.email,
     subject: `Your project, ${
       projectData.title
     }, was created - The Bidding App`,
-    html: `<div style="width: 320px;">
+    html: `<div style="width: 500px;">
     <p>The Bidding App</p>
       <hr style="margin-bottom: 50px;">
-      <div style="padding: 10px; margin-bottom: 10px; overflow-wrap: break-word; min-width: 0px; width: 300px; background-color: #F2F3F5; border-radius: 5px;">
-        <p style="width: 60px; height: 60px; border-radius: 5px;" alt="profile photo"><strong>${
+      <div style="padding: 10px; margin-bottom: 10px; overflow-wrap: break-word; min-width: 0px; background-color: #F2F3F5; border-radius: 5px;">
+        <p style="height: 60px; border-radius: 5px; font-size: 20px;" alt="profile photo"><strong>${
           projectData.title
         }</strong>
         </p>
-      <p style="font-size: 15px;"><strong>${
-        projectData.description
-      }</strong></p>
+      <p style="font-size: 15px;">${projectData.description}</p>
       </div>
       <a 
       href="https://bidding.netlify.app/project/${projectData._id}" 
       style="text-decoration: none; padding: 10px; background-color: #38a169; border-radius: 5px; color: white; 
-        font-size: 15px; width: 300px; text-align: center; display:inline-block;">View on GSS Gwarinpa Contact Book
+        font-size: 15px; width: 300px; text-align: center; display:inline-block;">View on the Bidding App
       </a>
     </div>`
   };
