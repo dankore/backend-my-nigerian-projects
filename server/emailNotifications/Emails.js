@@ -76,24 +76,26 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
         <tbody><tr>
             <td align="center" valign="top" style="background:#ffffff" width="100%">
                 <table cellpadding="0" cellspacing="0">
-                    <tbody><tr>
-                        <td width="640">
-                            <table style="background-color:transparent;min-width:100%" width="100%" cellspacing="0" cellpadding="0"><tbody><tr><td style="padding:11px"><table width="100%" cellspacing="0" cellpadding="0"><tbody><tr><td align="center">
-                            <a href="https://bidding.netlify.app" target="_blank"><img src="https://i.ibb.co/8Y5hL2d/bgg.jpg" alt="bgg"style="display:block;padding:0px;text-align:center;height:30%;width:100%" width="650"></a>
-                            </td></tr>
-</tbody></table></td></tr></tbody></table></td>
-                    </tr>
-                    <tr>
-                        <td width="640" align="center" style="padding:0 10px">
-                            <table style="min-width:100%" width="100%" cellspacing="0" cellpadding="0"><tbody><tr><td><table cellspacing="0" cellpadding="0" bgcolor="#ffffff">
+                  <tbody><tr>
+                    <td width="640">
+                      <table style="background-color:transparent;min-width:100%" width="100%" cellspacing="0" cellpadding="0"><tbody><tr><td style="padding:11px"><table width="100%" cellspacing="0" cellpadding="0"><tbody><tr><td align="center">
+                      <a href="https://bidding.netlify.app" target="_blank">
+                        <img src="https://i.ibb.co/8Y5hL2d/bgg.jpg" alt="background" style="display:block; position: relative; padding:0px;text-align:center;height:30%;width:100%" width="650">
+                        </a>
+                      </td>
+                  </tr></tbody></table>
+            </td>
+            </tr></tbody></table></td></tr>
+
+      <tr>
+<td width="640" align="center" style="padding:0 10px">
+    <table style="min-width:100%" width="100%" cellspacing="0" cellpadding="0"><tbody><tr><td><table cellspacing="0" cellpadding="0" bgcolor="#ffffff">
 <tbody><tr>
 <td style="padding:32px 30px 45px">
 
-<h1 style="font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;line-height:34px;font-size:22px;font-weight:bold">
+<h1 style="font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;line-height:10px;font-size:22px;font-weight:bold">
   ${projectData.title}
 </h1>
-
-<br><br>
 <span style="font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;font-size:16px;line-height:28px;color:#555555;padding-top:0px">
 ${projectData.description}
 </span>
@@ -125,8 +127,7 @@ View on the Bidding App
                         <td align="center" style="font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;font-size:14px;line-height:18px;color:#ffffff;padding:0 20px 40px">
                         <br><br>You're receiving this email because you are a member of the Bidding App.<br><br>
                           <br>
-                            <a href="https://bidding.netlify.app/register" style="color:#ffffff;font-weight:bold" target="_blank">Join The Bidding App</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-                            <a href="https://bidding.netlify.app/login" style="color:#ffffff;font-weight:bold" target="_blank">Login</a>
+                            <a href="https://bidding.netlify.app/register" style="color:#ffffff;font-weight:bold" target="_blank">Join The Bidding App</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://bidding.netlify.app/login" style="color:#ffffff;font-weight:bold" target="_blank">Login</a>
                             <br>
                             PO Box 511, Charles City, Iowa 50616
                          <br>
