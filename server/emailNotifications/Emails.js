@@ -78,7 +78,9 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
                 <table cellpadding="0" cellspacing="0">
                     <tbody><tr>
                         <td width="640">
-                            <table style="background-color:transparent;min-width:100%" width="100%" cellspacing="0" cellpadding="0"><tbody><tr><td style="padding:11px"><table width="100%" cellspacing="0" cellpadding="0"><tbody><tr><td align="center"><a href="https://click.e.mozilla.org/?qs=2c8d0a61f4cf2e39b7bb139a7c61c10a27dcc1e6d145fd1acd95bc89c989f40de2d40825c364650f89049a482add81eb112a0ee5be4de472" title="MDN Web Docs" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://click.e.mozilla.org/?qs%3D2c8d0a61f4cf2e39b7bb139a7c61c10a27dcc1e6d145fd1acd95bc89c989f40de2d40825c364650f89049a482add81eb112a0ee5be4de472&amp;source=gmail&amp;ust=1593570060273000&amp;usg=AFQjCNFqoH32-Qarfg9jS_6dWj-YfcCH1g"><img src="https://ci4.googleusercontent.com/proxy/prOW3MzzBuJlYPD25ZOFUmQn9QkGMj3MhGwVQlStBuyPwpW-OoaNw9g3hEV0ET2dcVNd_AisYGxyLLQ5l3mWvqKaXnhFsMpYsZb5PM4ppATHNhpEe9xSpISNnoMe5CMPhkfrJUqoyONgzFFD6O7FX8Yt=s0-d-e1-ft#https://image.e.mozilla.org/lib/fe9915707361037e75/m/3/6f6ace74-1303-44c1-b599-e44cec1c0b6a.png" alt="Mozilla Developer Newsletter" style="display:block;padding:0px;text-align:center;height:auto;width:100%" width="650" class="CToWUd"></a></td></tr>
+                            <table style="background-color:transparent;min-width:100%" width="100%" cellspacing="0" cellpadding="0"><tbody><tr><td style="padding:11px"><table width="100%" cellspacing="0" cellpadding="0"><tbody><tr><td align="center">
+                            <a href="https://bidding.netlify.app" target="_blank"><img src="https://i.ibb.co/8Y5hL2d/bgg.jpg" alt="bgg"style="display:block;padding:0px;text-align:center;height:auto;width:100%" width="650"></a>
+                            </td></tr>
 </tbody></table></td></tr></tbody></table></td>
                     </tr>
                     <tr>
@@ -87,16 +89,9 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
 <tbody><tr>
 <td style="padding:32px 30px 45px">
 
-
-
-
-
-  
 <h1 style="font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;line-height:34px;font-size:22px;font-weight:bold">
   ${projectData.title}
 </h1>
-
-
 
 <br><br>
 <span style="font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;font-size:16px;line-height:28px;color:#555555;padding-top:0px">
@@ -110,7 +105,7 @@ ${projectData.description}
 <a href="https://bidding.netlify.app/${
       projectData._id
     }" style="background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block" target="_blank">
-Read More . . . 
+View on the Bidding App
 </a>  
 </td>
 
@@ -118,9 +113,6 @@ Read More . . .
 </tr>
 
 </tbody></table><br>
-
-
-  </td></tr></tbody></table>
 
    
  <table cellspacing="0" cellpadding="0">
