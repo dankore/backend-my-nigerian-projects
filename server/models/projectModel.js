@@ -4,6 +4,7 @@ const usersCollection = require('../../db').db().collection('users');
 const ObjectID = require('mongodb').ObjectID;
 const User = require('./userModel');
 const sanitizeHTML = require('sanitize-html');
+const Email = require('../emailNotifications/Emails');
 
 let Project = function (data, userid, requestedProjectId) {
   this.data = data;
@@ -72,11 +73,13 @@ Project.prototype.create = function () {
     this.validate();
 
     if (!this.errors.length) {
-      // save project into database
+      // SAVE PROJECT
       projectsCollection
         .insertOne(this.data)
         .then(info => {
           resolve(info.ops[0]._id);
+          // SEND EMAIL
+          new Email().projectSuccessfullyCreated(info.ops[0]);
         })
         .catch(() => {
           this.errors.push('Please try again later.');
