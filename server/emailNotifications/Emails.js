@@ -83,9 +83,9 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
                               <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;line-height:10px;font-size:22px;font-weight:bold'>${
                                 projectData.title
                               }</h1>
-                              <span style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;font-size:16px;line-height:28px;color:#555555;padding-top:0px'>${
+                              <div style='overflowWrap:anywhere;minWidth:0px;font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;font-size:16px;line-height:28px;color:#555555;padding-top:0px;overflow-wrap: break-word; min-width: 0px;'>${
                                 projectData.description
-                              }</span>
+                              }</div>
                             </td>
                           </tr>
                           <tr>
