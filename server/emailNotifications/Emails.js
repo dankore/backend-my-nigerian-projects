@@ -114,7 +114,6 @@ Email.prototype.sendEmailToOwnerOfProjectAboutNewBid = (
   projectEmail,
   bidId
 ) => {
-  console.log(projectId, projectTitle, projectEmail, bidId);
   const data = {
     from: '"The Bidding App" <thebiddingapp@gmail.com>',
     to: projectEmail,
