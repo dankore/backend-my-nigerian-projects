@@ -1,5 +1,5 @@
-const nodemailer = require("nodemailer");
-require("dotenv").config();
+const nodemailer = require('nodemailer');
+require('dotenv').config();
 
 let Email = class email {
   constructor(from, to, subject, html) {
@@ -11,27 +11,27 @@ let Email = class email {
 };
 
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  service: 'gmail',
   auth: {
-    user: "thebiddingapp@gmail.com",
-    pass: process.env.GMAILPW
-  }
+    user: 'thebiddingapp@gmail.com',
+    pass: process.env.GMAILPW,
+  },
 });
 
 transporter.verify((error, success) => {
   if (error) console.log(error);
-  else console.log("Server is ready to take email messages");
+  else console.log('Server is ready to take email messages');
 });
 
 Email.prototype.whoLoggedIn = attemptedUserFirstName => {
   const data = {
     from: '"The Bidding App" <thebiddingapp@gmail.com>',
-    to: "adamu.dankore@gmail.com",
-    subject: `Login from ${attemptedUserFirstName}`
+    to: 'adamu.dankore@gmail.com',
+    subject: `Login from ${attemptedUserFirstName}`,
   };
   transporter.sendMail(data, (error, info) => {
     if (error) console.log(error);
-    else console.log("Who Logs in Email Sent: " + info.response);
+    else console.log('Who Logs in Email Sent: ' + info.response);
   });
 };
 
@@ -59,11 +59,11 @@ Email.prototype.sendResetPasswordToken = (email, firstName, url, token) => {
                           </tr>
                         </tbody>
                       </table>
-                ${emailFooter}`
+                ${emailFooter}`,
   };
   transporter.sendMail(data, (err, info) => {
     if (err) console.log(err);
-    else console.log("Reset Password Token Sent Via Email: " + info.response);
+    else console.log('Reset Password Token Sent Via Email: ' + info.response);
   });
 };
 
@@ -71,27 +71,19 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
   const data = {
     from: '"The Bidding App" <thebiddingapp@gmail.com>',
     to: projectData.email,
-    subject: `Congrats, Your New Project - ${
-      projectData.title
-    } is live! | The Bidding App`,
+    subject: `Congrats, Your New Project - ${projectData.title} is live! | The Bidding App`,
     html: `${emailHeader}
                       <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
                         <tbody>
                           <tr>
                             <td style='padding:32px 30px 45px'>
-                              <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;line-height:10px;font-weight:bold'>${
-                                projectData.title
-                              }</h1>
-                              <div style='overflowWrap:anywhere;minWidth:0px;font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;line-height:28px;color:#555555;padding-top:0px;overflow-wrap: break-word; min-width: 0px;'>${
-                                projectData.description
-                              }</div>
+                              <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;line-height:10px;font-weight:bold'>${projectData.title}</h1>
+                              <div style='overflowWrap:anywhere;minWidth:0px;font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;line-height:28px;color:#555555;padding-top:0px;overflow-wrap: break-word; min-width: 0px;'>${projectData.description}</div>
                             </td>
                           </tr>
                           <tr>
                             <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
-                              <a href='https://bidding.netlify.app/project/${
-                                projectData._id
-                              }' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
+                              <a href='https://bidding.netlify.app/project/${projectData._id}' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
                                 View on the Bidding App
                               </a>
                             </td>
@@ -99,21 +91,15 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
                         </tbody>
                       </table>
                 ${emailFooter}
-          `
+          `,
   };
   transporter.sendMail(data, (err, info) => {
     if (err) console.log(err);
-    else
-      console.log("Project Creation Success Sent Via Email: " + info.response);
+    else console.log('Project Creation Success Sent Via Email: ' + info.response);
   });
 };
 
-Email.prototype.sendEmailToOwnerOfProjectAboutNewBid = (
-  projectId,
-  projectTitle,
-  projectEmail,
-  bidId
-) => {
+Email.prototype.sendEmailToOwnerOfProjectAboutNewBid = (projectId, projectTitle, projectEmail, bidId) => {
   const data = {
     from: '"The Bidding App" <thebiddingapp@gmail.com>',
     to: projectEmail,
@@ -137,11 +123,11 @@ Email.prototype.sendEmailToOwnerOfProjectAboutNewBid = (
                         </tbody>
                       </table>
                 ${emailFooter}
-          `
+          `,
   };
   transporter.sendMail(data, (err, info) => {
     if (err) console.log(err);
-    else console.log("Bid Creation Success Sent Via Email: " + info.response);
+    else console.log('Bid Creation Success Sent Via Email: ' + info.response);
   });
 };
 
@@ -149,9 +135,7 @@ Email.prototype.registrationSuccess = userData => {
   const data = {
     from: '"The Bidding App" <thebiddingapp@gmail.com>',
     to: userData.email,
-    subject: `Congratulations, ${
-      userData.firstName
-    }, Registration Success! | The Bidding App`,
+    subject: `Congratulations, ${userData.firstName}, Registration Success! | The Bidding App`,
     html: `${emailHeader}
                       <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
                         <tbody>
@@ -166,9 +150,7 @@ Email.prototype.registrationSuccess = userData => {
                           </tr>
                           <tr>
                             <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
-                              <a href='https://bidding.netlify.app/profile/${
-                                userData.username
-                              }' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
+                              <a href='https://bidding.netlify.app/profile/${userData.username}' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
                                 View on the Bidding App
                               </a>
                             </td>
@@ -176,11 +158,11 @@ Email.prototype.registrationSuccess = userData => {
                         </tbody>
                       </table>
                 ${emailFooter}
-          `
+          `,
   };
   transporter.sendMail(data, (err, info) => {
     if (err) console.log(err);
-    else console.log("Registration Success Sent Via Email: " + info.response);
+    else console.log('Registration Success Sent Via Email: ' + info.response);
   });
 };
 
