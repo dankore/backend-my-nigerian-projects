@@ -194,7 +194,7 @@ User.prototype.register = function() {
       this.getAvatar();
       resolve("Model: User created.");
       // SEND EMAIL
-      new Email().regisgrationSuccess(this.data);
+      new Email().registrationSuccess(this.data);
     } else {
       reject(this.errors);
     }

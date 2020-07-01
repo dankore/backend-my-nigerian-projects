@@ -145,7 +145,7 @@ Email.prototype.sendEmailToOwnerOfProjectAboutNewBid = (
   });
 };
 
-Email.prototype.regisgrationSuccess = userData => {
+Email.prototype.registrationSuccess = userData => {
   console.log({ userData });
   const data = {
     from: '"The Bidding App" <thebiddingapp@gmail.com>',
