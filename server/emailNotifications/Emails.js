@@ -41,24 +41,24 @@ Email.prototype.sendResetPasswordToken = (email, firstName, url, token) => {
     to: email,
     subject: `${firstName}, Reset Your Password - The Bidding App`,
     html: `${emailHeader}
-                    <table cellspacing='0' cellpadding='0' bgcolor='#ffffff'>
-                      <tbody>
-                        <tr>
-                          <td style='padding:32px 30px 45px'>
+                    <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
+                        <tbody>
+                          <tr>
+                            <td style='padding:32px 30px 45px'>
                               Hello ${firstName}, <br/><br/>
                               Please click on the following link to complete the process:
                               <a href='${url}/reset-password/${token}'>Reset your password</a><br>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;font-size:16px;padding:0px 30px 45px' align='left'>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;font-size:16px;padding:0px 30px 45px' align='left'>
                               Paste the below URL into your browser to complete the process: <br/>
                               ${url}/reset-password/${token} <br/><br/> 
                               If you did not request this, please ignore this email and your password will remain unchanged.
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
                 ${emailFooter}
                 `
   };
