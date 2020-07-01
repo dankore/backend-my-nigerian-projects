@@ -93,10 +93,8 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
       projectData.title
     } is live! - The Bidding App`,
     html: `<div style='background:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:1em'>
-      <table width='100%' cellspacing='0' cellpadding='0' border='0' style='background:#ffffff'>
+      <table style='padding:0 10px; width: 640px; align: center; background:#ffffff' cellspacing='0' cellpadding='0' border='0'>
         <tbody>
-          <tr>
-           <td width='640' align='center' style='padding:0 10px'>
 
               ${emailHeader}
 
@@ -130,8 +128,7 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
 
                 ${emailFooter}
 
-                   </td>
-                  </tr>
+                  
                 </tbody>
               </table>
             </td>
@@ -149,7 +146,7 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
 
 const emailHeader = `<tr>
             <td width='640'>
-              <table style='background-color:transparent;min-width:100%' width='100%' cellspacing='0' cellpadding='0'>
+              <table style='background-color:transparent; width='640' cellspacing='0' cellpadding='0'>
                 <tbody>
                   <tr>
                     <td style='padding:11px'>
