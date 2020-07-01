@@ -40,14 +40,7 @@ Email.prototype.sendResetPasswordToken = (email, firstName, url, token) => {
     from: '"The Bidding App" <thebiddingapp@gmail.com>',
     to: email,
     subject: `${firstName}, Reset Your Password - The Bidding App`,
-    html: `<div style='background:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:1em'>
-    <table width='100%' cellspacing='0' cellpadding='0' border='0' style='background:#ffffff'>
-      <tbody>
-
-      ${emailHeader}
-
-                <tr>
-                  <td>
+    html: `${emailHeader}
                     <table cellspacing='0' cellpadding='0' bgcolor='#ffffff'>
                       <tbody>
                         <tr>
@@ -66,18 +59,8 @@ Email.prototype.sendResetPasswordToken = (email, firstName, url, token) => {
                         </tr>
                       </tbody>
                     </table>
-                  </td>
-                </tr>
-
                 ${emailFooter}
-                
-              </tbody>
-            </table>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>`
+                `
   };
   transporter.sendMail(data, (err, info) => {
     if (err) console.log(err);
@@ -92,14 +75,7 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
     subject: `Congrats, Your New Project - ${
       projectData.title
     } is live! - The Bidding App`,
-    html: `<div style='background:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:1em'>
-      <table style='padding:0 10px; width: 640px; align: center; background:#ffffff' cellspacing='0' cellpadding='0' border='0'>
-        <tbody>
-
-              ${emailHeader}
-
-                  <tr>
-                    <td>
+    html: `${emailHeader}
                       <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
                         <tbody>
                           <tr>
@@ -123,19 +99,8 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
                           </tr>
                         </tbody>
                       </table>
-                    </td>
-                  </tr>
-
                 ${emailFooter}
-
-                  
-                </tbody>
-              </table>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>`
+          `
   };
   transporter.sendMail(data, (err, info) => {
     if (err) console.log(err);
@@ -144,8 +109,11 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
   });
 };
 
-const emailHeader = `<tr>
-            <td width='640'>
+const emailHeader = `<div style='background:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:1em'>
+  <table style='padding:0 10px; width: 640px; align: center; background:#ffffff' cellspacing='0' cellpadding='0' border='0'>
+    <tbody>
+         <tr>
+              <td width='640'>
               <table style='background-color:transparent; width='640' cellspacing='0' cellpadding='0'>
                 <tbody>
                   <tr>
@@ -162,9 +130,14 @@ const emailHeader = `<tr>
                         </tbody>
                       </table>
                     </td>
-                  </tr>`;
+                  </tr>
+                  <tr>
+                    <td>
+                  `;
 
-const emailFooter = `<tr>
+const emailFooter = `</td>
+            </tr>
+                <tr>
                     <td width='640' align='center' style='padding-top:10px;background-color:#000000'>
                       <table cellspacing='0' cellpadding='0'>
                         <tbody>
@@ -198,6 +171,13 @@ const emailFooter = `<tr>
                       </table>
                     </td>
                   </tr>
+                  </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
                   `;
 
 // EXPORT CODE
