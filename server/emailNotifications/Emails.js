@@ -59,8 +59,7 @@ Email.prototype.sendResetPasswordToken = (email, firstName, url, token) => {
                           </tr>
                         </tbody>
                       </table>
-                ${emailFooter}
-                `
+                ${emailFooter}`
   };
   transporter.sendMail(data, (err, info) => {
     if (err) console.log(err);
@@ -108,6 +107,46 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
       console.log("Project Creation Success Sent Via Email: " + info.response);
   });
 };
+
+Email.prototype.sendEmailToOwnerOfProjectAboutNewBid = (
+  projectId,
+  projectTitle,
+  projectEmail,
+  bidId
+) => {
+  console.log(projectId, projectTitle, projectEmail, bidId);
+  const data = {
+    from: '"The Bidding App" <thebiddingapp@gmail.com>',
+    to: projectEmail,
+    subject: `You got new bid on your - ${projectTitle} project | The Bidding App`,
+    html: `${emailHeader}
+                      <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
+                        <tbody>
+                          <tr>
+                            <td style='padding:32px 30px 45px'>
+                             Your project ${projectTitle} has a new bid
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;font-size:16px;padding:0px 30px 45px' align='left'>
+                              <a href='https://bidding.netlify.app/${projectId}/bid/${bidId}'
+                              }' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
+                                View on the Bidding App
+                              </a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                ${emailFooter}
+          `
+  };
+  transporter.sendMail(data, (err, info) => {
+    if (err) console.log(err);
+    else console.log("Bid Creation Success Sent Via Email: " + info.response);
+  });
+};
+
+// SOME VARIABLES
 
 const emailHeader = `<div style='background:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:1em'>
   <table align='center' style='padding:0 10px; width: 640px; background:#ffffff' cellspacing='0' cellpadding='0' border='0'>

@@ -402,7 +402,6 @@ Project.prototype.addBid = function() {
           },
           {
             projection: {
-              _id: 0,
               email: 1,
               title: 1,
               bids: 1
@@ -411,12 +410,18 @@ Project.prototype.addBid = function() {
           }
         )
         .then(async info => {
+          const bidId = info.value.bids[info.value.bids.length - 1].id;
           resolve({
             status: "Success",
-            bidId: info.value.bids[info.value.bids.length - 1].id
+            bidId
           });
           // EMAIL
-          // new Email().sendEmailToOwnerOfProjectAboutNewBid(info.value.title, info.value.email);
+          new Email().sendEmailToOwnerOfProjectAboutNewBid(
+            info.value._id,
+            info.value.title,
+            info.value.email,
+            bidId
+          );
         })
         .catch(() => {
           reject("Adding bid failed.");
