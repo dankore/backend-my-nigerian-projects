@@ -91,10 +91,12 @@ Project.prototype.create = function () {
       // SAVE PROJECT
       projectsCollection
         .insertOne(this.data)
-        .then(info => {
+        .then(async info => {
           resolve(info.ops[0]._id);
           // SEND EMAIL
-          new Email().projectSuccessfullyCreated(info.ops[0]);
+          // new Email().projectSuccessfullyCreated(info.ops[0]);
+          const ans = await this.sendEmailToAllMembers();
+          // console.log({ ans });
         })
         .catch(() => {
           this.errors.push('Please try again later.');
@@ -102,6 +104,40 @@ Project.prototype.create = function () {
         });
     } else {
       reject(this.errors);
+    }
+  });
+};
+
+Project.prototype.sendEmailToAllMembers = function () {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await usersCollection
+        .find(
+          {},
+          {
+            projection: {
+              _id: 0,
+              username: 0,
+              firstName: 0,
+              lastName: 0,
+              password: 0,
+              resetPasswordExpires: 0,
+              resetPasswordToken: 0,
+            },
+          }
+        )
+        .toArray();
+      // let u = [];
+      // let ans = (await response.toArray()).filter(useDoc => u.push(useDoc.email));
+      console.log({ response }); // response: 
+  //     [
+  //   { email: 'adamu.dankore@gmail.com' },
+  //   { email: 'usmanfatima61@gmail.com' },
+  //   { email: 'zimmazone@yahoo.com' }
+  // ]
+      resolve(response);
+    } catch (error) {
+      reject(error);
     }
   });
 };
