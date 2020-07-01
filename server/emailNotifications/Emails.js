@@ -39,7 +39,7 @@ Email.prototype.sendResetPasswordToken = (email, firstName, url, token) => {
   const data = {
     from: '"The Bidding App" <thebiddingapp@gmail.com>',
     to: email,
-    subject: `${firstName}, Reset Your Password - The Bidding App`,
+    subject: `${firstName}, Reset Your Password | The Bidding App`,
     html: `${emailHeader}
                     <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
                         <tbody>
@@ -73,7 +73,7 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
     to: projectData.email,
     subject: `Congrats, Your New Project - ${
       projectData.title
-    } is live! - The Bidding App`,
+    } is live! | The Bidding App`,
     html: `${emailHeader}
                       <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
                         <tbody>
@@ -117,7 +117,7 @@ Email.prototype.sendEmailToOwnerOfProjectAboutNewBid = (
   const data = {
     from: '"The Bidding App" <thebiddingapp@gmail.com>',
     to: projectEmail,
-    subject: `You got new bid on your - ${projectTitle} project | The Bidding App`,
+    subject: `You got a new bid on your - ${projectTitle} project | The Bidding App`,
     html: `${emailHeader}
                       <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
                         <tbody>
