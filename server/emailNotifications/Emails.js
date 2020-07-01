@@ -95,12 +95,14 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
     html: `<div style='background:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:1em'>
       <table width='100%' cellspacing='0' cellpadding='0' border='0' style='background:#ffffff'>
         <tbody>
+          <tr>
+           <td width='640' align='center' style='padding:0 10px'>
 
-        ${emailHeader}
+              ${emailHeader}
 
                   <tr>
                     <td>
-                      <table cellspacing='0' cellpadding='0' bgcolor='#ffffff'>
+                      <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
                         <tbody>
                           <tr>
                             <td style='padding:32px 30px 45px'>
@@ -126,8 +128,10 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
                     </td>
                   </tr>
 
-                  ${emailFooter}
-                  
+                ${emailFooter}
+
+                   </td>
+                  </tr>
                 </tbody>
               </table>
             </td>
