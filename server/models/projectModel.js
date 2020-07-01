@@ -93,10 +93,13 @@ Project.prototype.create = function () {
         .insertOne(this.data)
         .then(async info => {
           resolve(info.ops[0]._id);
-          // SEND EMAIL
-          // new Email().projectSuccessfullyCreated(info.ops[0]);
-          const ans = await this.sendEmailToAllMembers();
-          // console.log({ ans });
+         
+          // SEND EMAIL TO USER WHO CREATED PROJECT
+          new Email().projectSuccessfullyCreated(info.ops[0]);
+          
+          // SEND EMAIL TO ALL OTHER USERS
+          const emails = await this.getAllUserEmails();
+          new Email().emailAllUsersAboutNewProject(info.ops[0], emails);
         })
         .catch(() => {
           this.errors.push('Please try again later.');
@@ -108,34 +111,31 @@ Project.prototype.create = function () {
   });
 };
 
-Project.prototype.sendEmailToAllMembers = function () {
+Project.prototype.getAllUserEmails = function () {
   return new Promise(async (resolve, reject) => {
     try {
+      let allEmails = [];
       const response = await usersCollection
         .find(
           {},
           {
             projection: {
               _id: 0,
-              username: 0,
-              firstName: 0,
-              lastName: 0,
-              password: 0,
-              resetPasswordExpires: 0,
-              resetPasswordToken: 0,
+              email: 1,
             },
           }
         )
         .toArray();
-      // let u = [];
-      // let ans = (await response.toArray()).filter(useDoc => u.push(useDoc.email));
-      console.log({ response }); // response: 
-  //     [
-  //   { email: 'adamu.dankore@gmail.com' },
-  //   { email: 'usmanfatima61@gmail.com' },
-  //   { email: 'zimmazone@yahoo.com' }
-  // ]
-      resolve(response);
+      /**
+         * GET ONLY EMAILS
+         * @VARIABLE RESPONSE E.G   [
+         { email: 'adamu.dankore@gmail.com' },
+         { email: 'usmanfatima61@gmail.com' },
+         { email: 'zimmazone@yahoo.com' }
+         ]
+         */
+      response.filter(userDoc => allEmails.push(userDoc.email));
+      resolve(allEmails);
     } catch (error) {
       reject(error);
     }
