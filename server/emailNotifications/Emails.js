@@ -44,7 +44,7 @@ Email.prototype.sendResetPasswordToken = (email, firstName, url, token) => {
                     <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
                         <tbody>
                           <tr>
-                            <td style='padding:32px 30px 45px'>
+                          <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;font-size:16px;padding:0px 30px 45px' align='left'>
                               Hello ${firstName}, <br/><br/>
                               Please click on the following link to complete the process:
                               <a href='${url}/reset-password/${token}'>Reset your password</a><br>
@@ -110,7 +110,7 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
 };
 
 const emailHeader = `<div style='background:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:1em'>
-  <table style='padding:0 10px; width: 640px; align: center; background:#ffffff' cellspacing='0' cellpadding='0' border='0'>
+  <table align='center' style='padding:0 10px; width: 640px; background:#ffffff' cellspacing='0' cellpadding='0' border='0'>
     <tbody>
          <tr>
               <td width='640'>
