@@ -190,7 +190,7 @@ const emailHeader = `<div style='background:#ffffff;font-family:Arial,Helvetica,
   <table align='center' style='padding:0 10px; width: 640px; background:#ffffff' cellspacing='0' cellpadding='0' border='0'>
     <tbody>
          <tr>
-              <td width='640'>
+              <td width='640' style='font-size:15px;'>
               <table style='background-color:transparent; width='640' cellspacing='0' cellpadding='0'>
                 <tbody>
                   <tr>
