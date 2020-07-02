@@ -218,13 +218,12 @@ Email.prototype.changePasswordSuccess = userData => {
                               <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;line-height:10px;font-weight:bold'>
                               Hello <strong>${userData.firstName},</strong><br/>
                               </h1>
-                              You Have Successfully Changed Your Password!<br>
-                              Checkout your profile:
+                              You have successfully changed your password.
                             </td>
                           </tr>
                           <tr>
                             <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
-                               If you did not changed your password. Secure your account by resetting your password:<br>
+                               If you did not changed your password. Secure your account by resetting your password:
                             </td>
                             <tr>
                               <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
