@@ -205,6 +205,44 @@ Email.prototype.registrationSuccess = userData => {
   });
 };
 
+Email.prototype.changePasswordSuccess = userData => {
+  const data = {
+    from: '"The Bidding App" <thebiddingapp@gmail.com>',
+    to: userData.email,
+    subject: `${userData.firstName}, You Have Successfully Changed Your Password! | The Bidding App`,
+    html: `${emailHeader}
+                      <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
+                        <tbody>
+                          <tr>
+                            <td style='padding:32px 30px 45px'>
+                              <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;line-height:10px;font-weight:bold'>
+                              Hello <strong>${userData.firstName},</strong><br/>
+                              </h1>
+                              You Have Successfully Changed Your Password!<br>
+                              Checkout your profile:
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
+                               If you did not changed your password. Secure your account by resetting your password:<br>
+                            </td>
+                            <td>
+                              <a href='https://bidding.netlify.app/reset-password' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
+                                View on the Bidding App
+                              </a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                ${emailFooter}
+          `,
+  };
+  transporter.sendMail(data, (err, info) => {
+    if (err) console.log(err);
+    else console.log('Change Password Success Sent Via Email: ' + info.response);
+  });
+};
+
 // SOME VARIABLES
 
 const emailHeader = `<div style='background:#ffffff;font-family:Arial,Helvetica,sans-serif;'>

@@ -366,7 +366,9 @@ User.changePassword = data => {
             { _id: new ObjectID(data._id) },
             { $set: { password: data.newPassword } }
           );
+          
           resolve("Success");
+          new Email().changePasswordSuccess(userDoc);
         } else {
           resolve("New password does not match current password.");
         }
