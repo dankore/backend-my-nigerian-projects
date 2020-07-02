@@ -71,7 +71,7 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
   const data = {
     from: '"The Bidding App" <thebiddingapp@gmail.com>',
     to: projectData.email,
-    subject: `Congrats, Your New Project - ${projectData.title} is live! | The Bidding App`,
+    subject: `Congrats, Your New Project - ${projectData.title} is Live! | The Bidding App`,
     html: `${emailHeader}
                       <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
                         <tbody>
@@ -103,7 +103,7 @@ Email.prototype.sendEmailToOwnerOfProjectAboutNewBid = (projectId, projectTitle,
   const data = {
     from: '"The Bidding App" <thebiddingapp@gmail.com>',
     to: projectEmail,
-    subject: `You got a new bid on your - ${projectTitle} project | The Bidding App`,
+    subject: `You Got a New Bid on Your - ${projectTitle} Project | The Bidding App`,
     html: `${emailHeader}
                       <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
                         <tbody>
@@ -140,7 +140,7 @@ Email.prototype.emailAllUsersAboutNewProject = (projectData, allOtherEmails) => 
       const data = {
         from: '"The Bidding App" <thebiddingapp@gmail.com>',
         to: email,
-        subject: `New project posted | The Bidding App`,
+        subject: `New Project Posted | The Bidding App`,
         html: `${emailHeader}
                       <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
                         <tbody>
@@ -174,7 +174,7 @@ Email.prototype.registrationSuccess = userData => {
   const data = {
     from: '"The Bidding App" <thebiddingapp@gmail.com>',
     to: userData.email,
-    subject: `Congratulations, ${userData.firstName}, Registration Success! | The Bidding App`,
+    subject: `Congratulations, ${userData.firstName}, Registration Success | The Bidding App`,
     html: `${emailHeader}
                       <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
                         <tbody>
@@ -209,7 +209,7 @@ Email.prototype.changePasswordSuccess = userData => {
   const data = {
     from: '"The Bidding App" <thebiddingapp@gmail.com>',
     to: userData.email,
-    subject: `${userData.firstName}, You Have Successfully Changed Your Password! | The Bidding App`,
+    subject: `${userData.firstName}, You Have Successfully Changed Your Password | The Bidding App`,
     html: `${emailHeader}
                       <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
                         <tbody>
@@ -248,7 +248,7 @@ Email.prototype.deleteAccountSucccess = userData => {
   const data = {
     from: '"The Bidding App" <thebiddingapp@gmail.com>',
     to: userData.email,
-    subject: `${userData.firstName}, You Have Successfully Deleted Your Account! | The Bidding App`,
+    subject: `${userData.firstName}, You Have Successfully Deleted Your Account | The Bidding App`,
     html: `${emailHeader}
                       <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
                         <tbody>
