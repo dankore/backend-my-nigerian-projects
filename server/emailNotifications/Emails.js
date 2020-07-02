@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer');
 require('dotenv').config();
 
 let Email = class email {
-  constructor(from, to, subject, html) {
+  constructor (from, to, subject, html) {
     this.from = from;
     this.to = to;
     this.subject = subject;
@@ -132,7 +132,7 @@ Email.prototype.sendEmailToOwnerOfProjectAboutNewBid = (projectId, projectTitle,
 };
 
 Email.prototype.emailAllUsersAboutNewProject = (projectData, allOtherEmails) => {
-   // SEND EMAIL TO EACH USER
+  // SEND EMAIL TO EACH USER
   for (let i = 0; i < allOtherEmails.length; i++) {
     const email = allOtherEmails[i];
 
@@ -244,7 +244,7 @@ Email.prototype.changePasswordSuccess = userData => {
   });
 };
 
-Email.prototype.deleteAccountSucccess = userData => {
+Email.prototype.deleteAccountSuccess = userData => {
   const data = {
     from: '"The Bidding App" <thebiddingapp@gmail.com>',
     to: userData.email,

@@ -93,10 +93,10 @@ Project.prototype.create = function () {
         .insertOne(this.data)
         .then(async info => {
           resolve(info.ops[0]._id);
-         
+
           // SEND EMAIL TO USER WHO CREATED PROJECT
           new Email().projectSuccessfullyCreated(info.ops[0]);
-          
+
           // SEND EMAIL TO ALL OTHER USERS
           const emails = await this.getAllUserEmails();
           new Email().emailAllUsersAboutNewProject(info.ops[0], emails);

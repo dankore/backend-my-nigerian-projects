@@ -1,18 +1,12 @@
-const usersCollection = require("../../db")
-  .db()
-  .collection("users");
-const followsCollection = require("../../db")
-  .db()
-  .collection("follows");
-const projectsCollection = require("../../db")
-  .db()
-  .collection("projects");
-const ObjectID = require("mongodb").ObjectID;
-const validator = require("validator");
-const bcrypt = require("bcryptjs");
-const md5 = require("md5");
-const Email = require("../emailNotifications/Emails");
-const crypto = require("crypto");
+const usersCollection = require('../../db').db().collection('users');
+const followsCollection = require('../../db').db().collection('follows');
+const projectsCollection = require('../../db').db().collection('projects');
+const ObjectID = require('mongodb').ObjectID;
+const validator = require('validator');
+const bcrypt = require('bcryptjs');
+const md5 = require('md5');
+const Email = require('../emailNotifications/Emails');
+const crypto = require('crypto');
 
 let User = class user {
   constructor(data, getAvatar) {
@@ -27,21 +21,21 @@ let User = class user {
   }
 };
 
-User.prototype.cleanUpForNotRegisterApi = function() {
-  if (typeof this.data.username != "string") {
-    this.data.username = "";
+User.prototype.cleanUpForNotRegisterApi = function () {
+  if (typeof this.data.username != 'string') {
+    this.data.username = '';
   }
 
-  if (typeof this.data.password != "string") {
-    this.data.password = "";
+  if (typeof this.data.password != 'string') {
+    this.data.password = '';
   }
 
-  if (typeof this.data.firstName != "string") {
-    this.data.firstName = "";
+  if (typeof this.data.firstName != 'string') {
+    this.data.firstName = '';
   }
 
-  if (typeof this.data.lastName != "string") {
-    this.data.firstName = "";
+  if (typeof this.data.lastName != 'string') {
+    this.data.firstName = '';
   }
 
   // get rid of any bogus properties
@@ -50,41 +44,41 @@ User.prototype.cleanUpForNotRegisterApi = function() {
     username: this.data.username.trim(),
     firstName: this.data.firstName.trim(),
     lastName: this.data.lastName.trim(),
-    password: this.data.password
+    password: this.data.password,
   };
 };
 
-User.prototype.cleanUpForLogin = function() {
-  if (typeof this.data.username != "string") {
-    this.data.username = "";
+User.prototype.cleanUpForLogin = function () {
+  if (typeof this.data.username != 'string') {
+    this.data.username = '';
   }
 
-  if (typeof this.data.password != "string") {
-    this.data.password = "";
+  if (typeof this.data.password != 'string') {
+    this.data.password = '';
   }
 
   // get rid of any bogus properties
   this.data = {
     username: this.data.username.trim().toLowerCase(),
-    password: this.data.password
+    password: this.data.password,
   };
 };
 
-User.prototype.cleanUp = function() {
-  if (typeof this.data.username != "string") {
-    this.data.username = "";
+User.prototype.cleanUp = function () {
+  if (typeof this.data.username != 'string') {
+    this.data.username = '';
   }
-  if (typeof this.data.email != "string") {
-    this.data.email = "";
+  if (typeof this.data.email != 'string') {
+    this.data.email = '';
   }
-  if (typeof this.data.firstName != "string") {
-    this.data.firstName = "";
+  if (typeof this.data.firstName != 'string') {
+    this.data.firstName = '';
   }
-  if (typeof this.data.lastName != "string") {
-    this.data.firstName = "";
+  if (typeof this.data.lastName != 'string') {
+    this.data.firstName = '';
   }
-  if (typeof this.data.password != "string") {
-    this.data.password = "";
+  if (typeof this.data.password != 'string') {
+    this.data.password = '';
   }
 
   // get rid of any bogus properties
@@ -93,92 +87,82 @@ User.prototype.cleanUp = function() {
     firstName: this.data.firstName.trim(),
     lastName: this.data.lastName.trim(),
     email: this.data.email.trim().toLowerCase(),
-    password: this.data.password
+    password: this.data.password,
   };
 };
 
-User.prototype.validateEditProfile = function() {
-  if (this.data.username == "") {
-    this.errors.push("You must provide a username.");
+User.prototype.validateEditProfile = function () {
+  if (this.data.username == '') {
+    this.errors.push('You must provide a username.');
   }
-  if (
-    this.data.username != "" &&
-    !validator.isAlphanumeric(this.data.username)
-  ) {
-    this.errors.push("Username can only contain letters and numbers.");
+  if (this.data.username != '' && !validator.isAlphanumeric(this.data.username)) {
+    this.errors.push('Username can only contain letters and numbers.');
   }
-  if (this.data.firstName == "") {
-    this.errors.push("You must provide a first name.");
+  if (this.data.firstName == '') {
+    this.errors.push('You must provide a first name.');
   }
-  if (this.data.lastName == "") {
-    this.errors.push("You must provide a last name.");
+  if (this.data.lastName == '') {
+    this.errors.push('You must provide a last name.');
   }
 };
 
-User.prototype.validate = function() {
+User.prototype.validate = function () {
   return new Promise(async (resolve, reject) => {
-    if (this.data.username == "") {
-      this.errors.push("You must provide a username.");
+    if (this.data.username == '') {
+      this.errors.push('You must provide a username.');
     }
-    if (
-      this.data.username != "" &&
-      !validator.isAlphanumeric(this.data.username)
-    ) {
-      this.errors.push("Username can only contain letters and numbers.");
+    if (this.data.username != '' && !validator.isAlphanumeric(this.data.username)) {
+      this.errors.push('Username can only contain letters and numbers.');
     }
-    if (this.data.firstName == "") {
-      this.errors.push("You must provide a first name.");
+    if (this.data.firstName == '') {
+      this.errors.push('You must provide a first name.');
     }
-    if (this.data.lastName == "") {
-      this.errors.push("You must provide a last name.");
+    if (this.data.lastName == '') {
+      this.errors.push('You must provide a last name.');
     }
     if (!validator.isEmail(this.data.email)) {
-      this.errors.push("You must provide a valid email address.");
+      this.errors.push('You must provide a valid email address.');
     }
-    if (this.data.password == "") {
-      this.errors.push("You must provide a password.");
+    if (this.data.password == '') {
+      this.errors.push('You must provide a password.');
     }
     if (this.data.password.length > 0 && this.data.password.length < 6) {
-      this.errors.push("Password must be at least 6 characters.");
+      this.errors.push('Password must be at least 6 characters.');
     }
     if (this.data.password.length > 50) {
-      this.errors.push("Password cannot exceed 50 characters.");
+      this.errors.push('Password cannot exceed 50 characters.');
     }
     if (this.data.username.length > 0 && this.data.username.length < 3) {
-      this.errors.push("Username must be at least 3 characters.");
+      this.errors.push('Username must be at least 3 characters.');
     }
     if (this.data.username.length > 30) {
-      this.errors.push("Username cannot exceed 30 characters.");
+      this.errors.push('Username cannot exceed 30 characters.');
     }
 
     // Only if username is valid then check to see if it's already taken
-    if (
-      this.data.username.length > 2 &&
-      this.data.username.length < 31 &&
-      validator.isAlphanumeric(this.data.username)
-    ) {
+    if (this.data.username.length > 2 && this.data.username.length < 31 && validator.isAlphanumeric(this.data.username)) {
       let usernameExists = await usersCollection.findOne({
-        username: this.data.username
+        username: this.data.username,
       });
       if (usernameExists) {
-        this.errors.push("That username is already taken.");
+        this.errors.push('That username is already taken.');
       }
     }
 
     // Only if email is valid then check to see if it's already taken
     if (validator.isEmail(this.data.email)) {
       let emailExists = await usersCollection.findOne({
-        email: this.data.email
+        email: this.data.email,
       });
       if (emailExists) {
-        this.errors.push("That email is already being used.");
+        this.errors.push('That email is already being used.');
       }
     }
     resolve();
   });
 };
 
-User.prototype.register = function() {
+User.prototype.register = function () {
   return new Promise(async (resolve, reject) => {
     // CLEAN AND VALIDATE DATA
     this.cleanUp();
@@ -192,7 +176,7 @@ User.prototype.register = function() {
       // INSERT DATA INTO DB
       await usersCollection.insertOne(this.data);
       this.getAvatar();
-      resolve("Model: User created.");
+      resolve('Model: User created.');
       // SEND EMAIL
       new Email().registrationSuccess(this.data);
     } else {
@@ -201,20 +185,20 @@ User.prototype.register = function() {
   });
 };
 
-User.prototype.getAvatar = function() {
+User.prototype.getAvatar = function () {
   this.avatar = `https://gravatar.com/avatar/${md5(this.data.email)}?s=128`;
 };
 
-User.findByUsername = function(username) {
+User.findByUsername = function (username) {
   return new Promise((resolve, reject) => {
-    if (typeof username != "string") {
+    if (typeof username != 'string') {
       reject();
       return;
     }
 
     usersCollection
       .findOne({
-        username: username
+        username: username,
       })
       .then(userDoc => {
         if (userDoc) {
@@ -225,7 +209,7 @@ User.findByUsername = function(username) {
             firstName: userDoc.data.firstName,
             lastName: userDoc.data.lastName,
             email: userDoc.data.email,
-            avatar: userDoc.avatar
+            avatar: userDoc.avatar,
           };
 
           resolve(userDoc);
@@ -234,20 +218,20 @@ User.findByUsername = function(username) {
         }
       })
       .catch(() => {
-        reject("No user by username");
+        reject('No user by username');
       });
   });
 };
 
-User.findByEmail = function(email) {
+User.findByEmail = function (email) {
   return new Promise((resolve, reject) => {
-    if (typeof email != "string") {
+    if (typeof email != 'string') {
       reject();
       return;
     }
     usersCollection
       .findOne({
-        email: email
+        email: email,
       })
       .then(userDoc => {
         if (userDoc) {
@@ -257,38 +241,35 @@ User.findByEmail = function(email) {
         }
       })
       .catch(() => {
-        reject("No user by email");
+        reject('No user by email');
       });
   });
 };
 
-User.prototype.login = function() {
+User.prototype.login = function () {
   return new Promise((resolve, reject) => {
     this.cleanUpForLogin();
 
     usersCollection
       .findOne({ username: this.data.username })
       .then(attemptedUser => {
-        if (
-          attemptedUser &&
-          bcrypt.compareSync(this.data.password, attemptedUser.password)
-        ) {
+        if (attemptedUser && bcrypt.compareSync(this.data.password, attemptedUser.password)) {
           this.data = attemptedUser;
           this.getAvatar();
-          resolve("Login Success!");
+          resolve('Login Success!');
           // EMAIL ME WHO LOGS IN
           new Email().whoLoggedIn(this.data.firstName);
         } else {
-          reject("Invalid username / password.");
+          reject('Invalid username / password.');
         }
       })
       .catch(() => {
-        reject("Please try again.");
+        reject('Please try again.');
       });
   });
 };
 
-User.prototype.updateProfile = function() {
+User.prototype.updateProfile = function () {
   return new Promise(async (resolve, reject) => {
     this.cleanUpForNotRegisterApi();
     this.validateEditProfile();
@@ -301,16 +282,16 @@ User.prototype.updateProfile = function() {
             $set: {
               username: this.data.username,
               firstName: this.data.firstName,
-              lastName: this.data.lastName
-            }
+              lastName: this.data.lastName,
+            },
           },
           {
             projection: {
               username: 1,
               firstName: 1,
-              lastName: 1
+              lastName: 1,
             },
-            returnOriginal: false
+            returnOriginal: false,
           }
         )
         .then(info => {
@@ -319,10 +300,10 @@ User.prototype.updateProfile = function() {
           // User.updateProfileInfo(info.value);
         })
         .catch(() => {
-          reject("Profile Update failed.");
+          reject('Profile Update failed.');
         });
     } else {
-      reject("Profile Update failed.");
+      reject('Profile Update failed.');
     }
   });
 };
@@ -330,53 +311,41 @@ User.prototype.updateProfile = function() {
 User.changePassword = data => {
   return new Promise(async (resolve, reject) => {
     if (data.newPassword != data.reEnteredNewPassword) {
-      reject("Passwords do not match.");
+      reject('Passwords do not match.');
       return;
     }
-    if (
-      data.newPassword == "" ||
-      data.reEnteredNewPassword == "" ||
-      data.currentPassword == ""
-    ) {
-      reject("Passwords fields cannot be empty.");
+    if (data.newPassword == '' || data.reEnteredNewPassword == '' || data.currentPassword == '') {
+      reject('Passwords fields cannot be empty.');
       return;
     }
     if (data.newPassword.length < 6 || data.reEnteredNewPassword.length < 6) {
-      reject("Passwords must be at least 6 characters.");
+      reject('Passwords must be at least 6 characters.');
       return;
     }
     if (data.newPassword.length > 50 || data.reEnteredNewPassword.length > 50) {
-      reject("Passwords must be less than 50 characters.");
+      reject('Passwords must be less than 50 characters.');
       return;
     }
 
     usersCollection
       .findOne({ _id: new ObjectID(data._id) })
       .then(async userDoc => {
-        if (
-          userDoc &&
-          bcrypt.compareSync(data.currentPassword, userDoc.password)
-        ) {
+        if (userDoc && bcrypt.compareSync(data.currentPassword, userDoc.password)) {
           // HASH / SCRAMBLE PASSWORD
           const salt = bcrypt.genSaltSync();
           data.newPassword = bcrypt.hashSync(data.newPassword, salt);
 
           // SAVE NEW PASSWORD
-          await usersCollection.findOneAndUpdate(
-            { _id: new ObjectID(data._id) },
-            { $set: { password: data.newPassword } }
-          );
-          
-          resolve("Success");
+          await usersCollection.findOneAndUpdate({ _id: new ObjectID(data._id) }, { $set: { password: data.newPassword } });
+
+          resolve('Success');
           new Email().changePasswordSuccess(userDoc);
         } else {
-          resolve("New password does not match current password.");
+          resolve('New password does not match current password.');
         }
       })
       .catch(() => {
-        reject(
-          "Something went wrong while changing your password. Please try again."
-        );
+        reject('Something went wrong while changing your password. Please try again.');
       });
   });
 };
@@ -388,13 +357,11 @@ User.getProfileById = id => {
         { _id: new ObjectID(id) },
         {
           projection: {
-            password: 0
-          }
+            password: 0,
+          },
         }
       );
-      userDoc.avatar = `https://gravatar.com/avatar/${md5(
-        userDoc.email
-      )}?s=128`;
+      userDoc.avatar = `https://gravatar.com/avatar/${md5(userDoc.email)}?s=128`;
       resolve(userDoc);
     } catch (error) {
       reject(error);
@@ -412,20 +379,17 @@ User.deleteAccount = (userId, userData) => {
             _id: 0,
             email: 1,
             firstName: 1,
-            lastName: 1
-          }
+            lastName: 1,
+          },
         }
-        )
+      )
       .then(async info => {
-        resolve("Success");
+        resolve('Success');
         await followsCollection.deleteMany({
-          $or: [
-            { followedId: new ObjectID(userId) },
-            { authorId: new ObjectID(userId) }
-          ]
+          $or: [{ followedId: new ObjectID(userId) }, { authorId: new ObjectID(userId) }],
         });
         await projectsCollection.deleteMany({ author: new ObjectID(userId) });
-        new Email().deleteAccountSucccess(info.value);
+        new Email().deleteAccountSuccess(info.value);
       })
       .catch(error => {
         reject(error);
@@ -433,17 +397,17 @@ User.deleteAccount = (userId, userData) => {
   });
 };
 
-User.prototype.resetPassword = function(url) {
+User.prototype.resetPassword = function (url) {
   return new Promise(async (resolve, reject) => {
     // CHECK EMAIL
     if (!validator.isEmail(this.data.email)) {
-      reject("Please provide a valid email.");
+      reject('Please provide a valid email.');
       return;
     }
     // CHECK IF EMAIL EXIST IN DB
     let userDoc = await usersCollection.findOne({ email: this.data.email });
     if (!userDoc) {
-      this.errors.push("No account with that email address exists.");
+      this.errors.push('No account with that email address exists.');
     }
 
     if (!this.errors.length) {
@@ -455,29 +419,24 @@ User.prototype.resetPassword = function(url) {
         {
           $set: {
             resetPasswordToken: token,
-            resetPasswordExpires: resetPasswordExpires
-          }
+            resetPasswordExpires: resetPasswordExpires,
+          },
         }
       );
       // SEND ATTEMPTED USER THE TOKEN
-      new Email().sendResetPasswordToken(
-        this.data.email,
-        userDoc.firstName,
-        url,
-        token
-      );
-      resolve("Success");
+      new Email().sendResetPasswordToken(this.data.email, userDoc.firstName, url, token);
+      resolve('Success');
     } else {
       reject(this.errors);
     }
   });
 };
 
-User.cryptoRandomData = function() {
+User.cryptoRandomData = function () {
   return new Promise((resolve, reject) => {
     crypto.randomBytes(20, (err, buffer) => {
       if (buffer) {
-        var token = buffer.toString("hex");
+        var token = buffer.toString('hex');
         resolve(token);
       } else {
         reject(err);
@@ -491,67 +450,59 @@ User.verifyPasswordResetToken = token => {
     try {
       let user = await usersCollection.findOne({
         resetPasswordToken: token,
-        resetPasswordExpires: { $gt: Date.now() }
+        resetPasswordExpires: { $gt: Date.now() },
       });
-      if (user) resolve("Success");
-      else
-        reject(
-          "Password reset token is invalid or has expired. Please generate another token below."
-        );
+      if (user) resolve('Success');
+      else reject('Password reset token is invalid or has expired. Please generate another token below.');
     } catch (error) {
       reject(error);
     }
   });
 };
 
-User.prototype.passwordResetValidation = function() {
-  if (typeof this.data.password != "string") {
-    this.data.password = "";
+User.prototype.passwordResetValidation = function () {
+  if (typeof this.data.password != 'string') {
+    this.data.password = '';
   }
-  if (typeof this.data.reEnteredPassword != "string") {
-    this.data.reEnteredPassword = "";
+  if (typeof this.data.reEnteredPassword != 'string') {
+    this.data.reEnteredPassword = '';
   }
-  if (typeof this.data.token != "string") {
-    this.data.token = "";
+  if (typeof this.data.token != 'string') {
+    this.data.token = '';
   }
-  if (this.data.password == "" || this.data.reEnteredPassword == "") {
-    this.errors.push("Password field is empty.");
+  if (this.data.password == '' || this.data.reEnteredPassword == '') {
+    this.errors.push('Password field is empty.');
   }
   if (!validator.isLength(this.data.password, { min: 6, max: 50 })) {
-    this.errors.push("Password must be at least 6 characters.");
+    this.errors.push('Password must be at least 6 characters.');
   }
   if (this.data.password != this.data.reEnteredPassword) {
-    this.errors.push("Passwords do not match.");
+    this.errors.push('Passwords do not match.');
   }
-  if (this.data.token == "") {
-    this.errors.push("Token is not provided by your browser.");
+  if (this.data.token == '') {
+    this.errors.push('Token is not provided by your browser.');
   }
 
   // REMOVE BOGUS PROPERTIES
   this.data = {
     reEnteredPassword: this.data.reEnteredPassword,
-    token: this.data.token
+    token: this.data.token,
   };
 };
 
-User.prototype.saveNewPassword = function() {
+User.prototype.saveNewPassword = function () {
   return new Promise(async (resolve, reject) => {
     this.passwordResetValidation();
 
     if (!this.errors.length) {
       const response = await User.verifyPasswordResetToken(this.data.token);
-      if (response != "Success") {
-        reject(
-          "Password reset token is invalid or has expired. Please generate another token below."
-        );
+      if (response != 'Success') {
+        reject('Password reset token is invalid or has expired. Please generate another token below.');
         return;
       } else {
         // HASH PASSWORD
         const salt = bcrypt.genSaltSync();
-        this.data.reEnteredPassword = bcrypt.hashSync(
-          this.data.reEnteredPassword,
-          salt
-        );
+        this.data.reEnteredPassword = bcrypt.hashSync(this.data.reEnteredPassword, salt);
 
         // REPLACE NEW PASSWORD WITH OLD
         const status = await this.replaceOldPasswordWithNew();
@@ -563,7 +514,7 @@ User.prototype.saveNewPassword = function() {
   });
 };
 
-User.prototype.replaceOldPasswordWithNew = function() {
+User.prototype.replaceOldPasswordWithNew = function () {
   return new Promise(async (resolve, reject) => {
     try {
       let user = await usersCollection.findOneAndUpdate(
@@ -572,21 +523,21 @@ User.prototype.replaceOldPasswordWithNew = function() {
           $set: {
             password: this.data.reEnteredPassword,
             resetPasswordToken: null,
-            resetPasswordExpires: null
-          }
+            resetPasswordExpires: null,
+          },
         },
         {
           projection: {
             _id: 0,
             firstName: 1,
             lastName: 1,
-            email: 1
+            email: 1,
           },
-          returnOriginal: false
+          returnOriginal: false,
         }
       );
       console.log({ user: user.value, msg: `<<<Send email here line 523>>>` });
-      resolve("Success");
+      resolve('Success');
     } catch (error) {
       reject(error);
     }

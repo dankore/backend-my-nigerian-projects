@@ -12,7 +12,6 @@ exports.apiRegister = (req, res) => {
   user
     .register()
     .then(response => {
-      console.log(user.data);
       res.json({
         token: jwt.sign(
           {
