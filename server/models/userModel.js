@@ -65,7 +65,7 @@ User.prototype.cleanUpForLogin = function() {
 
   // get rid of any bogus properties
   this.data = {
-    username: this.data.username.trim(),
+    username: this.data.username.trim().toLowerCase(),
     password: this.data.password
   };
 };
