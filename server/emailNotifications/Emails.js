@@ -223,7 +223,7 @@ Email.prototype.changePasswordSuccess = userData => {
                           </tr>
                           <tr>
                             <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
-                               If you did not changed your password. Secure your account by resetting your password:
+                               If you did not changed your password, secure your account by resetting your password:
                             </td>
                             <tr>
                               <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
