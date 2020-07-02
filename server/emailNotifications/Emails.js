@@ -226,11 +226,13 @@ Email.prototype.changePasswordSuccess = userData => {
                             <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
                                If you did not changed your password. Secure your account by resetting your password:<br>
                             </td>
-                            <td>
-                              <a href='https://bidding.netlify.app/reset-password' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
-                                View on the Bidding App
-                              </a>
-                            </td>
+                            <tr>
+                              <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
+                                <a href='https://bidding.netlify.app/reset-password' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
+                                 Secure My Account Now
+                                </a>
+                              </td>
+                            </tr>
                           </tr>
                         </tbody>
                       </table>
