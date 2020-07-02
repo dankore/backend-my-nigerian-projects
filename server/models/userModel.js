@@ -402,11 +402,21 @@ User.getProfileById = id => {
   });
 };
 
-User.deleteAccount = userId => {
+User.deleteAccount = (userId, userData) => {
   return new Promise(async (resolve, reject) => {
     usersCollection
-      .findOneAndDelete({ _id: new ObjectID(userId) })
-      .then(async _ => {
+      .findOneAndDelete(
+        { _id: new ObjectID(userId) },
+        {
+          projection: {
+            _id: 0,
+            email: 1,
+            firstName: 1,
+            lastName: 1
+          }
+        }
+        )
+      .then(async info => {
         resolve("Success");
         await followsCollection.deleteMany({
           $or: [
@@ -415,6 +425,7 @@ User.deleteAccount = userId => {
           ]
         });
         await projectsCollection.deleteMany({ author: new ObjectID(userId) });
+        new Email().deleteAccountSucccess(info.value);
       })
       .catch(error => {
         reject(error);

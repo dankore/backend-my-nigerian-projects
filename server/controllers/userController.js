@@ -247,7 +247,7 @@ exports.apiGetProfileById = (req, res) => {
 };
 
 exports.apiDeleteAccount = (req, res) => {
-  User.deleteAccount(req.body.userId)
+  User.deleteAccount(req.body.userId, req.apiUser)
     .then(response => {
       res.json(response);
     })
