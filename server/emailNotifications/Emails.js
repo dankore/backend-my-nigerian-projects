@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer');
 require('dotenv').config();
 
 let Email = class email {
-  constructor (from, to, subject, html) {
+  constructor(from, to, subject, html) {
     this.from = from;
     this.to = to;
     this.subject = subject;
@@ -25,7 +25,7 @@ transporter.verify((error, success) => {
 
 Email.prototype.whoLoggedIn = attemptedUserFirstName => {
   const data = {
-    from: '"The Bidding App" <thebiddingapp@gmail.com>',
+    from: '"My Nigerian Projects" <thebiddingapp@gmail.com>',
     to: 'adamu.dankore@gmail.com',
     subject: `Login from ${attemptedUserFirstName}`,
   };
@@ -37,9 +37,9 @@ Email.prototype.whoLoggedIn = attemptedUserFirstName => {
 
 Email.prototype.sendResetPasswordToken = (email, firstName, url, token) => {
   const data = {
-    from: '"The Bidding App" <thebiddingapp@gmail.com>',
+    from: '"My Nigerian Projects" <thebiddingapp@gmail.com>',
     to: email,
-    subject: `${firstName}, Reset Your Password | The Bidding App`,
+    subject: `${firstName}, Reset Your Password | My Nigerian Projects`,
     html: `${emailHeader}
                     <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
                         <tbody>
@@ -69,9 +69,9 @@ Email.prototype.sendResetPasswordToken = (email, firstName, url, token) => {
 
 Email.prototype.projectSuccessfullyCreated = projectData => {
   const data = {
-    from: '"The Bidding App" <thebiddingapp@gmail.com>',
+    from: '"My Nigerian Projects" <thebiddingapp@gmail.com>',
     to: projectData.email,
-    subject: `Congrats, Your New Project - ${projectData.title} is Live! | The Bidding App`,
+    subject: `Congrats, Your New Project - ${projectData.title} is Live! | My Nigerian Projects`,
     html: `${emailHeader}
                       <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
                         <tbody>
@@ -83,8 +83,8 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
                           </tr>
                           <tr>
                             <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
-                              <a href='https://bidding.netlify.app/project/${projectData._id}' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
-                                View on the Bidding App
+                              <a href='https://mynigerianprojects.com/project/${projectData._id}' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
+                                View on My Nigerian Projects
                               </a>
                             </td>
                           </tr>
@@ -101,9 +101,9 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
 
 Email.prototype.sendEmailToOwnerOfProjectAboutNewBid = (projectId, projectTitle, projectEmail, bidId) => {
   const data = {
-    from: '"The Bidding App" <thebiddingapp@gmail.com>',
+    from: '"My Nigerian Projects" <thebiddingapp@gmail.com>',
     to: projectEmail,
-    subject: `You Got a New Bid on Your - ${projectTitle} Project | The Bidding App`,
+    subject: `You Got a New Bid on Your - ${projectTitle} Project | My Nigerian Projects`,
     html: `${emailHeader}
                       <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
                         <tbody>
@@ -115,8 +115,8 @@ Email.prototype.sendEmailToOwnerOfProjectAboutNewBid = (projectId, projectTitle,
                           </tr>
                           <tr>
                             <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
-                              <a href='https://bidding.netlify.app/project/${projectData._id}' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
-                                View on the Bidding App
+                              <a href='https://mynigerianprojects.com/project/${projectData._id}' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
+                                View on My Nigerian Projects
                               </a>
                             </td>
                           </tr>
@@ -138,9 +138,9 @@ Email.prototype.emailAllUsersAboutNewProject = (projectData, allOtherEmails) => 
 
     if (projectData.email != email) {
       const data = {
-        from: '"The Bidding App" <thebiddingapp@gmail.com>',
+        from: '"My Nigerian Projects" <thebiddingapp@gmail.com>',
         to: email,
-        subject: `New Project Posted | The Bidding App`,
+        subject: `New Project Posted | My Nigerian Projects`,
         html: `${emailHeader}
                       <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
                         <tbody>
@@ -152,8 +152,8 @@ Email.prototype.emailAllUsersAboutNewProject = (projectData, allOtherEmails) => 
                           </tr>
                           <tr>
                             <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
-                              <a href='https://bidding.netlify.app/project/${projectData._id}' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
-                                View on the Bidding App
+                              <a href='https://mynigerianprojects.com/project/${projectData._id}' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
+                                View on My Nigerian Projects
                               </a>
                             </td>
                           </tr>
@@ -172,9 +172,9 @@ Email.prototype.emailAllUsersAboutNewProject = (projectData, allOtherEmails) => 
 
 Email.prototype.registrationSuccess = userData => {
   const data = {
-    from: '"The Bidding App" <thebiddingapp@gmail.com>',
+    from: '"My Nigerian Projects" <thebiddingapp@gmail.com>',
     to: userData.email,
-    subject: `Congratulations ${userData.firstName}, Registration Success | The Bidding App`,
+    subject: `Congratulations ${userData.firstName}, Registration Success | My Nigerian Projects`,
     html: `${emailHeader}
                       <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
                         <tbody>
@@ -183,14 +183,14 @@ Email.prototype.registrationSuccess = userData => {
                               <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>
                               Hello <strong>${userData.firstName},</strong><br/>
                               </h1>
-                              You have successfully created an account with the Bidding App.<br>
+                              You have successfully created an account with My Nigerian Projects.<br>
                               Checkout your profile:
                             </td>
                           </tr>
                           <tr>
                             <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
-                              <a href='https://bidding.netlify.app/profile/${userData.username}' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
-                                View on the Bidding App
+                              <a href='https://mynigerianprojects.com/profile/${userData.username}' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
+                                View on My Nigerian Projects
                               </a>
                             </td>
                           </tr>
@@ -207,9 +207,9 @@ Email.prototype.registrationSuccess = userData => {
 
 Email.prototype.changePasswordSuccess = userData => {
   const data = {
-    from: '"The Bidding App" <thebiddingapp@gmail.com>',
+    from: '"My Nigerian Projects" <thebiddingapp@gmail.com>',
     to: userData.email,
-    subject: `${userData.firstName}, You Have Successfully Changed Your Password | The Bidding App`,
+    subject: `${userData.firstName}, You Have Successfully Changed Your Password | My Nigerian Projects`,
     html: `${emailHeader}
                       <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
                         <tbody>
@@ -227,7 +227,7 @@ Email.prototype.changePasswordSuccess = userData => {
                             </td>
                             <tr>
                               <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
-                                <a href='https://bidding.netlify.app/reset-password' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
+                                <a href='https://mynigerianprojects.com/reset-password' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
                                  Secure My Account Now
                                 </a>
                               </td>
@@ -246,9 +246,9 @@ Email.prototype.changePasswordSuccess = userData => {
 
 Email.prototype.deleteAccountSuccess = userData => {
   const data = {
-    from: '"The Bidding App" <thebiddingapp@gmail.com>',
+    from: '"My Nigerian Projects" <thebiddingapp@gmail.com>',
     to: userData.email,
-    subject: `${userData.firstName}, You Have Successfully Deleted Your Account | The Bidding App`,
+    subject: `${userData.firstName}, You Have Successfully Deleted Your Account | My Nigerian Projects`,
     html: `${emailHeader}
                       <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
                         <tbody>
@@ -266,7 +266,7 @@ Email.prototype.deleteAccountSuccess = userData => {
                             </td>
                             <tr>
                               <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
-                                <a href='https://bidding.netlify.app/register' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
+                                <a href='https://mynigerianprojects.com/register' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
                                  Create Account
                                 </a>
                               </td>
@@ -298,7 +298,7 @@ const emailHeader = `<div style='background:#ffffff;font-family:Arial,Helvetica,
                         <tbody>
                           <tr>
                             <td align='center'>
-                              <a href='https://bidding.netlify.app' target='_blank'>
+                              <a href='https://mynigerianprojects.com' target='_blank'>
                                 <img src='https://i.ibb.co/8Y5hL2d/bgg.jpg' alt='background' style='display:block; position: relative; padding:0px;text-align:center;height:30%;width:100%' width='650' />
                               </a>
                             </td>
@@ -321,24 +321,24 @@ const emailFooter = `</td>
                             <td align='center' style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;line-height:18px;color:#ffffff;padding:0 20px 40px'>
                               <br />
                               <br />
-                              You're receiving this email because you are a member of the Bidding App.
+                              You're receiving this email because you are a member of My Nigerian Projects.
                               <br />
                               <br />
-                              <a href='https://bidding.netlify.app/register' style='color:#ffffff;font-weight:bold' target='_blank'>
-                                Join The Bidding App
+                              <a href='https://mynigerianprojects.com/register' style='color:#ffffff;font-weight:bold' target='_blank'>
+                                Join My Nigerian Projects
                               </a>
                               &nbsp;&nbsp;|&nbsp;&nbsp;
-                              <a href='https://bidding.netlify.app/login' style='color:#ffffff;font-weight:bold' target='_blank'>
+                              <a href='https://mynigerianprojects.com/login' style='color:#ffffff;font-weight:bold' target='_blank'>
                                 Login
                               </a>
                               <br />
                               PO Box 511, Charles City, Iowa 50616
                               <br />
-                              <a href='https://bidding.netlify.app/terms' style='color:#ffffff' target='_blank'>
+                              <a href='https://mynigerianprojects.com/terms' style='color:#ffffff' target='_blank'>
                                 Terms
                               </a>
                               •
-                              <a href='https://bidding.netlify.app/privacy' style='color:#ffffff' target='_blank'>
+                              <a href='https://mynigerianprojects.com/privacy' style='color:#ffffff' target='_blank'>
                                 Privacy
                               </a>
                             </td>

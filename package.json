@@ -1,7 +1,7 @@
 {
-  "name": "backend-bidding-app",
+  "name": "backend-my-nigerian-projects",
   "version": "1.0.0",
-  "description": "Bidding App for My Projects",
+  "description": "My Nigerian Projects",
   "main": "db.js",
   "scripts": {
     "start": "nodemon db",
