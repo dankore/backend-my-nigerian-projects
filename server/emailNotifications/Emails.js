@@ -174,7 +174,7 @@ Email.prototype.registrationSuccess = userData => {
   const data = {
     from: '"The Bidding App" <thebiddingapp@gmail.com>',
     to: userData.email,
-    subject: `Congratulations, ${userData.firstName}, Registration Success | The Bidding App`,
+    subject: `Congratulations ${userData.firstName}, Registration Success | The Bidding App`,
     html: `${emailHeader}
                       <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
                         <tbody>
