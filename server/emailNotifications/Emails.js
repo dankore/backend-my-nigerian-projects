@@ -77,7 +77,7 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
                         <tbody>
                           <tr>
                             <td style='padding:32px 30px 45px'>
-                              <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;line-height:10px;font-weight:bold'>${projectData.title}</h1>
+                              <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>${projectData.title}</h1>
                               <div style='overflowWrap:anywhere;minWidth:0px;font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;line-height:28px;color:#555555;padding-top:0px;overflow-wrap: break-word; min-width: 0px;'>${projectData.description}</div>
                             </td>
                           </tr>
@@ -109,7 +109,7 @@ Email.prototype.sendEmailToOwnerOfProjectAboutNewBid = (projectId, projectTitle,
                         <tbody>
                           <tr>
                             <td style='padding:32px 30px 45px'>
-                              <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;line-height:10px;font-weight:bold'>${projectData.title}</h1>
+                              <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>${projectData.title}</h1>
                               <div style='overflowWrap:anywhere;minWidth:0px;font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;line-height:28px;color:#555555;padding-top:0px;overflow-wrap: break-word; min-width: 0px;'>${projectData.description}</div>
                             </td>
                           </tr>
@@ -146,7 +146,7 @@ Email.prototype.emailAllUsersAboutNewProject = (projectData, allOtherEmails) => 
                         <tbody>
                           <tr>
                             <td style='padding:32px 30px 45px'>
-                              <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;line-height:10px;font-weight:bold'>${projectData.title}</h1>
+                              <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>${projectData.title}</h1>
                               <div style='overflowWrap:anywhere;minWidth:0px;font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;line-height:28px;color:#555555;padding-top:0px;overflow-wrap: break-word; min-width: 0px;'>${projectData.description}</div>
                             </td>
                           </tr>
@@ -180,7 +180,7 @@ Email.prototype.registrationSuccess = userData => {
                         <tbody>
                           <tr>
                             <td style='padding:32px 30px 45px'>
-                              <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;line-height:10px;font-weight:bold'>
+                              <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>
                               Hello <strong>${userData.firstName},</strong><br/>
                               </h1>
                               You have successfully created an account with the Bidding App.<br>
@@ -215,7 +215,7 @@ Email.prototype.changePasswordSuccess = userData => {
                         <tbody>
                           <tr>
                             <td style='padding:32px 30px 45px'>
-                              <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;line-height:10px;font-weight:bold'>
+                              <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>
                               Hello <strong>${userData.firstName},</strong><br/>
                               </h1>
                               You have successfully changed your password.
@@ -254,7 +254,7 @@ Email.prototype.deleteAccountSuccess = userData => {
                         <tbody>
                           <tr>
                             <td style='padding:32px 30px 45px'>
-                              <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;line-height:10px;font-weight:bold'>
+                              <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>
                               Hello <strong>${userData.firstName},</strong><br/>
                               </h1>
                               So sorry to see you go but you have successfully deleted your account.
