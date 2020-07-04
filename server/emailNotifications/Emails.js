@@ -262,7 +262,7 @@ Email.prototype.deleteAccountSuccess = userData => {
                           </tr>
                           <tr>
                             <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
-                               If you change your mind, please create an account and help me and others fuillfil our projects in Nigeria and earn some money too:
+                               If you change your mind, please create an account and help me and others fullfil our projects in Nigeria and earn some money too:
                             </td>
                             <tr>
                               <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
