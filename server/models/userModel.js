@@ -92,6 +92,7 @@ User.prototype.cleanUp = function () {
 };
 
 User.prototype.validateEditProfile = function () {
+    console.log(this.data)
   if (this.data.username == '') {
     this.errors.push('You must provide a username.');
   }
@@ -101,9 +102,16 @@ User.prototype.validateEditProfile = function () {
   if (this.data.firstName == '') {
     this.errors.push('You must provide a first name.');
   }
+  if (/[^a-zA-Z]/.test(this.data.firstName.trim())) {
+      console.log("a")
+      this.errors.push('First name can only be letters.');
+   }
   if (this.data.lastName == '') {
     this.errors.push('You must provide a last name.');
   }
+  if (/[^a-zA-Z]/.test(this.data.lastName.trim())) {
+      this.errors.push('Last name can only be letters.');
+   }
 };
 
 User.prototype.validate = function () {
@@ -271,8 +279,12 @@ User.prototype.login = function () {
 
 User.prototype.updateProfile = function () {
   return new Promise(async (resolve, reject) => {
+    //   this.data.firstName = ''
     this.cleanUpForNotRegisterApi();
     this.validateEditProfile();
+
+    console.log(!this.errors.length)
+    console.log(this.errors.length)
 
     if (!this.errors.length) {
       usersCollection
@@ -295,15 +307,15 @@ User.prototype.updateProfile = function () {
           }
         )
         .then(info => {
-          resolve(info.value);
-          // UPDATE USER PROFILE INFO ON EVERY BID
-          // User.updateProfileInfo(info.value);
+            console.log(info.value);
+          resolve({ko: info.value});
         })
-        .catch(() => {
-          reject('Profile Update failed.');
+        .catch(error => {
+          reject(error);
         });
     } else {
-      reject('Profile Update failed.');
+        console.log('c')
+      reject(this.errors);
     }
   });
 };

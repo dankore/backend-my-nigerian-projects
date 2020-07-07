@@ -219,9 +219,12 @@ exports.updateProfileInfo = (req, res) => {
         firstName: user.data.firstName,
         lastName: user.data.lastName,
       });
+      console.log({userDate:user.data})
+      console.log({response});
+      console.log({receiving: user})
     })
     .catch(error => {
-      res.status(500).send(error);
+      res.json(error);
     });
 };
 
