@@ -5,6 +5,7 @@ const ObjectID = require('mongodb').ObjectID;
 const User = require('./userModel');
 const sanitizeHTML = require('sanitize-html');
 const Email = require('../emailNotifications/Emails');
+const validator = require('validator');
 
 let Project = function (data, userid, requestedProjectId) {
   this.data = data;
@@ -86,6 +87,9 @@ Project.prototype.validate = function () {
   if (this.data.email == '') {
     this.errors.push('You must provide an email.');
   }
+  if (!validator.isEmail(this.data.email)) {
+      this.errors.push('You must provide a valid email address.');
+    }
   if (this.data.email.length > 100) {
       this.errors.push('Email cannot exceed 100 characters.');
     }
@@ -398,6 +402,9 @@ Project.prototype.validateBid = function () {
   }
   if (this.data.email.length > 100) {
       this.errors.push('Email cannot exceed 100 characters.');
+    }
+  if (!validator.isEmail(this.data.email)) {
+      this.errors.push('You must provide a valid email address.');
     }
   if (/[^\d\+-]/.test(this.data.phone.trim())) {
     this.errors.push('Phone must be numbers, + and -.');
