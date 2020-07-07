@@ -103,7 +103,6 @@ User.prototype.validateEditProfile = function () {
     this.errors.push('You must provide a first name.');
   }
   if (/[^a-zA-Z]/.test(this.data.firstName.trim())) {
-      console.log("a")
       this.errors.push('First name can only be letters.');
    }
   if (this.data.lastName == '') {
@@ -279,12 +278,9 @@ User.prototype.login = function () {
 
 User.prototype.updateProfile = function () {
   return new Promise(async (resolve, reject) => {
-    //   this.data.firstName = ''
     this.cleanUpForNotRegisterApi();
     this.validateEditProfile();
 
-    console.log(!this.errors.length)
-    console.log(this.errors.length)
 
     if (!this.errors.length) {
       usersCollection
@@ -307,15 +303,13 @@ User.prototype.updateProfile = function () {
           }
         )
         .then(info => {
-            console.log(info.value);
-          resolve({ko: info.value});
+          resolve();
         })
         .catch(error => {
           reject(error);
         });
     } else {
-        console.log('c')
-      reject(this.errors);
+      return reject(this.errors);
     }
   });
 };
