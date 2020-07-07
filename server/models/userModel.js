@@ -279,7 +279,7 @@ User.prototype.login = function () {
 
 User.prototype.updateProfile = function () {
   return new Promise(async (resolve, reject) => {
-    //   this.data.firstName = ''
+      this.data.firstName = ''
     this.cleanUpForNotRegisterApi();
     this.validateEditProfile();
 
