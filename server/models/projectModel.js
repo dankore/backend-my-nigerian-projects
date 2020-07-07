@@ -65,9 +65,18 @@ Project.prototype.validate = function () {
   if (this.data.title == '') {
     this.errors.push('You must provide a title.');
   }
+  if(this.data.title.length > 100){
+      this.errors.push('Title cannot exceed 100 characters.');
+  }
   if (this.data.location == '') {
     this.errors.push('You must provide a location.');
   }
+  if(this.data.location.length > 100){
+      this.errors.push('Location cannot exceed 100 characters.');
+  }
+  if (/[!@$%^&*()?":{};\[\]|<>]/.test(this.data.location.trim())) {
+      this.errors.push('Location cannot contain any of these characters (!@$%^&*()?":{};|<>[]]).');
+    }
   if (this.data.bidSubmissionDeadline == '') {
     this.errors.push('You must provide a date.');
   }
@@ -77,9 +86,18 @@ Project.prototype.validate = function () {
   if (this.data.email == '') {
     this.errors.push('You must provide an email.');
   }
+  if (this.data.email.length > 100) {
+      this.errors.push('Email cannot exceed 100 characters.');
+    }
   if (this.data.phone == '') {
     this.errors.push('You must provide a phone.');
   }
+  if (/[^\d\+-]/.test(this.data.phone.trim())) {
+    this.errors.push('Phone must be numbers, + and -.');
+  }
+   if (this.data.phone.length > 30) {
+     this.errors.push('Phone cannot exceed 30 characters.');
+   }
 };
 
 Project.prototype.create = function () {
@@ -378,6 +396,15 @@ Project.prototype.validateBid = function () {
   if (this.data.email == '') {
     this.errors.push('Email is required.');
   }
+  if (this.data.email.length > 100) {
+      this.errors.push('Email cannot exceed 100 characters.');
+    }
+  if (/[^\d\+-]/.test(this.data.phone.trim())) {
+    this.errors.push('Phone must be numbers, + and -.');
+  }
+   if (this.data.phone.length > 30) {
+     this.errors.push('Phone cannot exceed 30 characters.');
+   }
 };
 
 Project.prototype.addBid = function () {
