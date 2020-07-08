@@ -57,6 +57,7 @@ Project.prototype.cleanUp = function () {
       allowedAttributes: {},
     }),
     phone: this.data.phone,
+    image: this.data.image,
     createdDate: new Date(),
     author: ObjectID(this.userid),
   };
@@ -228,6 +229,7 @@ Project.reusableProjectQuery = function (uniqueOperations, visitorId) {
           email: 1,
           phone: 1,
           updatedDate: 1,
+          image: 1, 
           _id: 1,
           firstName: 1,
           lastName: 1,
