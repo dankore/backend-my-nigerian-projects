@@ -385,6 +385,7 @@ Project.prototype.cleanUpBid = function () {
       allowedTags: [],
       allowedAttributes: {},
     }),
+    image: this.data.image,
     userCreationDate: this.data.userCreationDate,
     bidAuthor: this.data.bidAuthor,
   };
@@ -436,6 +437,7 @@ Project.prototype.addBid = function () {
                 otherDetails: this.data.otherDetails,
                 phone: this.data.phone,
                 email: this.data.email,
+                image: this.data.image,
                 userCreationDate: this.data.userCreationDate,
                 bidAuthor: this.data.bidAuthor,
                 bidCreationDate: new Date(),
@@ -525,6 +527,7 @@ Project.prototype.saveEditedBid = function () {
               'bids.$[elem].phone': this.data.phone,
               'bids.$[elem].email': this.data.email,
               'bids.$[elem].userCreationDate': this.data.userCreationDate,
+              'bids.$[elem].image': this.data.image,
               'bids.$[elem].updatedDate': new Date(),
             },
           },
