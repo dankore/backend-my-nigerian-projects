@@ -7,7 +7,7 @@ const projectController = require('./controllers/projectController');
 apiRouter.post('/getHomeFeed', userController.apiMustBeLoggedIn, userController.apiGetHomeFeed);
 apiRouter.get('/getHomeFeedIfNotLoggedIn', userController.apiGetHomeFeedIfNotLoggedIn);
 
-apiRouter.get('/', (req, res) => res.json('API BACKEND'));
+apiRouter.get('/', (req, res) => res.json('API BACKEND - MY NIGERIAN PROJECTS.'));
 apiRouter.post('/login', userController.apiLogin);
 apiRouter.post('/register', userController.apiRegister);
 apiRouter.post('/changePassword', userController.apiChangePassword);
