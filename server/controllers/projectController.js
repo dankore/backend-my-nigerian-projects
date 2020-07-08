@@ -3,8 +3,6 @@ const Project = require('../models/projectModel');
 exports.apiCreate = function (req, res) {
   let project = new Project(req.body, req.apiUser._id);
 
-  console.log(project)
-
   project
     .create()
     .then(function (newId) {
