@@ -67,18 +67,18 @@ Project.prototype.validate = function () {
   if (this.data.title == '') {
     this.errors.push('You must provide a title.');
   }
-  if(this.data.title.length > 100){
-      this.errors.push('Title cannot exceed 100 characters.');
+  if (this.data.title.length > 100) {
+    this.errors.push('Title cannot exceed 100 characters.');
   }
   if (this.data.location == '') {
     this.errors.push('You must provide a location.');
   }
-  if(this.data.location.length > 100){
-      this.errors.push('Location cannot exceed 100 characters.');
+  if (this.data.location.length > 100) {
+    this.errors.push('Location cannot exceed 100 characters.');
   }
   if (/[!@$%^&*()?":{};\[\]|<>]/.test(this.data.location.trim())) {
-      this.errors.push('Location cannot contain any of these characters (!@$%^&*()?":{};|<>[]]).');
-    }
+    this.errors.push('Location cannot contain any of these characters (!@$%^&*()?":{};|<>[]]).');
+  }
   if (this.data.bidSubmissionDeadline == '') {
     this.errors.push('You must provide a date.');
   }
@@ -89,20 +89,20 @@ Project.prototype.validate = function () {
     this.errors.push('You must provide an email.');
   }
   if (!validator.isEmail(this.data.email)) {
-      this.errors.push('You must provide a valid email address.');
-    }
+    this.errors.push('You must provide a valid email address.');
+  }
   if (this.data.email.length > 100) {
-      this.errors.push('Email cannot exceed 100 characters.');
-    }
+    this.errors.push('Email cannot exceed 100 characters.');
+  }
   if (this.data.phone == '') {
     this.errors.push('You must provide a phone.');
   }
   if (/[^\d\+-]/.test(this.data.phone.trim())) {
     this.errors.push('Phone must be numbers, + and -.');
   }
-   if (this.data.phone.length > 30) {
-     this.errors.push('Phone cannot exceed 30 characters.');
-   }
+  if (this.data.phone.length > 30) {
+    this.errors.push('Phone cannot exceed 30 characters.');
+  }
 };
 
 Project.prototype.create = function () {
@@ -198,6 +198,7 @@ Project.prototype.actuallyUpdate = function () {
             description: this.data.description,
             email: this.data.email,
             phone: this.data.phone,
+            image: this.data.image,
             updatedDate: new Date(),
           },
         }
@@ -229,7 +230,7 @@ Project.reusableProjectQuery = function (uniqueOperations, visitorId) {
           email: 1,
           phone: 1,
           updatedDate: 1,
-          image: 1, 
+          image: 1,
           _id: 1,
           firstName: 1,
           lastName: 1,
@@ -384,6 +385,7 @@ Project.prototype.cleanUpBid = function () {
       allowedTags: [],
       allowedAttributes: {},
     }),
+    image: this.data.image,
     userCreationDate: this.data.userCreationDate,
     bidAuthor: this.data.bidAuthor,
   };
@@ -403,17 +405,17 @@ Project.prototype.validateBid = function () {
     this.errors.push('Email is required.');
   }
   if (this.data.email.length > 100) {
-      this.errors.push('Email cannot exceed 100 characters.');
-    }
+    this.errors.push('Email cannot exceed 100 characters.');
+  }
   if (!validator.isEmail(this.data.email)) {
-      this.errors.push('You must provide a valid email address.');
-    }
+    this.errors.push('You must provide a valid email address.');
+  }
   if (/[^\d\+-]/.test(this.data.phone.trim())) {
     this.errors.push('Phone must be numbers, + and -.');
   }
-   if (this.data.phone.length > 30) {
-     this.errors.push('Phone cannot exceed 30 characters.');
-   }
+  if (this.data.phone.length > 30) {
+    this.errors.push('Phone cannot exceed 30 characters.');
+  }
 };
 
 Project.prototype.addBid = function () {
@@ -435,6 +437,7 @@ Project.prototype.addBid = function () {
                 otherDetails: this.data.otherDetails,
                 phone: this.data.phone,
                 email: this.data.email,
+                image: this.data.image,
                 userCreationDate: this.data.userCreationDate,
                 bidAuthor: this.data.bidAuthor,
                 bidCreationDate: new Date(),
@@ -524,6 +527,7 @@ Project.prototype.saveEditedBid = function () {
               'bids.$[elem].phone': this.data.phone,
               'bids.$[elem].email': this.data.email,
               'bids.$[elem].userCreationDate': this.data.userCreationDate,
+              'bids.$[elem].image': this.data.image,
               'bids.$[elem].updatedDate': new Date(),
             },
           },
