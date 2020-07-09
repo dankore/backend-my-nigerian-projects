@@ -249,7 +249,7 @@ Project.reusableProjectQuery = function (uniqueOperations, visitorId) {
     projects = projects.map(function (project) {
       project.isVisitorOwner = project.authorId.equals(visitorId);
       project.authorId = undefined;
-      let avatar = '';
+      let avatar;
 
       // GET UPLOAD PROFILE PICTURE OR GRAVATAR
       if (project.author.avatar) {

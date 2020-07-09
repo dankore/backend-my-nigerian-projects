@@ -210,7 +210,7 @@ User.findByUsername = function (username) {
         if (userDoc) {
           userDoc = new User(userDoc, true);
           // GET EITHER THE UPLOADED AVATAR OR THEIR GRAVATAR
-          let avatar = '';
+          let avatar;
           if (userDoc.data.avatar) {
             avatar = userDoc.data.avatar;
           } else {
