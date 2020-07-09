@@ -268,9 +268,15 @@ User.prototype.login = function () {
       .findOne({ username: this.data.username })
       .then(attemptedUser => {
         if (attemptedUser && bcrypt.compareSync(this.data.password, attemptedUser.password)) {
-          this.data = attemptedUser;
-          this.getAvatar();
-          resolve('Login Success!');
+          // GET UPLOADED PROFILE PIC OR GRAVATAR
+          if (attemptedUser.avatar) {
+            this.data = attemptedUser;
+          } else {
+            this.data = attemptedUser;
+            this.data.avatar = new User(attemptedUser, true).avatar;
+          }
+
+          resolve();
           // EMAIL ME WHO LOGS IN
           new Email().whoLoggedIn(this.data.firstName);
         } else {

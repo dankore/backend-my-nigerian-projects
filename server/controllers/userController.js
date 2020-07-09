@@ -68,7 +68,7 @@ exports.apiLogin = (req, res) => {
 
   user
     .login()
-    .then(response => {
+    .then(avatar => {
       res.json({
         token: jwt.sign(
           {
@@ -84,7 +84,7 @@ exports.apiLogin = (req, res) => {
         username: user.data.username,
         firstName: user.data.firstName,
         lastName: user.data.lastName,
-        avatar: user.avatar,
+        avatar: user.data.avatar,
         userCreationDate: new Date(ObjectID(user.data._id).getTimestamp()).toISOString().substring(0, 10),
       });
     })
