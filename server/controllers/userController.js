@@ -110,11 +110,14 @@ exports.sharedProfileData = async (req, res, next) => {
     /**
      * @var viewer STORES THE USER ENCODED IN THE TOKEN
      */
+      
     viewer = jwt.verify(req.body.token, process.env.JWTSECRET);
     viewerId = viewer._id;
   } catch {
     viewerId = 0;
   }
+
+
 
   req.isFollowing = await Follow.isVisitorFollowing(req.profileUser._id, viewerId);
 
