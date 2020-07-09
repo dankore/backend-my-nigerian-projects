@@ -44,6 +44,7 @@ apiRouter.post('/project/:id/edit', userController.apiMustBeLoggedIn, projectCon
 apiRouter.delete('/project/:id', userController.apiMustBeLoggedIn, projectController.apiDeleteProject);
 apiRouter.post('/create-project', userController.apiMustBeLoggedIn, projectController.apiCreateProject);
 apiRouter.post('/search', projectController.search);
+apiRouter.post('/change-profile-pic', userController.apiMustBeLoggedIn, userController.apiChangeAvatar);
 
 // BID
 apiRouter.post('/create-bid', userController.apiMustBeLoggedIn, projectController.apiCreateBid);

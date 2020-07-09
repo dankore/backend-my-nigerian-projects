@@ -550,4 +550,26 @@ User.prototype.replaceOldPasswordWithNew = function () {
   });
 };
 
+User.ChangeAvatar = (data) =>{
+    return new Promise(async(resolve, reject)=>{
+        if(data.avatar == ''){
+            reject('Please upload an image.');
+            return;
+        }
+
+        const response = await usersCollection.findOneAndUpdate( 
+            {_id: data.userId},
+            {
+                $set : {
+                    avatar: data.avatar
+                }
+            } 
+            
+            );
+
+            resolve('Success');
+        
+    })
+}
+
 module.exports = User;

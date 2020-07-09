@@ -289,3 +289,13 @@ exports.apiSaveNewPassword = (req, res) => {
       res.json(error);
     });
 };
+
+exports.apiChangeAvatar = (req, res) => {
+    User.ChangeAvatar(req.body)
+    .then(response =>{
+        res.json(response);
+    })
+    .catch(error=> {
+        res.json(error)
+    })
+}
