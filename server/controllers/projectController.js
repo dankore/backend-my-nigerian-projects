@@ -1,6 +1,6 @@
 const Project = require('../models/projectModel');
 
-exports.apiCreate = function (req, res) {
+exports.apiCreateProject = function (req, res) {
   let project = new Project(req.body, req.apiUser._id);
 
   project
@@ -13,7 +13,7 @@ exports.apiCreate = function (req, res) {
     });
 };
 
-exports.apiUpdate = function (req, res) {
+exports.apiUpdateProject = function (req, res) {
   let project = new Project(req.body, req.apiUser._id, req.params.id);
 
   project
@@ -34,7 +34,7 @@ exports.apiUpdate = function (req, res) {
     });
 };
 
-exports.apiDelete = function (req, res) {
+exports.apiDeleteProject = function (req, res) {
   Project.delete(req.params.id, req.apiUser._id)
     .then(() => {
       res.json('Success');
@@ -54,7 +54,7 @@ exports.search = function (req, res) {
     });
 };
 
-exports.apiViewSingle = async function (req, res) {
+exports.apiViewSingleProject = async function (req, res) {
   try {
     let project = await Project.findSingleById(req.params.id, 0);
     res.json(project);

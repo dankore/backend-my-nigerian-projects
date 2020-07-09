@@ -39,10 +39,10 @@ apiRouter.post('/addFollow/:username', userController.apiMustBeLoggedIn, followC
 apiRouter.post('/removeFollow/:username', userController.apiMustBeLoggedIn, followController.apiRemoveFollow);
 
 // PROJECT
-apiRouter.get('/project/:id', projectController.apiViewSingle);
-apiRouter.post('/project/:id/edit', userController.apiMustBeLoggedIn, projectController.apiUpdate);
-apiRouter.delete('/project/:id', userController.apiMustBeLoggedIn, projectController.apiDelete);
-apiRouter.post('/create-project', userController.apiMustBeLoggedIn, projectController.apiCreate);
+apiRouter.get('/project/:id', projectController.apiViewSingleProject);
+apiRouter.post('/project/:id/edit', userController.apiMustBeLoggedIn, projectController.apiUpdateProject);
+apiRouter.delete('/project/:id', userController.apiMustBeLoggedIn, projectController.apiDeleteProject);
+apiRouter.post('/create-project', userController.apiMustBeLoggedIn, projectController.apiCreateProject);
 apiRouter.post('/search', projectController.search);
 
 // BID
