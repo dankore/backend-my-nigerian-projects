@@ -92,7 +92,6 @@ User.prototype.cleanUp = function () {
 };
 
 User.prototype.validateEditProfile = function () {
-    console.log(this.data)
   if (this.data.username == '') {
     this.errors.push('You must provide a username.');
   }
@@ -103,14 +102,14 @@ User.prototype.validateEditProfile = function () {
     this.errors.push('You must provide a first name.');
   }
   if (/[^a-zA-Z]/.test(this.data.firstName.trim())) {
-      this.errors.push('First name can only be letters.');
-   }
+    this.errors.push('First name can only be letters.');
+  }
   if (this.data.lastName == '') {
     this.errors.push('You must provide a last name.');
   }
   if (/[^a-zA-Z]/.test(this.data.lastName.trim())) {
-      this.errors.push('Last name can only be letters.');
-   }
+    this.errors.push('Last name can only be letters.');
+  }
 };
 
 User.prototype.validate = function () {
@@ -210,13 +209,21 @@ User.findByUsername = function (username) {
       .then(userDoc => {
         if (userDoc) {
           userDoc = new User(userDoc, true);
+          // GET EITHER THE UPLOADED AVATAR OR THEIR GRAVATAR
+          let avatar = '';
+          if (userDoc.data.avatar) {
+            avatar = userDoc.data.avatar;
+          } else {
+            avatar = userDoc.avatar;
+          }
+
           userDoc = {
             _id: userDoc.data._id,
             username: userDoc.data.username,
             firstName: userDoc.data.firstName,
             lastName: userDoc.data.lastName,
             email: userDoc.data.email,
-            avatar: userDoc.avatar,
+            avatar: avatar,
           };
 
           resolve(userDoc);
@@ -280,7 +287,6 @@ User.prototype.updateProfile = function () {
   return new Promise(async (resolve, reject) => {
     this.cleanUpForNotRegisterApi();
     this.validateEditProfile();
-
 
     if (!this.errors.length) {
       usersCollection
@@ -550,26 +556,29 @@ User.prototype.replaceOldPasswordWithNew = function () {
   });
 };
 
-User.ChangeAvatar = (data) =>{
-    return new Promise(async(resolve, reject)=>{
-        if(data.avatar == ''){
-            reject('Please upload an image.');
-            return;
+User.ChangeAvatar = data => {
+  return new Promise(async (resolve, reject) => {
+    if (data.avatar == '') {
+      reject('Please upload an image.');
+      return;
+    }
+
+    await usersCollection
+      .findOneAndUpdate(
+        { _id: new ObjectID(data.userId) },
+        {
+          $set: {
+            avatar: data.avatar,
+          },
         }
-
-        const response = await usersCollection.findOneAndUpdate( 
-            {_id: data.userId},
-            {
-                $set : {
-                    avatar: data.avatar
-                }
-            } 
-            
-            );
-
-            resolve('Success');
-        
-    })
-}
+      )
+      .then(response => {
+        resolve('Success');
+      })
+      .catch(error => {
+        console.log({ error });
+      });
+  });
+};
 
 module.exports = User;
