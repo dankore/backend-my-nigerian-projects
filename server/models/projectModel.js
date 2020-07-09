@@ -231,6 +231,7 @@ Project.reusableProjectQuery = function (uniqueOperations, visitorId) {
           phone: 1,
           updatedDate: 1,
           image: 1,
+          avatar: 1,
           _id: 1,
           firstName: 1,
           lastName: 1,
@@ -248,6 +249,14 @@ Project.reusableProjectQuery = function (uniqueOperations, visitorId) {
     projects = projects.map(function (project) {
       project.isVisitorOwner = project.authorId.equals(visitorId);
       project.authorId = undefined;
+      let avatar = '';
+
+      // GET UPLOAD PROFILE PICTURE OR GRAVATAR
+      if (project.author.avatar) {
+        avatar = project.author.avatar;
+      } else {
+        avatar = new User(project.author, true).avatar;
+      }
 
       project.author = {
         _id: project.author._id,
@@ -255,7 +264,7 @@ Project.reusableProjectQuery = function (uniqueOperations, visitorId) {
         username: project.author.username,
         firstName: project.author.firstName,
         lastName: project.author.lastName,
-        avatar: new User(project.author, true).avatar,
+        avatar: avatar,
       };
 
       return project;
