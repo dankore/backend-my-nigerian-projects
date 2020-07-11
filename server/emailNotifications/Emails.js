@@ -361,23 +361,23 @@ const emailHeader = `<div style='background:#ffffff;font-family:Arial,Helvetica,
 const emailFooter = `</td>
             </tr>
                 <tr>
-                    <td width='640' align='center' style='padding-top:10px;background-color:#000000'>
+                    <td width='640' align='center' style='background-color:#000000'>
                       <table cellspacing='0' cellpadding='0'>
                         <tbody>
                           <tr>
-                            <td align='center' style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;line-height:18px;color:#ffffff;padding:0 20px 40px'>
+                            <td align='center' style='font-size: 12px;font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;color:#ffffff;padding:10px'>
+                                 You're receiving this email because you are a member of My Nigerian Projects. If you prefer not to be included
+                                 in future emails please reach out to me at thebiddingapp@gmail.com.
                               <br />
                               <br />
-                              You're receiving this email because you are a member of My Nigerian Projects.
-                              <br />
-                              <br />
-                              <a href='https://mynigerianprojects.com/register' style='color:#ffffff;font-weight:bold' target='_blank'>
+                                 <a href='https://mynigerianprojects.com/register' style='color:#ffffff;font-weight:bold' target='_blank'>
                                 Join My Nigerian Projects
                               </a>
                               &nbsp;&nbsp;|&nbsp;&nbsp;
                               <a href='https://mynigerianprojects.com/login' style='color:#ffffff;font-weight:bold' target='_blank'>
                                 Login
                               </a>
+                              <br />
                               <br />
                               PO Box 511, Charles City, Iowa 50616
                               <br />
