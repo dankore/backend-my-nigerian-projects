@@ -346,7 +346,7 @@ const emailHeader = `<div style='background:#ffffff;font-family:Arial,Helvetica,
                           <tr>
                             <td align='center'>
                               <a href='https://mynigerianprojects.com' target='_blank'>
-                                <img src='https://i.ibb.co/8Y5hL2d/bgg.jpg' alt='background' style='display:block; position: relative; padding:0px;text-align:center;height:30%;width:100%' width='650' />
+                                <img src='https://res.cloudinary.com/my-nigerian-projects/image/upload/v1594487157/mynigerianprojects_scdybp.png' alt='background' style='display:block; position: relative; padding:0px;text-align:center;height:30%;width:100%' width='650' />
                               </a>
                             </td>
                           </tr>
