@@ -2,9 +2,11 @@ const usersCollection = require('../../db').db().collection('users');
 const followsCollection = require('../../db').db().collection('follows');
 const ObjectID = require('mongodb').ObjectID;
 const User = require('./userModel');
+const Email = require('../emailNotifications/Emails');
 
-let Follow = function (followedUsername, authorId) {
+let Follow = function (followedUsername, authorId, forEmailPurposes) {
   this.followedUsername = followedUsername;
+  this.forEmailPurposes = forEmailPurposes;
   this.authorId = authorId;
   this.errors = [];
 };
@@ -56,7 +58,9 @@ Follow.prototype.create = function () {
         followedId: this.followedId,
         authorId: new ObjectID(this.authorId),
       });
+
       resolve();
+      new Email().youHaveNewFollower(this.forEmailPurposes, this.followedUsername);
     } else {
       reject(this.errors);
     }
