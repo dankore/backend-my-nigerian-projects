@@ -277,52 +277,52 @@ Email.prototype.deleteAccountSuccess = userData => {
   });
 };
 
-// Email.prototype.youHaveNewFollower = (userData, profileUsername) => {
-//   /**
-//    * @userData {
-//       //   profileName: '',
-//       //   profileEmail: '',
-//       //   followerName: ''
-//       // }
-//    */
+Email.prototype.youHaveNewFollower = (userData, profileUsername) => {
+  /**
+   * @userData {
+      //   profileName: '',
+      //   profileEmail: '',
+      //   followerName: ''
+      // }
+   */
 
-//   const data = {
-//     from: '"My Nigerian Projects" <thebiddingapp@gmail.com>',
-//     to: userData.profileEmail,
-//     subject: `${userData.profileName}, You Have a New Follower | My Nigerian Projects`,
-//     html: `${emailHeader}
-//             <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
-//               <tbody>
-//                 <tr>
-//                   <td style='padding:32px 30px 45px'>
-//                     <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>
-//                     Hello <strong>${userData.profileName},</strong><br/>
-//                     </h1>
-//                     ${userData.followerName}, just followed you. 
-//                   </td>
-//                 </tr>
-//                 <tr>
-//                   <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
-//                       Go to your profile and manage your followers:
-//                   </td>
-//                   <tr>
-//                     <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
-//                       <a href='https://mynigerianprojects.com/profile/${profileUsername}/followers' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
-//                         View My Profile
-//                       </a>
-//                     </td>
-//                   </tr>
-//                 </tr>
-//               </tbody>
-//             </table>
-//       ${emailFooter}
-//           `,
-//   };
-//   transporter.sendMail(data, (err, info) => {
-//     if (err) console.log(err);
-//     else console.log('Follow Success Sent Via Email: ' + info.response);
-//   });
-// };
+  const data = {
+    from: '"My Nigerian Projects" <thebiddingapp@gmail.com>',
+    to: userData.profileEmail,
+    subject: `${userData.profileName}, You Have a New Follower | My Nigerian Projects`,
+    html: `${emailHeader}
+            <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
+              <tbody>
+                <tr>
+                  <td style='padding:32px 30px 45px'>
+                    <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>
+                    Hello <strong>${userData.profileName},</strong><br/>
+                    </h1>
+                    ${userData.followerName}, just followed you. 
+                  </td>
+                </tr>
+                <tr>
+                  <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
+                      Go to your profile and manage your followers:
+                  </td>
+                  <tr>
+                    <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
+                      <a href='https://mynigerianprojects.com/profile/${profileUsername}/followers' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
+                        View My Profile
+                      </a>
+                    </td>
+                  </tr>
+                </tr>
+              </tbody>
+            </table>
+      ${emailFooter}
+          `,
+  };
+  transporter.sendMail(data, (err, info) => {
+    if (err) console.log(err);
+    else console.log('Follow Success Sent Via Email: ' + info.response);
+  });
+};
 
 // SOME VARIABLES
 
