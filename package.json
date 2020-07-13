@@ -22,5 +22,8 @@
     "nodemon": "^2.0.3",
     "sanitize-html": "^1.23.0",
     "validator": "^13.0.0"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0"
   }
 }
