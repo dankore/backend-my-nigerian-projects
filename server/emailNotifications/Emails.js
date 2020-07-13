@@ -108,7 +108,7 @@ Email.prototype.sendEmailToOwnerOfProjectAboutNewBid = (projectId, projectTitle,
                       <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
                         <tbody>
                           <tr>
-                            <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
+                            <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:10px' align='left'>
                               <a href='https://mynigerianprojects.com/${projectId}/bid/${bidId}' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
                                 View Bid on My Nigerian Projects
                               </a>
