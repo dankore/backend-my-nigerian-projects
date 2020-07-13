@@ -108,15 +108,9 @@ Email.prototype.sendEmailToOwnerOfProjectAboutNewBid = (projectId, projectTitle,
                       <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
                         <tbody>
                           <tr>
-                            <td style='padding:32px 30px 45px'>
-                              <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>${projectData.title}</h1>
-                              <div style='overflowWrap:anywhere;minWidth:0px;font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;line-height:28px;color:#555555;padding-top:0px;overflow-wrap: break-word; min-width: 0px;'>${projectData.description}</div>
-                            </td>
-                          </tr>
-                          <tr>
                             <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
-                              <a href='https://mynigerianprojects.com/project/${projectData._id}' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
-                                View on My Nigerian Projects
+                              <a href='https://mynigerianprojects.com/${projectId}/bid/${bidId}' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
+                                View Bid on My Nigerian Projects
                               </a>
                             </td>
                           </tr>
