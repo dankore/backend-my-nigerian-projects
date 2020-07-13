@@ -60,7 +60,7 @@ Follow.prototype.create = function () {
       });
 
       resolve();
-      new Email().youHaveNewFollower(this.forEmailPurposes, this.followedUsername);
+      // new Email().youHaveNewFollower(this.forEmailPurposes, this.followedUsername);
     } else {
       reject(this.errors);
     }
