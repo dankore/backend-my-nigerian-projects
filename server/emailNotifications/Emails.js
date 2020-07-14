@@ -41,25 +41,129 @@ Email.prototype.sendResetPasswordToken = (email, firstName, url, token) => {
     to: email,
     subject: `${firstName}, Reset Your Password | My Nigerian Projects`,
     html: `${emailHeader}
-                    <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
-                        <tbody>
-                          <tr>
-                          <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
-                              Hello ${firstName}, <br/><br/>
+<tr>
+  <td
+    valign="top"
+    id="m_-5334885316815523950templateHeader"
+    style="background:#ffffff none no-repeat center/cover;background-color:#ffffff;background-image:none;background-repeat:no-repeat;background-position:center;background-size:cover;border-top:0;border-bottom:0;padding-top:0px;padding-bottom:0"
+  >
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="border-collapse:collapse"
+    >
+    </table>
+
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="border-collapse:collapse"
+    >
+      <tbody>
+        <tr>
+          <td valign="top"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="min-width:100%;border-collapse:collapse"
+    >
+      <tbody>
+        <tr>
+          <td valign="top">
+            <table
+              align="left"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              width="100%"
+              style="min-width:100%;border-collapse:collapse"
+            >
+              <tbody>
+                <tr>
+                  <td
+                    style="padding-top:9px;padding-left:18px;padding-bottom:9px;padding-right:18px"
+                  >
+                    <table
+                      border="0"
+                      cellspacing="0"
+                      width="100%"
+                      style="min-width:100%!important;border:10px solid #ffffff;border-collapse:collapse"
+                    >
+                      <tbody>
+                        <tr>
+                          <td
+                            valign="top"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                          >
+                            <h2>Hello ${firstName},</h2>
                               Please click on the following link to complete the process:
                               <a href='${url}/reset-password/${token}'>Reset your password</a><br>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
-                              Paste the below URL into your browser to complete the process: <br/>
-                              ${url}/reset-password/${token} <br/><br/> 
-                              If you did not request this, please ignore this email and your password will remain unchanged.
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                ${emailFooter}`,
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            valign="top"
+                          >
+                           <p>Paste the below URL into your browser to complete the process:</p>
+                              
+                              ${url}/reset-password/${token} 
+
+                            <p>If you did not request this, please ignore this email and your password will remain unchanged.</p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="min-width:100%;border-collapse:collapse;table-layout:fixed!important"
+    >
+      <tbody>
+        <tr>
+          <td style="min-width:100%;padding:9px 18px 18px">
+            <table
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              width="100%"
+              style="min-width:100%;border-collapse:collapse"
+            >
+              <tbody>
+                <tr>
+                  <td>
+                    <span></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
+</tr>
+    ${emailFooter}`,
   };
   transporter.sendMail(data, (err, info) => {
     if (err) console.log(err);
@@ -73,24 +177,129 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
     to: projectData.email,
     subject: `Congrats, Your New Project - ${projectData.title} is Live! | My Nigerian Projects`,
     html: `${emailHeader}
-                      <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
-                        <tbody>
-                          <tr>
-                            <td style='padding:32px 30px 45px'>
-                              <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>${projectData.title}</h1>
-                              <div style='overflowWrap:anywhere;minWidth:0px;font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;line-height:28px;color:#555555;padding-top:0px;overflow-wrap: break-word; min-width: 0px;'>${projectData.description}</div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
-                              <a href='https://mynigerianprojects.com/project/${projectData._id}' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
-                                View on My Nigerian Projects
-                              </a>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                ${emailFooter}
+<tr>
+  <td
+    valign="top"
+    id="m_-5334885316815523950templateHeader"
+    style="background:#ffffff none no-repeat center/cover;background-color:#ffffff;background-image:none;background-repeat:no-repeat;background-position:center;background-size:cover;border-top:0;border-bottom:0;padding-top:0px;padding-bottom:0"
+  >
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="border-collapse:collapse"
+    ></table>
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="border-collapse:collapse"
+    >
+      <tbody>
+        <tr>
+          <td valign="top"></td>
+        </tr>
+      </tbody>
+    </table>
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="min-width:100%;border-collapse:collapse"
+    >
+      <tbody>
+        <tr>
+          <td valign="top">
+            <table
+              align="left"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              width="100%"
+              style="min-width:100%;border-collapse:collapse"
+            >
+              <tbody>
+                <tr>
+                  <td
+                    style="padding-top:9px;padding-left:18px;padding-bottom:9px;padding-right:18px"
+                  >
+                    <table
+                      border="0"
+                      cellspacing="0"
+                      width="100%"
+                      style="min-width:100%!important;border:10px solid #ffffff;border-collapse:collapse"
+                    >
+                      <tbody>
+                        <tr>
+                          <td
+                            valign="top"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                          >
+                            <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>${projectData.title}</h1>
+
+                            <div style='overflowWrap:anywhere;minWidth:0px;font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;line-height:28px;color:#555555;padding-top:0px;overflow-wrap: break-word; min-width: 0px;'>${projectData.description}</div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            valign="top"
+                          >
+                            <a
+                              href="https://mynigerianprojects.com/project/${projectData._id}"
+                              style="background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block"
+                              target="_blank"
+                            >
+                              View on My Nigerian Projects
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="min-width:100%;border-collapse:collapse;table-layout:fixed!important"
+    >
+      <tbody>
+        <tr>
+          <td style="min-width:100%;padding:9px 18px 18px">
+            <table
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              width="100%"
+              style="min-width:100%;border-collapse:collapse"
+            >
+              <tbody>
+                <tr>
+                  <td>
+                    <span></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
+</tr>
+${emailFooter}
           `,
   };
   transporter.sendMail(data, (err, info) => {
@@ -105,19 +314,115 @@ Email.prototype.sendEmailToOwnerOfProjectAboutNewBid = (projectId, projectTitle,
     to: projectEmail,
     subject: `You Got a New Bid on Your - ${projectTitle} Project | My Nigerian Projects`,
     html: `${emailHeader}
-                      <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
-                        <tbody>
-                          <tr>
-                            <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:10px' align='left'>
-                              <a href='https://mynigerianprojects.com/${projectId}/bid/${bidId}' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
+<tr>
+  <td
+    valign="top"
+    id="m_-5334885316815523950templateHeader"
+    style="background:#ffffff none no-repeat center/cover;background-color:#ffffff;background-image:none;background-repeat:no-repeat;background-position:center;background-size:cover;border-top:0;border-bottom:0;padding-top:0px;padding-bottom:0"
+  >
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="border-collapse:collapse"
+    ></table>
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="border-collapse:collapse"
+    >
+      <tbody>
+        <tr>
+          <td valign="top"></td>
+        </tr>
+      </tbody>
+    </table>
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="min-width:100%;border-collapse:collapse"
+    >
+      <tbody>
+        <tr>
+          <td valign="top">
+            <table
+              align="left"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              width="100%"
+              style="min-width:100%;border-collapse:collapse"
+            >
+              <tbody>
+                <tr>
+                  <td
+                    style="padding-top:9px;padding-left:18px;padding-bottom:9px;padding-right:18px"
+                  >
+                    <table
+                      border="0"
+                      cellspacing="0"
+                      width="100%"
+                      style="min-width:100%!important;border:10px solid #ffffff;border-collapse:collapse"
+                    >
+                      <tbody>
+                        <tr>
+                          <td
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            valign="top"
+                          >
+                            <a href='https://mynigerianprojects.com/${projectId}/bid/${bidId}' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
                                 View Bid on My Nigerian Projects
                               </a>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                ${emailFooter}
-          `,
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="min-width:100%;border-collapse:collapse;table-layout:fixed!important"
+    >
+      <tbody>
+        <tr>
+          <td style="min-width:100%;padding:9px 18px 18px">
+            <table
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              width="100%"
+              style="min-width:100%;border-collapse:collapse"
+            >
+              <tbody>
+                <tr>
+                  <td>
+                    <span></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
+</tr>
+${emailFooter}`,
   };
   transporter.sendMail(data, (err, info) => {
     if (err) console.log(err);
@@ -136,24 +441,131 @@ Email.prototype.emailAllUsersAboutNewProject = (projectData, allOtherEmails) => 
         to: email,
         subject: `New Project Posted | My Nigerian Projects`,
         html: `${emailHeader}
-                      <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
-                        <tbody>
-                          <tr>
-                            <td style='padding:32px 30px 45px'>
-                              <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>${projectData.title}</h1>
+
+        <!-- INNER CONTENT STARTS -->
+<tr>
+  <td
+    valign="top"
+    id="m_-5334885316815523950templateHeader"
+    style="background:#ffffff none no-repeat center/cover;background-color:#ffffff;background-image:none;background-repeat:no-repeat;background-position:center;background-size:cover;border-top:0;border-bottom:0;padding-top:0px;padding-bottom:0"
+  >
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="border-collapse:collapse"
+    ></table>
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="border-collapse:collapse"
+    >
+      <tbody>
+        <tr>
+          <td valign="top"></td>
+        </tr>
+      </tbody>
+    </table>
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="min-width:100%;border-collapse:collapse"
+    >
+      <tbody>
+        <tr>
+          <td valign="top">
+            <table
+              align="left"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              width="100%"
+              style="min-width:100%;border-collapse:collapse"
+            >
+              <tbody>
+                <tr>
+                  <td
+                    style="padding-top:9px;padding-left:18px;padding-bottom:9px;padding-right:18px"
+                  >
+                    <table
+                      border="0"
+                      cellspacing="0"
+                      width="100%"
+                      style="min-width:100%!important;border:10px solid #ffffff;border-collapse:collapse"
+                    >
+                      <tbody>
+                        <tr>
+                          <td
+                            valign="top"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                          >
+                             <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>${projectData.title}</h1>
+                             
                               <div style='overflowWrap:anywhere;minWidth:0px;font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;line-height:28px;color:#555555;padding-top:0px;overflow-wrap: break-word; min-width: 0px;'>${projectData.description}</div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
-                              <a href='https://mynigerianprojects.com/project/${projectData._id}' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
-                                View on My Nigerian Projects
-                              </a>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                ${emailFooter}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            valign="top"
+                          >
+                            <a
+                              href="https://mynigerianprojects.com/project/${projectData._id}"
+                              style="background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block"
+                              target="_blank"
+                            >
+                              View on My Nigerian Projects
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="min-width:100%;border-collapse:collapse;table-layout:fixed!important"
+    >
+      <tbody>
+        <tr>
+          <td style="min-width:100%;padding:9px 18px 18px">
+            <table
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              width="100%"
+              style="min-width:100%;border-collapse:collapse"
+            >
+              <tbody>
+                <tr>
+                  <td>
+                    <span></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
+</tr>
+ ${emailFooter}
           `,
       };
       transporter.sendMail(data, (err, info) => {
@@ -170,27 +582,129 @@ Email.prototype.registrationSuccess = userData => {
     to: userData.email,
     subject: `Congratulations ${userData.firstName}, Registration Success | My Nigerian Projects`,
     html: `${emailHeader}
-                      <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
-                        <tbody>
-                          <tr>
-                            <td style='padding:32px 30px 45px'>
-                              <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>
+    <!-- INNER CONTENT STARTS -->
+<tr>
+  <td
+    valign="top"
+    id="m_-5334885316815523950templateHeader"
+    style="background:#ffffff none no-repeat center/cover;background-color:#ffffff;background-image:none;background-repeat:no-repeat;background-position:center;background-size:cover;border-top:0;border-bottom:0;padding-top:0px;padding-bottom:0"
+  >
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="border-collapse:collapse"
+    ></table>
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="border-collapse:collapse"
+    >
+      <tbody>
+        <tr>
+          <td valign="top"></td>
+        </tr>
+      </tbody>
+    </table>
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="min-width:100%;border-collapse:collapse"
+    >
+      <tbody>
+        <tr>
+          <td valign="top">
+            <table
+              align="left"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              width="100%"
+              style="min-width:100%;border-collapse:collapse"
+            >
+              <tbody>
+                <tr>
+                  <td
+                    style="padding-top:9px;padding-left:18px;padding-bottom:9px;padding-right:18px"
+                  >
+                    <table
+                      border="0"
+                      cellspacing="0"
+                      width="100%"
+                      style="min-width:100%!important;border:10px solid #ffffff;border-collapse:collapse"
+                    >
+                      <tbody>
+                        <tr>
+                          <td
+                            valign="top"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                          >
+                            <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>
                               Hello <strong>${userData.firstName},</strong><br/>
                               </h1>
+
                               You have successfully created an account with My Nigerian Projects.<br>
                               Checkout your profile:
-                            </td>
-                          </tr>
-                          <tr>
-                            <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
-                              <a href='https://mynigerianprojects.com/profile/${userData.username}' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            valign="top"
+                          >
+                           <a href='https://mynigerianprojects.com/profile/${userData.username}' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
                                 View on My Nigerian Projects
                               </a>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                ${emailFooter}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="min-width:100%;border-collapse:collapse;table-layout:fixed!important"
+    >
+      <tbody>
+        <tr>
+          <td style="min-width:100%;padding:9px 18px 18px">
+            <table
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              width="100%"
+              style="min-width:100%;border-collapse:collapse"
+            >
+              <tbody>
+                <tr>
+                  <td>
+                    <span></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
+</tr>
+${emailFooter}
           `,
   };
   transporter.sendMail(data, (err, info) => {
@@ -205,31 +719,133 @@ Email.prototype.changePasswordSuccess = userData => {
     to: userData.email,
     subject: `${userData.firstName}, You Have Successfully Changed Your Password | My Nigerian Projects`,
     html: `${emailHeader}
-                      <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
-                        <tbody>
-                          <tr>
-                            <td style='padding:32px 30px 45px'>
-                              <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>
+    <tr>
+  <td
+    valign="top"
+    id="m_-5334885316815523950templateHeader"
+    style="background:#ffffff none no-repeat center/cover;background-color:#ffffff;background-image:none;background-repeat:no-repeat;background-position:center;background-size:cover;border-top:0;border-bottom:0;padding-top:0px;padding-bottom:0"
+  >
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="border-collapse:collapse"
+    ></table>
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="border-collapse:collapse"
+    >
+      <tbody>
+        <tr>
+          <td valign="top"></td>
+        </tr>
+      </tbody>
+    </table>
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="min-width:100%;border-collapse:collapse"
+    >
+      <tbody>
+        <tr>
+          <td valign="top">
+            <table
+              align="left"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              width="100%"
+              style="min-width:100%;border-collapse:collapse"
+            >
+              <tbody>
+                <tr>
+                  <td
+                    style="padding-top:9px;padding-left:18px;padding-bottom:9px;padding-right:18px"
+                  >
+                    <table
+                      border="0"
+                      cellspacing="0"
+                      width="100%"
+                      style="min-width:100%!important;border:10px solid #ffffff;border-collapse:collapse"
+                    >
+                      <tbody>
+                        <tr>
+                          <td
+                            valign="top"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                          >
+                            <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>
                               Hello <strong>${userData.firstName},</strong><br/>
                               </h1>
                               You have successfully changed your password.
-                            </td>
-                          </tr>
-                          <tr>
-                            <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
-                               If you did not changed your password, secure your account by resetting your password:
-                            </td>
-                            <tr>
-                              <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
-                                <a href='https://mynigerianprojects.com/reset-password' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            valign="top"
+                          >
+                           If you did not changed your password, secure your account by resetting your password:
+                           </td>
+                          <td
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            valign="top"
+                          >
+                             <a href='https://mynigerianprojects.com/reset-password' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
                                  Secure My Account Now
                                 </a>
-                              </td>
-                            </tr>
-                          </tr>
-                        </tbody>
-                      </table>
-                ${emailFooter}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="min-width:100%;border-collapse:collapse;table-layout:fixed!important"
+    >
+      <tbody>
+        <tr>
+          <td style="min-width:100%;padding:9px 18px 18px">
+            <table
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              width="100%"
+              style="min-width:100%;border-collapse:collapse"
+            >
+              <tbody>
+                <tr>
+                  <td>
+                    <span></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
+</tr>
+
+${emailFooter}
           `,
   };
   transporter.sendMail(data, (err, info) => {
@@ -244,31 +860,135 @@ Email.prototype.deleteAccountSuccess = userData => {
     to: userData.email,
     subject: `${userData.firstName}, You Have Successfully Deleted Your Account | My Nigerian Projects`,
     html: `${emailHeader}
-                      <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
-                        <tbody>
-                          <tr>
-                            <td style='padding:32px 30px 45px'>
-                              <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>
+    <tr>
+  <td
+    valign="top"
+    id="m_-5334885316815523950templateHeader"
+    style="background:#ffffff none no-repeat center/cover;background-color:#ffffff;background-image:none;background-repeat:no-repeat;background-position:center;background-size:cover;border-top:0;border-bottom:0;padding-top:0px;padding-bottom:0"
+  >
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="border-collapse:collapse"
+    ></table>
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="border-collapse:collapse"
+    >
+      <tbody>
+        <tr>
+          <td valign="top"></td>
+        </tr>
+      </tbody>
+    </table>
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="min-width:100%;border-collapse:collapse"
+    >
+      <tbody>
+        <tr>
+          <td valign="top">
+            <table
+              align="left"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              width="100%"
+              style="min-width:100%;border-collapse:collapse"
+            >
+              <tbody>
+                <tr>
+                  <td
+                    style="padding-top:9px;padding-left:18px;padding-bottom:9px;padding-right:18px"
+                  >
+                    <table
+                      border="0"
+                      cellspacing="0"
+                      width="100%"
+                      style="min-width:100%!important;border:10px solid #ffffff;border-collapse:collapse"
+                    >
+                      <tbody>
+                        <tr>
+                          <td
+                            valign="top"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                          >
+                            <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>
                               Hello <strong>${userData.firstName},</strong><br/>
                               </h1>
                               So sorry to see you go but you have successfully deleted your account.
-                            </td>
-                          </tr>
-                          <tr>
-                            <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
+                          </td>
+                          <td
+                            valign="top"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                          >
                                If you change your mind, please create an account and help me and others fullfil our projects in Nigeria and earn some money too:
                             </td>
-                            <tr>
-                              <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
-                                <a href='https://mynigerianprojects.com/register' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
+                        </tr>
+                        <tr>
+                          <td
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            valign="top"
+                          >
+                              <a href='https://mynigerianprojects.com/register' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
                                  Create Account
                                 </a>
-                              </td>
-                            </tr>
-                          </tr>
-                        </tbody>
-                      </table>
-                ${emailFooter}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="min-width:100%;border-collapse:collapse;table-layout:fixed!important"
+    >
+      <tbody>
+        <tr>
+          <td style="min-width:100%;padding:9px 18px 18px">
+            <table
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              width="100%"
+              style="min-width:100%;border-collapse:collapse"
+            >
+              <tbody>
+                <tr>
+                  <td>
+                    <span></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
+</tr>
+
+
+
+ ${emailFooter}
           `,
   };
   transporter.sendMail(data, (err, info) => {
@@ -291,31 +1011,132 @@ Email.prototype.youHaveNewFollower = (userData, profileUsername) => {
     to: userData.profileEmail,
     subject: `${userData.profileName}, You Have a New Follower | My Nigerian Projects`,
     html: `${emailHeader}
-            <table style='min-width:100%' cellspacing="0" cellpadding="0" bgcolor='#ffffff'>
+<tr>
+  <td
+    valign="top"
+    id="m_-5334885316815523950templateHeader"
+    style="background:#ffffff none no-repeat center/cover;background-color:#ffffff;background-image:none;background-repeat:no-repeat;background-position:center;background-size:cover;border-top:0;border-bottom:0;padding-top:0px;padding-bottom:0"
+  >
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="border-collapse:collapse"
+    ></table>
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="border-collapse:collapse"
+    >
+      <tbody>
+        <tr>
+          <td valign="top"></td>
+        </tr>
+      </tbody>
+    </table>
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="min-width:100%;border-collapse:collapse"
+    >
+      <tbody>
+        <tr>
+          <td valign="top">
+            <table
+              align="left"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              width="100%"
+              style="min-width:100%;border-collapse:collapse"
+            >
               <tbody>
                 <tr>
-                  <td style='padding:32px 30px 45px'>
-                    <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>
+                  <td
+                    style="padding-top:9px;padding-left:18px;padding-bottom:9px;padding-right:18px"
+                  >
+                    <table
+                      border="0"
+                      cellspacing="0"
+                      width="100%"
+                      style="min-width:100%!important;border:10px solid #ffffff;border-collapse:collapse"
+                    >
+                      <tbody>
+                        <tr>
+                          <td
+                            valign="top"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                          >
+                          <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>
                     Hello <strong>${userData.profileName},</strong><br/>
                     </h1>
                     ${userData.followerName}, just followed you. 
-                  </td>
-                </tr>
-                <tr>
-                  <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
-                      Go to your profile and manage your followers:
-                  </td>
-                  <tr>
-                    <td style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;padding:0px 30px 45px' align='left'>
-                      <a href='https://mynigerianprojects.com/profile/${profileUsername}/followers' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
+                          </td>
+                           <td
+                            valign="top"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                          >
+                            Go to your profile and manage your followers:
+                        </td>
+                          </tr>
+                        <tr>
+                          <td
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            valign="top"
+                          >
+                              <a href='https://mynigerianprojects.com/profile/${profileUsername}/followers' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
                         View My Profile
                       </a>
-                    </td>
-                  </tr>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
                 </tr>
               </tbody>
             </table>
-      ${emailFooter}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="min-width:100%;border-collapse:collapse;table-layout:fixed!important"
+    >
+      <tbody>
+        <tr>
+          <td style="min-width:100%;padding:9px 18px 18px">
+            <table
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              width="100%"
+              style="min-width:100%;border-collapse:collapse"
+            >
+              <tbody>
+                <tr>
+                  <td>
+                    <span></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
+</tr>
+${emailFooter}
           `,
   };
   transporter.sendMail(data, (err, info) => {
@@ -326,76 +1147,273 @@ Email.prototype.youHaveNewFollower = (userData, profileUsername) => {
 
 // SOME VARIABLES
 
-const emailHeader = `<div style='background:#ffffff;font-family:Arial,Helvetica,sans-serif;'>
-  <table align='center' style='padding:0 10px; width: 640px; background:#ffffff' cellspacing='0' cellpadding='0' border='0'>
-    <tbody>
-         <tr>
-              <td width='640' style='font-size:15px;'>
-              <table style='background-color:transparent; width='640' cellspacing='0' cellpadding='0'>
-                <tbody>
-                  <tr>
-                    <td style='padding:11px'>
-                      <table width='100%' cellspacing='0' cellpadding='0'>
-                        <tbody>
-                          <tr>
-                            <td align='center'>
-                              <a href='https://mynigerianprojects.com' target='_blank'>
-                                <img src='https://i.ibb.co/8Y5hL2d/bgg.jpg' alt='background' style='display:block; position: relative; padding:0px;text-align:center;height:20%;width:100%' min-width='650' />
-                              </a>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                  `;
+const emailHeader = ` <table
+      align="center"
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      height="100%"
+      width="100%"
+      id="m_-5334885316815523950bodyTable"
+      style="border-collapse:collapse;height:100%;margin:0;padding:0;width:100%;background-color:#efeeea"
+    >
+      <tbody>
+        <tr>
+          <td
+            align="center"
+            valign="top"
+            style="height:100%;margin:0;padding:10px;width:100%;border-top:0"
+          >
+            <!-- BEGIN OF FIRST TABLE CONTENT OR TD -->
 
-const emailFooter = `</td>
-            </tr>
+            <table
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              width="100%"
+              style="border-collapse:collapse;border:0;max-width:600px!important"
+            >
+              <tbody>
+                <!-- HEADER STARTS-->
                 <tr>
-                    <td width='640' align='center' style='background-color:#000000'>
-                      <table cellspacing='0' cellpadding='0'>
-                        <tbody>
-                          <tr>
-                            <td align='center' style='font-size: 12px;font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;color:#ffffff;padding:10px'>
-                                 You're receiving this email because you are a member of My Nigerian Projects. If you prefer not to be included
-                                 in future emails please reach out to me at thebiddingapp@gmail.com.
-                              <br />
-                              <br />
-                                 <a href='https://mynigerianprojects.com/register' style='color:#ffffff;font-weight:bold' target='_blank'>
-                                Join My Nigerian Projects
-                              </a>
-                              &nbsp;&nbsp;|&nbsp;&nbsp;
-                              <a href='https://mynigerianprojects.com/login' style='color:#ffffff;font-weight:bold' target='_blank'>
-                                Login
-                              </a>
-                              <br />
-                              <br />
-                              PO Box 511, Charles City, Iowa 50616
-                              <br />
-                              <a href='https://mynigerianprojects.com/terms' style='color:#ffffff' target='_blank'>
-                                Terms
-                              </a>
-                              •
-                              <a href='https://mynigerianprojects.com/privacy' style='color:#ffffff' target='_blank'>
-                                Privacy
-                              </a>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                  </tbody>
-                  </table>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-                  `;
+                  <td
+                    valign="top"
+                    id="m_-5334885316815523950templatePreheader"
+                    style="background:#ffffff none no-repeat center/cover;background-color:#ffffff;background-image:none;background-repeat:no-repeat;background-position:center;background-size:cover;border-top:0;border-bottom:0;padding-top:0px;padding-bottom:0px"
+                  >
+                    <!-- CUSHION -->
+                    <table
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      width="100%"
+                      style="border-collapse:collapse"
+                    >
+                      <tbody>
+                        <tr>
+                          <td valign="top">
+                            <span
+                              style="color:#ffffff;display:none;font-size:0px;height:0px;width:0px"
+                              >&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;<wbr />&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;<wbr />&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;<wbr />&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;<wbr />&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;<wbr />&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;<wbr />&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;<wbr />&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;<wbr />&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;<wbr />&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;<wbr />&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;<wbr />&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;<wbr />&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;<wbr />&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;<wbr />&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;<wbr />&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;<wbr />&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;<wbr />&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;<wbr />&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;<wbr />&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;<wbr />&nbsp;&zwnj;&nbsp;</span
+                            >
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- CONTENT -->
+                    <table
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      width="100%"
+                      style="min-width:100%;border-collapse:collapse"
+                    >
+                      <tbody>
+                        <tr>
+                          <td valign="top" style="padding:0px">
+                            <table
+                              align="left"
+                              width="100%"
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              style="min-width:100%;border-collapse:collapse"
+                            >
+                              <tbody>
+                                <tr>
+                                  <td
+                                    valign="top"
+                                    style="padding-right:0px;padding-left:0px;padding-top:0;padding-bottom:0;text-align:center"
+                                  >
+                                    <a
+                                      href="https://mynigerianprojects.com"
+                                      title="My Nigerian Projects"
+                                      target="_blank"
+                                    >
+                                      <img
+                                        align="center"
+                                        alt="headerPic"
+                                        src="https://i.ibb.co/8Y5hL2d/bgg.jpg"
+                                        width="600"
+                                        style="max-width:1200px;padding-bottom:0;display:inline!important;vertical-align:bottom;border:0;height:150px;outline:none;text-decoration:none"
+                                        class=""
+                                      />
+                                    </a>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr> `;
+
+const emailFooter = `
+                <tr>
+                  <td
+                    valign="top"
+                    style="background:#ffffff none no-repeat center/cover;background-color:#ffffff;background-image:none;background-repeat:no-repeat;background-position:center;background-size:cover;border-top:0;border-bottom:0;padding-top:0;padding-bottom:0px"
+                  ></td>
+                </tr>
+                <!-- FOOTER CONTENT CONTAINER-->
+                <tr>
+                  <td
+                    valign="top"
+                    id="m_-5334885316815523950templateFooter"
+                    style="background:#000000 none no-repeat center/cover;background-color:#000000;background-image:none;background-repeat:no-repeat;background-position:center;background-size:cover;border-top:0;border-bottom:0;padding-top:0px;padding-bottom:0px"
+                  >
+                    <!-- FOOTER CONTENT-->
+                    <table
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      width="100%"
+                      style="min-width:100%;border-collapse:collapse"
+                    >
+                      <tbody>
+                        <tr>
+                          <td valign="top" style="padding-top:9px">
+                            <table
+                              align="left"
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              style="max-width:100%;min-width:100%;border-collapse:collapse"
+                              width="100%"
+                            >
+                              <tbody>
+                                <tr>
+                                  <td
+                                    valign="top"
+                                    style="padding-top:0;padding-right:18px;padding-bottom:9px;padding-left:18px;word-break:break-word;color:#241c15;font-family:Helvetica;font-size:12px;line-height:150%;text-align:center"
+                                  >
+                                    <table
+                                      border="0"
+                                      cellpadding="0"
+                                      cellspacing="0"
+                                      width="100%"
+                                      style="border-collapse:collapse"
+                                    >
+                                      <tbody>
+                                        <tr>
+                                          <td align="center" valign="top">
+                                            <table
+                                              align="center"
+                                              border="0"
+                                              cellpadding="0"
+                                              cellspacing="0"
+                                              style="max-width:565px;width:100%;border-collapse:collapse"
+                                            >
+                                              <tbody>
+                                                <!-- why you are receiving this email -->
+
+                                                <tr>
+                                                  <td
+                                                    align="center"
+                                                    style="color:#ffffff;font-family:'Helvetica Neue',Helvetica,Arial,Verdana,sans-serif;font-size:12px;padding:18px 0;line-height:1.5"
+                                                    valign="top"
+                                                  >
+                                                    <span
+                                                      style="color:#ffffff;text-decoration:none;font-weight:normal"
+                                                      target="_blank"
+                                                      >You're receiving this
+                                                      email because you are a
+                                                      member of My Nigerian
+                                                      Projects. If you prefer
+                                                      not to be included in
+                                                      future emails please reach
+                                                      out to me at
+                                                    </span>
+
+                                                    <a
+                                                      href="mailto:thebiddingapp@gmail.com."
+                                                      style="color:#ffffff;text-decoration:none;font-weight:normal"
+                                                    >
+                                                      thebiddingapp@gmail.com
+                                                    </a>
+                                                  </td>
+                                                </tr>
+
+                                                <!-- ADDRESS -->
+                                                <tr>
+                                                  <td
+                                                    align="center"
+                                                    style="color:#ffffff;font-family:'Helvetica Neue',Helvetica,Arial,Verdana,sans-serif;font-size:12px;padding:18px 0;line-height:1.5"
+                                                    valign="top"
+                                                  >
+                                                    <strong
+                                                      >©2020 My Nigerian
+                                                      Projects</strong
+                                                    ><br />
+                                                    <span
+                                                      style="color:#ffffff;text-decoration:none;font-weight:normal"
+                                                      >PO Box 511, Charles City,
+                                                      Iowa 50616
+                                                    </span>
+                                                    |
+                                                    <a
+                                                      href="https://mailchimp.us1.list-manage.com/track/click?u=f7b9ee22124ff6454424dc10c&amp;id=aa0a7d260c&amp;e=dda3a809d4"
+                                                      style="color:#ffffff;text-decoration:none;font-weight:normal"
+                                                      target="_blank"
+                                                      data-saferedirecturl="https://www.google.com/url?q=https://mailchimp.us1.list-manage.com/track/click?u%3Df7b9ee22124ff6454424dc10c%26id%3Daa0a7d260c%26e%3Ddda3a809d4&amp;source=gmail&amp;ust=1594776346850000&amp;usg=AFQjCNFRQ80KgC0lR3Fhn_BrOpKpwipbBg"
+                                                    >
+                                                      mynigerianprojects.com
+                                                    </a>
+                                                  </td>
+                                                </tr>
+                                                <!--  terms and privacy -->
+                                                <tr>
+                                                  <td
+                                                    align="center"
+                                                    style="padding:4px 0"
+                                                    valign="top"
+                                                  >
+                                                    <p
+                                                      style="color:#ffffff;font-family:'Helvetica Neue',Helvetica,Arial,Verdana,sans-serif;font-size:12px;margin:10px 0;padding:0;line-height:150%;text-align:center"
+                                                    >
+                                                      <a
+                                                        href="https://mynigerianprojects.com/terms"
+                                                        style="color:#ffffff;text-decoration:underline;font-weight:normal"
+                                                        target="_blank"
+                                                      >
+                                                        Terms of Use </a
+                                                      >•
+                                                      <a
+                                                        href="https://mynigerianprojects.com/privacy"
+                                                        style="color:#ffffff;text-decoration:underline;font-weight:normal"
+                                                        target="_blank"
+                                                      >
+                                                        Privacy Policy
+                                                      </a>
+                                                    </p>
+                                                  </td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <!-- FOOTER ENDS-->
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>`;
 
 // EXPORT CODE
 module.exports = Email;
