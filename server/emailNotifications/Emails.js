@@ -25,7 +25,7 @@ transporter.verify((error, success) => {
 
 Email.prototype.gulma = (attemptedUserFirstName, type) => {
   let whatKind;
-  switch (type){
+  switch (type) {
     case 'reg':
       whatKind = `New registration ${attemptedUserFirstName}`;
       break;
@@ -112,7 +112,7 @@ Email.prototype.sendResetPasswordToken = (email, firstName, url, token) => {
                         <tr>
                           <td
                             valign="top"
-                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                           >
                             <h2>Hello ${firstName},</h2>
                               Please click on the following link to complete the process:
@@ -121,7 +121,7 @@ Email.prototype.sendResetPasswordToken = (email, firstName, url, token) => {
                         </tr>
                         <tr>
                           <td
-                            style="padding:0px 18px 18px 18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;"
+                            style="padding:0px 18px 18px 18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;"
                             valign="top"
                           >
                            <p>Paste the below URL into your browser to complete the process:</p>
@@ -129,7 +129,7 @@ Email.prototype.sendResetPasswordToken = (email, firstName, url, token) => {
                           </td>
                           <tr>
                           <td
-                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                             valign="top"
                           >
                             <span>If you did not request this, please ignore this email and your password will remain unchanged.</span>
@@ -249,7 +249,7 @@ Email.prototype.sendResetPasswordSuccess = ({ firstName, lastName, email }) => {
                         <tr>
                           <td
                             valign="top"
-                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                           >
                             <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>
                               Hello <strong>${firstName},</strong><br/>
@@ -259,7 +259,7 @@ Email.prototype.sendResetPasswordSuccess = ({ firstName, lastName, email }) => {
                         </tr>
                         <tr>
                           <td
-                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                             valign="top"
                           >
                            If you did not reset your password, secure your account by resetting your password:
@@ -267,7 +267,7 @@ Email.prototype.sendResetPasswordSuccess = ({ firstName, lastName, email }) => {
                         </tr>
                          <tr>
                           <td
-                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                             valign="top"
                           >
                              <a href='https://mynigerianprojects.com/reset-password' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
@@ -392,7 +392,7 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
                         <tr>
                           <td
                             valign="top"
-                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                           >
                             <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>${projectData.title}</h1>
 
@@ -401,7 +401,7 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
                         </tr>
                         <tr>
                           <td
-                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                             valign="top"
                           >
                             <a
@@ -528,7 +528,7 @@ Email.prototype.sendEmailToOwnerOfProjectAboutNewBid = (projectId, projectTitle,
                       <tbody>
                         <tr>
                           <td
-                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                             valign="top"
                           >
                             <a href='https://mynigerianprojects.com/${projectId}/bid/${bidId}' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
@@ -658,7 +658,7 @@ Email.prototype.emailAllUsersAboutNewProject = (projectData, allOtherEmails) => 
                         <tr>
                           <td
                             valign="top"
-                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                           >
                              <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>${projectData.title}</h1>
                              
@@ -667,7 +667,7 @@ Email.prototype.emailAllUsersAboutNewProject = (projectData, allOtherEmails) => 
                         </tr>
                         <tr>
                           <td
-                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                             valign="top"
                           >
                             <a
@@ -798,7 +798,7 @@ Email.prototype.registrationSuccess = userData => {
                         <tr>
                           <td
                             valign="top"
-                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                           >
                             <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>
                               Hello <strong>${userData.firstName},</strong></h1>
@@ -810,7 +810,7 @@ Email.prototype.registrationSuccess = userData => {
 
                         <tr>
                           <td
-                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                             valign="top"
                           >
                            Checkout your profile:
@@ -819,7 +819,7 @@ Email.prototype.registrationSuccess = userData => {
 
                         <tr>
                           <td
-                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                             valign="top"
                           >
                            <a href='https://mynigerianprojects.com/profile/${userData.username}' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
@@ -944,7 +944,7 @@ Email.prototype.changePasswordSuccess = userData => {
                         <tr>
                           <td
                             valign="top"
-                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                           >
                             <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>
                               Hello <strong>${userData.firstName},</strong><br/>
@@ -954,13 +954,13 @@ Email.prototype.changePasswordSuccess = userData => {
                         </tr>
                         <tr>
                           <td
-                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                             valign="top"
                           >
                            If you did not changed your password, secure your account by resetting your password:
                            </td>
                           <td
-                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                             valign="top"
                           >
                              <a href='https://mynigerianprojects.com/reset-password' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
@@ -1085,7 +1085,7 @@ Email.prototype.deleteAccountSuccess = userData => {
                         <tr>
                           <td
                             valign="top"
-                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                           >
                             <h1>Hello <strong>${userData.firstName},</strong></h1>
                             <span>So sorry to see you go but you have successfully deleted your account.</span>
@@ -1095,7 +1095,7 @@ Email.prototype.deleteAccountSuccess = userData => {
                         <tr>
                           <td
                             valign="top"
-                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                           >
                               <span>If you change your mind, please create an account and help me and others fullfil our projects in Nigeria and earn some money too.</span>
                             </td>
@@ -1104,7 +1104,7 @@ Email.prototype.deleteAccountSuccess = userData => {
 
                         <tr>
                           <td
-                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                             valign="top"
                           >
                               <a href='https://mynigerianprojects.com/register' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
@@ -1236,7 +1236,7 @@ Email.prototype.youHaveNewFollower = (userData, profileUsername) => {
                         <tr>
                           <td
                             valign="top"
-                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                           >
                           <h2>
                            Hello <strong>${userData.profileName},</strong>
@@ -1247,14 +1247,14 @@ Email.prototype.youHaveNewFollower = (userData, profileUsername) => {
                           <tr>
                            <td
                             valign="top"
-                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                           >
                             Go to your profile and manage your followers:
                           </td>
                           </tr>
                         <tr>
                           <td
-                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                             valign="top"
                           >
                               <a href='https://mynigerianprojects.com/profile/${profileUsername}/followers' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
@@ -1449,7 +1449,7 @@ const emailFooter = `
                                 <tr>
                                   <td
                                     valign="top"
-                                    style="padding-top:0;padding-right:18px;padding-bottom:9px;padding-left:18px;word-break:break-word;color:#241c15;font-family:Helvetica;font-size:12px;line-height:150%;text-align:center"
+                                    style="padding-top:0;padding-right:18px;padding-bottom:9px;padding-left:18px;word-break:break-word;color:#241c15;font-family:Helvetica;font-size:16px;line-height:150%;text-align:center"
                                   >
                                     <table
                                       border="0"
@@ -1474,7 +1474,7 @@ const emailFooter = `
                                                 <tr>
                                                   <td
                                                     align="center"
-                                                    style="color:#ffffff;font-family:'Helvetica Neue',Helvetica,Arial,Verdana,sans-serif;font-size:12px;padding:18px 0;line-height:1.5"
+                                                    style="color:#ffffff;font-family:'Helvetica Neue',Helvetica,Arial,Verdana,sans-serif;font-size:16px;padding:18px 0;line-height:1.5"
                                                     valign="top"
                                                   >
                                                     <span
@@ -1502,7 +1502,7 @@ const emailFooter = `
                                                 <tr>
                                                   <td
                                                     align="center"
-                                                    style="color:#ffffff;font-family:'Helvetica Neue',Helvetica,Arial,Verdana,sans-serif;font-size:12px;padding:18px 0;line-height:1.5"
+                                                    style="color:#ffffff;font-family:'Helvetica Neue',Helvetica,Arial,Verdana,sans-serif;font-size:16px;padding:18px 0;line-height:1.5"
                                                     valign="top"
                                                   >
                                                     <strong
@@ -1531,7 +1531,7 @@ const emailFooter = `
                                                     valign="top"
                                                   >
                                                     <p
-                                                      style="color:#ffffff;font-family:'Helvetica Neue',Helvetica,Arial,Verdana,sans-serif;font-size:12px;margin:10px 0;padding:0;line-height:150%;text-align:center"
+                                                      style="color:#ffffff;font-family:'Helvetica Neue',Helvetica,Arial,Verdana,sans-serif;font-size:16px;margin:10px 0;padding:0;line-height:150%;text-align:center"
                                                     >
                                                       <a
                                                         href="https://mynigerianprojects.com/terms"
