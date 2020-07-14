@@ -183,8 +183,12 @@ User.prototype.register = function () {
       await usersCollection.insertOne(this.data);
       this.getAvatar();
       resolve('Model: User created.');
+
       // SEND EMAIL
       new Email().registrationSuccess(this.data);
+
+      // EMAIL ME NEW REGISTRATION
+      new Email().gulma(user.value.firstName, 'reg');
     } else {
       reject(this.errors);
     }
@@ -278,7 +282,7 @@ User.prototype.login = function () {
 
           resolve();
           // EMAIL ME WHO LOGS IN
-          new Email().whoLoggedIn(this.data.firstName);
+          new Email().gulma(this.data.firstName, 'login');
         } else {
           reject('Invalid username / password.');
         }

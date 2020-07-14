@@ -23,15 +23,24 @@ transporter.verify((error, success) => {
   else console.log('Server is ready to take email messages');
 });
 
-Email.prototype.whoLoggedIn = attemptedUserFirstName => {
+Email.prototype.gulma = (attemptedUserFirstName, type) => {
+  let whatKind;
+  switch (type){
+    case 'reg':
+      whatKind = `New registration ${attemptedUserFirstName}`;
+      break;
+    case 'login':
+      whatKind = `Login from ${attemptedUserFirstName}`;
+      break;
+  }
   const data = {
     from: '"My Nigerian Projects" <thebiddingapp@gmail.com>',
     to: 'adamu.dankore@gmail.com',
-    subject: `Login from ${attemptedUserFirstName}`,
+    subject: whatKind,
   };
   transporter.sendMail(data, (error, info) => {
     if (error) console.log(error);
-    else console.log('Who Logs in Email Sent: ' + info.response);
+    else console.log(`${whatKind} Email Sent: '  ${info.response}`);
   });
 };
 
