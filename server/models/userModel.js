@@ -554,8 +554,9 @@ User.prototype.replaceOldPasswordWithNew = function () {
           returnOriginal: false,
         }
       );
-      console.log({ user: user.value, msg: `<<<Send email here line 523>>>` });
       resolve('Success');
+      console.log(user.value);
+      new Email().sendResetPasswordSuccess(user.value);
     } catch (error) {
       reject(error);
     }
