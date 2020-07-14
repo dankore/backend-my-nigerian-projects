@@ -652,9 +652,19 @@ Email.prototype.registrationSuccess = userData => {
                               Hello <strong>${userData.firstName},</strong></h1>
 
                               You have successfully created an account with My Nigerian Projects.<br>
-                              Checkout your profile:
+                              
                           </td>
                         </tr>
+
+                        <tr>
+                          <td
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            valign="top"
+                          >
+                           Checkout your profile:
+                          </td>
+                        </tr>
+
                         <tr>
                           <td
                             style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
@@ -665,6 +675,7 @@ Email.prototype.registrationSuccess = userData => {
                               </a>
                           </td>
                         </tr>
+
                       </tbody>
                     </table>
                   </td>
@@ -924,18 +935,21 @@ Email.prototype.deleteAccountSuccess = userData => {
                             valign="top"
                             style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                           >
-                            <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>
-                              Hello <strong>${userData.firstName},</strong><br/>
-                              </h1>
-                              So sorry to see you go but you have successfully deleted your account.
+                            <h1>Hello <strong>${userData.firstName},</strong></h1>
+                            <span>So sorry to see you go but you have successfully deleted your account.</span>
                           </td>
+                        </tr>
+
+                        <tr>
                           <td
                             valign="top"
                             style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                           >
-                               If you change your mind, please create an account and help me and others fullfil our projects in Nigeria and earn some money too:
+                              <span>If you change your mind, please create an account and help me and others fullfil our projects in Nigeria and earn some money too.</span>
                             </td>
                         </tr>
+
+
                         <tr>
                           <td
                             style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
