@@ -112,14 +112,18 @@ Email.prototype.sendResetPasswordToken = (email, firstName, url, token) => {
                         </tr>
                         <tr>
                           <td
-                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            style="padding:0px 18px 18px 18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;"
                             valign="top"
                           >
                            <p>Paste the below URL into your browser to complete the process:</p>
-                              
                               ${url}/reset-password/${token} 
-
-                            <p>If you did not request this, please ignore this email and your password will remain unchanged.</p>
+                          </td>
+                          <tr>
+                          <td
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            valign="top"
+                          >
+                            <span>If you did not request this, please ignore this email and your password will remain unchanged.</span>
                           </td>
                         </tr>
                       </tbody>
@@ -240,7 +244,7 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
                           >
                             <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>${projectData.title}</h1>
 
-                            <div style='overflowWrap:anywhere;minWidth:0px;font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;line-height:28px;color:#555555;padding-top:0px;overflow-wrap: break-word; min-width: 0px;'>${projectData.description}</div>
+                            <span>${projectData.description}</span>
                           </td>
                         </tr>
                         <tr>
@@ -442,7 +446,7 @@ Email.prototype.emailAllUsersAboutNewProject = (projectData, allOtherEmails) => 
         subject: `New Project Posted | My Nigerian Projects`,
         html: `${emailHeader}
 
-        <!-- INNER CONTENT STARTS -->
+        
 <tr>
   <td
     valign="top"
@@ -506,7 +510,7 @@ Email.prototype.emailAllUsersAboutNewProject = (projectData, allOtherEmails) => 
                           >
                              <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>${projectData.title}</h1>
                              
-                              <div style='overflowWrap:anywhere;minWidth:0px;font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;line-height:28px;color:#555555;padding-top:0px;overflow-wrap: break-word; min-width: 0px;'>${projectData.description}</div>
+                              <span>${projectData.description}</span>
                           </td>
                         </tr>
                         <tr>
@@ -582,7 +586,7 @@ Email.prototype.registrationSuccess = userData => {
     to: userData.email,
     subject: `Congratulations ${userData.firstName}, Registration Success | My Nigerian Projects`,
     html: `${emailHeader}
-    <!-- INNER CONTENT STARTS -->
+    
 <tr>
   <td
     valign="top"
@@ -645,8 +649,7 @@ Email.prototype.registrationSuccess = userData => {
                             style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                           >
                             <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>
-                              Hello <strong>${userData.firstName},</strong><br/>
-                              </h1>
+                              Hello <strong>${userData.firstName},</strong></h1>
 
                               You have successfully created an account with My Nigerian Projects.<br>
                               Checkout your profile:
@@ -985,9 +988,6 @@ Email.prototype.deleteAccountSuccess = userData => {
     </table>
   </td>
 </tr>
-
-
-
  ${emailFooter}
           `,
   };
@@ -1072,17 +1072,19 @@ Email.prototype.youHaveNewFollower = (userData, profileUsername) => {
                             valign="top"
                             style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                           >
-                          <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>
-                    Hello <strong>${userData.profileName},</strong><br/>
-                    </h1>
-                    ${userData.followerName}, just followed you. 
+                          <h2>
+                           Hello <strong>${userData.profileName},</strong>
+                          </h2>
+                          <span>${userData.followerName}, just followed you.</span>
                           </td>
+                          </tr>
+                          <tr>
                            <td
                             valign="top"
                             style="padding:18px;color:#241c15;font-family:Helvetica;font-size:16px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                           >
                             Go to your profile and manage your followers:
-                        </td>
+                          </td>
                           </tr>
                         <tr>
                           <td
@@ -1090,8 +1092,8 @@ Email.prototype.youHaveNewFollower = (userData, profileUsername) => {
                             valign="top"
                           >
                               <a href='https://mynigerianprojects.com/profile/${profileUsername}/followers' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
-                        View My Profile
-                      </a>
+                        Go to my Profile
+                        </a>
                           </td>
                         </tr>
                       </tbody>
@@ -1164,8 +1166,6 @@ const emailHeader = ` <table
             valign="top"
             style="height:100%;margin:0;padding:10px;width:100%;border-top:0"
           >
-            <!-- BEGIN OF FIRST TABLE CONTENT OR TD -->
-
             <table
               border="0"
               cellpadding="0"
@@ -1174,14 +1174,11 @@ const emailHeader = ` <table
               style="border-collapse:collapse;border:0;max-width:600px!important"
             >
               <tbody>
-                <!-- HEADER STARTS-->
                 <tr>
                   <td
                     valign="top"
-                    id="m_-5334885316815523950templatePreheader"
                     style="background:#ffffff none no-repeat center/cover;background-color:#ffffff;background-image:none;background-repeat:no-repeat;background-position:center;background-size:cover;border-top:0;border-bottom:0;padding-top:0px;padding-bottom:0px"
                   >
-                    <!-- CUSHION -->
                     <table
                       border="0"
                       cellpadding="0"
@@ -1258,14 +1255,12 @@ const emailFooter = `
                     style="background:#ffffff none no-repeat center/cover;background-color:#ffffff;background-image:none;background-repeat:no-repeat;background-position:center;background-size:cover;border-top:0;border-bottom:0;padding-top:0;padding-bottom:0px"
                   ></td>
                 </tr>
-                <!-- FOOTER CONTENT CONTAINER-->
                 <tr>
                   <td
                     valign="top"
                     id="m_-5334885316815523950templateFooter"
                     style="background:#000000 none no-repeat center/cover;background-color:#000000;background-image:none;background-repeat:no-repeat;background-position:center;background-size:cover;border-top:0;border-bottom:0;padding-top:0px;padding-bottom:0px"
                   >
-                    <!-- FOOTER CONTENT-->
                     <table
                       border="0"
                       cellpadding="0"
@@ -1358,13 +1353,11 @@ const emailFooter = `
                                                       href="https://mailchimp.us1.list-manage.com/track/click?u=f7b9ee22124ff6454424dc10c&amp;id=aa0a7d260c&amp;e=dda3a809d4"
                                                       style="color:#ffffff;text-decoration:none;font-weight:normal"
                                                       target="_blank"
-                                                      data-saferedirecturl="https://www.google.com/url?q=https://mailchimp.us1.list-manage.com/track/click?u%3Df7b9ee22124ff6454424dc10c%26id%3Daa0a7d260c%26e%3Ddda3a809d4&amp;source=gmail&amp;ust=1594776346850000&amp;usg=AFQjCNFRQ80KgC0lR3Fhn_BrOpKpwipbBg"
                                                     >
                                                       mynigerianprojects.com
                                                     </a>
                                                   </td>
                                                 </tr>
-                                                <!--  terms and privacy -->
                                                 <tr>
                                                   <td
                                                     align="center"
@@ -1407,7 +1400,6 @@ const emailFooter = `
                     </table>
                   </td>
                 </tr>
-                <!-- FOOTER ENDS-->
               </tbody>
             </table>
           </td>
