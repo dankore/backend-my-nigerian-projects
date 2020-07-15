@@ -383,7 +383,12 @@ User.getProfileById = id => {
           },
         }
       );
-      userDoc.avatar = `https://gravatar.com/avatar/${md5(userDoc.email)}?s=128`;
+
+      // CHECK TO SEE IF USER UPLOADED A CUSTOM PROFILE PICTURE
+      if(!userDoc.avatar){
+        userDoc.avatar = `https://gravatar.com/avatar/${md5(userDoc.email)}?s=128`;
+      } 
+
       resolve(userDoc);
     } catch (error) {
       reject(error);
