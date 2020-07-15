@@ -468,8 +468,10 @@ Project.prototype.addBid = function () {
             status: 'Success',
             bidId,
           });
-          // EMAIL
+          // EMAIL ONWER OF PROJECT
           new Email().sendEmailToOwnerOfProjectAboutNewBid(info.value._id, info.value.title, info.value.email, bidId);
+          // EMAIL ALL THOSE WHO BIDDED ON THE PROJECT
+          new Email().sendEmailToThoseWhoBidded(info.value._id, info.value.title, info.value.bids, bidId);
         })
         .catch(() => {
           reject('Adding bid failed.');
