@@ -959,7 +959,9 @@ Email.prototype.changePasswordSuccess = userData => {
                           >
                            If you did not changed your password, secure your account by resetting your password:
                            </td>
-                          <td
+                        </tr>
+                        <tr>
+                           <td
                             style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                             valign="top"
                           >
