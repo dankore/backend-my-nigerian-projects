@@ -563,8 +563,9 @@ User.prototype.replaceOldPasswordWithNew = function () {
           returnOriginal: false,
         }
       );
+      
       resolve('Success');
-      console.log(user.value);
+   
       new Email().sendResetPasswordSuccess(user.value);
     } catch (error) {
       reject(error);

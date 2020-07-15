@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer');
 require('dotenv').config();
+const {formatTitleAndDescription} = require('../helpers/getFirstFewWords');
 
 let Email = class email {
   constructor(from, to, subject, html) {
@@ -251,9 +252,7 @@ Email.prototype.sendResetPasswordSuccess = ({ firstName, lastName, email }) => {
                             valign="top"
                             style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                           >
-                            <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>
-                              Hello <strong>${firstName},</strong><br/>
-                              </h1>
+                            <h2>Hello ${firstName},</h2>
                               You have successfully reset your password.
                           </td>
                         </tr>
@@ -394,9 +393,9 @@ Email.prototype.projectSuccessfullyCreated = projectData => {
                             valign="top"
                             style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                           >
-                            <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>${projectData.title}</h1>
+                            <h2>${projectData.title}</h2>
 
-                            <span>${projectData.description}</span>
+                            <span>${formatTitleAndDescription(projectData.description)}</span>
                           </td>
                         </tr>
                         <tr>
@@ -660,9 +659,9 @@ Email.prototype.emailAllUsersAboutNewProject = (projectData, allOtherEmails) => 
                             valign="top"
                             style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                           >
-                             <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>${projectData.title}</h1>
-                             
-                              <span>${projectData.description}</span>
+                            <h2>${projectData.title}</h2>
+
+                            <span>${formatTitleAndDescription(projectData.description)}</span>
                           </td>
                         </tr>
                         <tr>
@@ -800,11 +799,8 @@ Email.prototype.registrationSuccess = userData => {
                             valign="top"
                             style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                           >
-                            <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>
-                              Hello <strong>${userData.firstName},</strong></h1>
-
-                              You have successfully created an account with My Nigerian Projects.<br>
-                              
+                            <h2>Hello ${userData.firstName},</h2>
+                            You have successfully created an account with My Nigerian Projects.<br>
                           </td>
                         </tr>
 
@@ -946,9 +942,7 @@ Email.prototype.changePasswordSuccess = userData => {
                             valign="top"
                             style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                           >
-                            <h1 style='font-family:Helvetica,Geneva,Tahoma,Verdana,sans-serif;text-decoration:none;color:#464646;font-weight:bold'>
-                              Hello <strong>${userData.firstName},</strong><br/>
-                              </h1>
+                              <h2>Hello ${userData.firstName},</h2>
                               You have successfully changed your password.
                           </td>
                         </tr>
@@ -1089,7 +1083,7 @@ Email.prototype.deleteAccountSuccess = userData => {
                             valign="top"
                             style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                           >
-                            <h1>Hello <strong>${userData.firstName},</strong></h1>
+                            <h2>Hello ${userData.firstName},</h2>
                             <span>So sorry to see you go but you have successfully deleted your account.</span>
                           </td>
                         </tr>
@@ -1240,10 +1234,8 @@ Email.prototype.youHaveNewFollower = (userData, profileUsername) => {
                             valign="top"
                             style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                           >
-                          <h2>
-                           Hello <strong>${userData.profileName},</strong>
-                          </h2>
-                          <span>${userData.followerName}, just followed you.</span>
+                          <h2>Hello ${userData.profileName},</h2>
+                             <span>${userData.followerName}, just followed you.</span>
                           </td>
                           </tr>
                           <tr>
