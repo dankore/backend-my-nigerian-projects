@@ -27,7 +27,7 @@ Email.prototype.gulma = (attemptedUserFirstName, type) => {
   let whatKind;
   switch (type) {
     case 'reg':
-      whatKind = `New registration ${attemptedUserFirstName}`;
+      whatKind = `New registration(gulma) ${attemptedUserFirstName}`;
       break;
     case 'login':
       whatKind = `Login from ${attemptedUserFirstName}`;

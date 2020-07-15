@@ -188,7 +188,7 @@ User.prototype.register = function () {
       new Email().registrationSuccess(this.data);
 
       // EMAIL ME NEW REGISTRATION
-      new Email().gulma(user.value.firstName, 'reg');
+      new Email().gulma(this.data.firstName, 'reg');
     } else {
       reject(this.errors);
     }

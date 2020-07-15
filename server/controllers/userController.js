@@ -28,6 +28,7 @@ exports.apiRegister = (req, res) => {
         firstName: user.data.firstName,
         lastName: user.data.lastName,
         avatar: user.avatar,
+        userCreationDate: new Date(ObjectID(user.data._id).getTimestamp()).toISOString().substring(0, 10),
       });
     })
     .catch(err => {
