@@ -558,29 +558,36 @@ Project.prototype.saveEditedBid = function () {
   });
 };
 
-
 Project.findAllUserBids = userId => {
   return new Promise(async (resolve, reject) => {
     try {
-       const res = await projectsCollection.find(
-           {},
-           {
-               projection: {
-                   _id: 0,
-                   bids: 1
-               }
-           }
-           ).toArray()
+      const res = await projectsCollection
+        .find(
+          {},
+          {
+            projection: {
+              bids: 1,
+            },
+          }
+        )
+        .toArray();
 
-          
-           res.map(bids => {
-               console.log(bids)
-           })
-           
-       
+      let userBids = [];
 
-       
-      resolve();
+      res.map(async arrayOfBids => {
+        //  NEEDS TO BE ASYNC
+        let projectId = arrayOfBids._id;
+        if (arrayOfBids.bids) {
+          arrayOfBids.bids.map(bid => {
+            if (bid.bidAuthor.authorId == '5f0f3b9c952d3e00041d30f0') {
+              bid.projectId = projectId;
+              userBids = userBids.concat(bid);
+            }
+          });
+        }
+      });
+
+      resolve(userBids);
     } catch (error) {
       reject('Sorry, your bid was not deleted. Please try again.');
     }
