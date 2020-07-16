@@ -579,7 +579,7 @@ Project.findAllUserBids = userId => {
         let projectId = arrayOfBids._id;
         if (arrayOfBids.bids) {
           arrayOfBids.bids.map(bid => {
-            if (bid.bidAuthor.authorId == '5f0f3b9c952d3e00041d30f0') {
+            if (bid.bidAuthor.authorId == userId) {
               bid.projectId = projectId;
               userBids = userBids.concat(bid);
             }
