@@ -589,7 +589,7 @@ Project.findAllUserBids = userId => {
 
       resolve(userBids);
     } catch (error) {
-      reject('Sorry, your bid was not deleted. Please try again.');
+      reject(error);
     }
   });
 };
