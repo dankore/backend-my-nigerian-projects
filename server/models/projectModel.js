@@ -558,5 +558,34 @@ Project.prototype.saveEditedBid = function () {
   });
 };
 
+
+Project.findAllUserBids = userId => {
+  return new Promise(async (resolve, reject) => {
+    try {
+       const res = await projectsCollection.find(
+           {},
+           {
+               projection: {
+                   _id: 0,
+                   bids: 1
+               }
+           }
+           ).toArray()
+
+          
+           res.map(bids => {
+               console.log(bids)
+           })
+           
+       
+
+       
+      resolve();
+    } catch (error) {
+      reject('Sorry, your bid was not deleted. Please try again.');
+    }
+  });
+};
+
 // EXPORT THIS FILE
 module.exports = Project;

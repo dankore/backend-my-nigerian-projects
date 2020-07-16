@@ -154,6 +154,16 @@ exports.apiGetProjectsByUsername = async (req, res) => {
   }
 };
 
+exports.apiGetUserBids = async (req, res) => {
+  try {
+    let authorDoc = await User.findByUsername(req.params.username);
+    let bids = await Project.findAllUserBids(authorDoc._id);
+    res.json(bids);
+  } catch {
+    res.status(500).send('Invalid user requested.');
+  }
+};
+
 exports.profileFollowers = async (req, res) => {
   try {
     let followers = await Follow.getFollowersById(req.profileUser._id);

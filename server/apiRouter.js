@@ -24,6 +24,7 @@ apiRouter.get('/profile/:username/followers', userController.ifUserExists, userC
 apiRouter.get('/profile/:username/following', userController.ifUserExists, userController.profileFollowing);
 apiRouter.post('/updateProfileInfo', userController.apiMustBeLoggedIn, userController.updateProfileInfo);
 apiRouter.post('/getProfileById', userController.apiGetProfileById);
+apiRouter.get('/profile/:username/bids', userController.ifUserExists, userController.apiGetUserBids)
 
 // ACCOUNT
 apiRouter.post('/delete-account', userController.apiMustBeLoggedIn, userController.apiDeleteAccount);
@@ -51,5 +52,7 @@ apiRouter.post('/create-bid', userController.apiMustBeLoggedIn, projectControlle
 apiRouter.post('/view-single-bid', projectController.apiGetSingleBid);
 apiRouter.delete('/delete-bid', userController.apiMustBeLoggedIn, projectController.apiDeleteBid);
 apiRouter.post('/edit-bid', userController.apiMustBeLoggedIn, projectController.apiEditBid);
+
+
 // EXPORT ROUTER CODE
 module.exports = apiRouter;
