@@ -558,5 +558,41 @@ Project.prototype.saveEditedBid = function () {
   });
 };
 
+Project.findAllUserBids = userId => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const res = await projectsCollection
+        .find(
+          {},
+          {
+            projection: {
+              bids: 1,
+            },
+          }
+        )
+        .toArray();
+
+      let userBids = [];
+
+      res.map(async arrayOfBids => {
+        //  NEEDS TO BE ASYNC
+        let projectId = arrayOfBids._id;
+        if (arrayOfBids.bids) {
+          arrayOfBids.bids.map(bid => {
+            if (bid.bidAuthor.authorId == userId) {
+              bid.projectId = projectId;
+              userBids = userBids.concat(bid);
+            }
+          });
+        }
+      });
+
+      resolve(userBids);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 // EXPORT THIS FILE
 module.exports = Project;
