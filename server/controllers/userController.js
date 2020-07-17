@@ -123,11 +123,13 @@ exports.sharedProfileData = async (req, res, next) => {
   let projectCountPromise = Project.countProjectsByAuthor(req.profileUser._id);
   let followerCountPromise = Follow.countFollowersById(req.profileUser._id);
   let followingCountPromise = Follow.countFollowingById(req.profileUser._id);
-  let [projectCount, followerCount, followingCount] = await Promise.all([projectCountPromise, followerCountPromise, followingCountPromise]);
+  let bidsCountPromise = Project.findAllUserBids(req.profileUser._id);
+  let [projectCount, followerCount, followingCount, bidsCount] = await Promise.all([projectCountPromise, followerCountPromise, followingCountPromise, bidsCountPromise]);
 
   req.projectCount = projectCount;
   req.followerCount = followerCount;
   req.followingCount = followingCount;
+  req.bidsCount = bidsCount.length;
 
   next();
 };
@@ -140,7 +142,7 @@ exports.profileBasicData = (req, res) => {
     email: req.profileUser.email,
     profileAvatar: req.profileUser.avatar,
     isFollowing: req.isFollowing,
-    counts: { projectCount: req.projectCount, followerCount: req.followerCount, followingCount: req.followingCount },
+    counts: { projectCount: req.projectCount, followerCount: req.followerCount, followingCount: req.followingCount, bidsCount: req.bidsCount },
   });
 };
 
