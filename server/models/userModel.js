@@ -9,7 +9,7 @@ const Email = require('../emailNotifications/Emails');
 const crypto = require('crypto');
 
 let User = class user {
-  constructor(data, getAvatar) {
+  constructor (data, getAvatar) {
     this.data = data;
     this.errors = [];
     if (getAvatar == undefined) {
@@ -385,9 +385,9 @@ User.getProfileById = id => {
       );
 
       // CHECK TO SEE IF USER UPLOADED A CUSTOM PROFILE PICTURE
-      if(!userDoc.avatar){
+      if (!userDoc.avatar) {
         userDoc.avatar = `https://gravatar.com/avatar/${md5(userDoc.email)}?s=128`;
-      } 
+      }
 
       resolve(userDoc);
     } catch (error) {
@@ -563,9 +563,9 @@ User.prototype.replaceOldPasswordWithNew = function () {
           returnOriginal: false,
         }
       );
-      
+
       resolve('Success');
-   
+
       new Email().sendResetPasswordSuccess(user.value);
     } catch (error) {
       reject(error);
@@ -597,5 +597,11 @@ User.ChangeAvatar = data => {
       });
   });
 };
+
+User.recoverUsername = (email) => {
+  return new Promise(async (resolve, reject) => {
+    console.log({ email })
+  })
+}
 
 module.exports = User;
