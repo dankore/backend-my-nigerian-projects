@@ -592,8 +592,6 @@ Project.findAllUserBids = userId => {
         }
       });
 
-      // console.log({ userBids });
-
       resolve(userBids);
     } catch (error) {
       reject(error);
