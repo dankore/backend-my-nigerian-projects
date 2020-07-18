@@ -7,6 +7,7 @@ const bcrypt = require('bcryptjs');
 const md5 = require('md5');
 const Email = require('../emailNotifications/Emails');
 const crypto = require('crypto');
+const { response } = require('express');
 
 let User = class user {
   constructor (data, getAvatar) {
@@ -601,6 +602,19 @@ User.ChangeAvatar = data => {
 User.recoverUsername = (email) => {
   return new Promise(async (resolve, reject) => {
     console.log({ email })
+    // TODO PERFORM CHECKS
+    usersCollection.findOne(
+      { email: email },
+      {
+        projection: {
+          _id: 0,
+          username: 1
+        }
+      }
+    ).then(response => {
+      console.log({ response })
+      // SEND EMAIL
+    })
   })
 }
 
