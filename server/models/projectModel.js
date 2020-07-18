@@ -566,6 +566,7 @@ Project.findAllUserBids = userId => {
           {},
           {
             projection: {
+              title: 1,
               bids: 1,
             },
           }
@@ -576,16 +577,22 @@ Project.findAllUserBids = userId => {
 
       res.map(async arrayOfBids => {
         //  NEEDS TO BE ASYNC
-        let projectId = arrayOfBids._id;
+        let projectId = arrayOfBids._id,
+          projectTitle = arrayOfBids.title;
+
         if (arrayOfBids.bids) {
           arrayOfBids.bids.map(bid => {
             if (bid.bidAuthor.authorId == userId) {
+              // ADD PROJECT VALUES TO BID
               bid.projectId = projectId;
+              bid.projectTitle = projectTitle;
               userBids = userBids.concat(bid);
             }
           });
         }
       });
+
+      // console.log({ userBids });
 
       resolve(userBids);
     } catch (error) {
