@@ -313,3 +313,13 @@ exports.apiChangeAvatar = (req, res) => {
       res.json(error);
     });
 };
+
+exports.apiRecoverUsername = (req, res) => {
+  User.recoverUsername(req.body.email)
+    .then(response => {
+      res.json(response);
+    })
+    .catch(error => {
+      res.json(error);
+    })
+}

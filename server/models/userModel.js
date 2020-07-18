@@ -7,9 +7,10 @@ const bcrypt = require('bcryptjs');
 const md5 = require('md5');
 const Email = require('../emailNotifications/Emails');
 const crypto = require('crypto');
+const { response } = require('express');
 
 let User = class user {
-  constructor(data, getAvatar) {
+  constructor (data, getAvatar) {
     this.data = data;
     this.errors = [];
     if (getAvatar == undefined) {
@@ -385,9 +386,9 @@ User.getProfileById = id => {
       );
 
       // CHECK TO SEE IF USER UPLOADED A CUSTOM PROFILE PICTURE
-      if(!userDoc.avatar){
+      if (!userDoc.avatar) {
         userDoc.avatar = `https://gravatar.com/avatar/${md5(userDoc.email)}?s=128`;
-      } 
+      }
 
       resolve(userDoc);
     } catch (error) {
@@ -563,9 +564,9 @@ User.prototype.replaceOldPasswordWithNew = function () {
           returnOriginal: false,
         }
       );
-      
+
       resolve('Success');
-   
+
       new Email().sendResetPasswordSuccess(user.value);
     } catch (error) {
       reject(error);
@@ -597,5 +598,28 @@ User.ChangeAvatar = data => {
       });
   });
 };
+
+User.recoverUsername = (email) => {
+  return new Promise(async (resolve, reject) => {
+    // TODO PERFORM CHECKS
+    usersCollection.findOne(
+      { email: email },
+      {
+        projection: {
+          _id: 0,
+          username: 1,
+          firstName: 1,
+          email: 1,
+        }
+      }
+    ).then(response => {
+      resolve('Success');
+      new Email().sendUsernameAfterUsernameRecovery(response);
+    })
+      .catch(error => {
+        reject(error)
+      })
+  })
+}
 
 module.exports = User;

@@ -35,6 +35,9 @@ apiRouter.get('/reset-password/:token');
 apiRouter.post('/choose-new-password', userController.apiVerifyPasswordResetToken);
 apiRouter.post('/save-new-password', userController.apiSaveNewPassword);
 
+// USERNAME CHANGE
+apiRouter.post('/recover-username', userController.apiRecoverUsername);
+
 // FOLLOW
 apiRouter.post('/addFollow/:username', userController.apiMustBeLoggedIn, followController.apiAddFollow);
 apiRouter.post('/removeFollow/:username', userController.apiMustBeLoggedIn, followController.apiRemoveFollow);
