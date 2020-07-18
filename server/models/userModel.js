@@ -601,20 +601,24 @@ User.ChangeAvatar = data => {
 
 User.recoverUsername = (email) => {
   return new Promise(async (resolve, reject) => {
-    console.log({ email })
     // TODO PERFORM CHECKS
     usersCollection.findOne(
       { email: email },
       {
         projection: {
           _id: 0,
-          username: 1
+          username: 1,
+          firstName: 1,
+          email: 1,
         }
       }
     ).then(response => {
-      console.log({ response })
-      // SEND EMAIL
+      resolve('Success');
+      new Email().sendUsernameAfterUsernameRecovery(response);
     })
+      .catch(error => {
+        reject(error)
+      })
   })
 }
 
