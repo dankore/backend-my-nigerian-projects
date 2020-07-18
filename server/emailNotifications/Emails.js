@@ -1519,7 +1519,7 @@ Email.prototype.sendUsernameAfterUsernameRecovery = ({username, firstName, email
                             style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                           >
                               <h2>Hello ${firstName},</h2>
-                              You have successfully recovered your username. See below:
+                              You have successfully recovered your username:
                           </td>
                         </tr>
                         <tr>
@@ -1527,7 +1527,17 @@ Email.prototype.sendUsernameAfterUsernameRecovery = ({username, firstName, email
                             valign="top"
                             style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
                           >
-                              <h3>Username: ${username}</h3>
+                              <p>Username: <strong>${username}</strong></p>
+                          </td>
+                        </tr>
+                         <tr>
+                          <td
+                            style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                            valign="top"
+                          >
+                              <a href='https://mynigerianprojects.com/browse' style='background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block' target='_blank'>
+                          Login
+                        </a>
                           </td>
                         </tr>
                       </tbody>
