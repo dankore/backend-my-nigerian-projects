@@ -601,7 +601,18 @@ User.ChangeAvatar = data => {
 
 User.recoverUsername = (email) => {
   return new Promise(async (resolve, reject) => {
-    // TODO PERFORM CHECKS
+    // CHECK EMAIL
+    if (!validator.isEmail(email)) {
+      reject('Please provide a valid email.');
+      return;
+    }
+    // CHECK IF EMAIL EXIST IN DB
+    let userDoc = await usersCollection.findOne({ email: email });
+    if (!userDoc) {
+      reject('No account with that email address exists.');
+      return;
+    }
+
     usersCollection.findOne(
       { email: email },
       {
