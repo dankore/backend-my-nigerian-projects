@@ -427,32 +427,30 @@ User.deleteAccount = (userId, userData) => {
 
 User.prototype.resetPassword = function (url) {
   return new Promise(async (resolve, reject) => {
-    // CHECK EMAIL
-    if (!validator.isEmail(this.data.email)) {
-      reject('Please provide a valid email.');
-      return;
-    }
-    // CHECK IF EMAIL EXIST IN DB
-    let userDoc = await usersCollection.findOne({ email: this.data.email });
-    if (!userDoc) {
-      this.errors.push('No account with that email address exists.');
-    }
+    // VALIDATION CHECK
+    await this.validateEmail();
 
     if (!this.errors.length) {
       const token = await User.cryptoRandomData();
       const resetPasswordExpires = Date.now() + 3600000; // 1 HR EXPIRY
       // ADD TOKEN AND EXPIRY TO DB
-      await usersCollection.findOneAndUpdate(
+      const response = await usersCollection.findOneAndUpdate(
         { email: this.data.email },
         {
           $set: {
             resetPasswordToken: token,
             resetPasswordExpires: resetPasswordExpires,
           },
+        },
+        {
+            projection: {
+                _id: 0,
+                firstName: 1
+            }
         }
       );
       // SEND ATTEMPTED USER THE TOKEN
-      new Email().sendResetPasswordToken(this.data.email, userDoc.firstName, url, token);
+      new Email().sendResetPasswordToken(this.data.email, response.value.firstName, url, token);
       resolve('Success');
     } else {
       reject(this.errors);
@@ -599,37 +597,48 @@ User.ChangeAvatar = data => {
   });
 };
 
-User.recoverUsername = (email) => {
-  return new Promise(async (resolve, reject) => {
-    // CHECK EMAIL
-    if (!validator.isEmail(email)) {
-      reject('Please provide a valid email.');
-      return;
-    }
-    // CHECK IF EMAIL EXIST IN DB
-    let userDoc = await usersCollection.findOne({ email: email });
-    if (!userDoc) {
-      reject('No account with that email address exists.');
-      return;
-    }
 
-    usersCollection.findOne(
-      { email: email },
-      {
-        projection: {
-          _id: 0,
-          username: 1,
-          firstName: 1,
-          email: 1,
+User.prototype.validateEmail = function() {
+    return new Promise(async(resolve, reject)=> {
+        // CHECK EMAIL
+        if (!validator.isEmail(this.data.email)) {
+            this.errors.push('Please provide a valid email. ');
         }
-      }
-    ).then(response => {
-      resolve('Success');
-      new Email().sendUsernameAfterUsernameRecovery(response);
+
+        // CHECK IF EMAIL EXISTS IN DB
+        let userDoc = await usersCollection.findOne({ email: this.data.email });
+        if (!userDoc) {
+            this.errors.push('No account with that email address exists.');
+        }
+        resolve();
     })
-      .catch(error => {
-        reject(error)
-      })
+}
+User.prototype.recoverUsername = function() {
+  return new Promise(async (resolve, reject) => {
+    // VALIDATION CHECK
+    await this.validateEmail();
+
+    if(!this.errors.length){
+        usersCollection.findOne(
+        { email: this.data.email },
+        {
+            projection: {
+            _id: 0,
+            username: 1,
+            firstName: 1,
+            email: 1,
+            }
+        }
+        ).then(response => {
+        resolve('Success');
+        new Email().sendUsernameAfterUsernameRecovery(response);
+        })
+        .catch(error => {
+            reject(error)
+        })
+    } else {
+        reject(this.errors);
+    }
   })
 }
 

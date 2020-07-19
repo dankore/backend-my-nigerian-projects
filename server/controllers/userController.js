@@ -315,7 +315,9 @@ exports.apiChangeAvatar = (req, res) => {
 };
 
 exports.apiRecoverUsername = (req, res) => {
-  User.recoverUsername(req.body.email)
+  let user = new User(req.body);
+
+  user.recoverUsername()
     .then(response => {
       res.json(response);
     })
