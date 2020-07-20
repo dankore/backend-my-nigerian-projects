@@ -183,7 +183,7 @@ User.prototype.register = function () {
       // INSERT DATA INTO DB
       await usersCollection.insertOne(this.data);
       this.getAvatar();
-      resolve('Model: User created.');
+      resolve('Success');
 
       // SEND EMAIL
       new Email().registrationSuccess(this.data);

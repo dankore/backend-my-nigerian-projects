@@ -9,6 +9,7 @@ const tokenLasts = '30d';
 
 exports.apiRegister = (req, res) => {
   let user = new User(req.body);
+  console.log({user})
   user
     .register()
     .then(response => {
@@ -32,7 +33,7 @@ exports.apiRegister = (req, res) => {
       });
     })
     .catch(err => {
-      res.status(500).send('Error');
+      res.json({failure: err})
     });
 };
 
