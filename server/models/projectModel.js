@@ -469,9 +469,9 @@ Project.prototype.addBid = function () {
             bidId,
           });
           // EMAIL ONWER OF PROJECT
-          new Email().sendEmailToOwnerOfProjectAboutNewBid(info.value._id, info.value.title, info.value.email, bidId);
+          // new Email().sendEmailToOwnerOfProjectAboutNewBid(info.value._id, info.value.title, info.value.email, bidId);
           // EMAIL ALL THOSE WHO BIDDED ON THE PROJECT
-          new Email().sendEmailToThoseWhoBidded(info.value._id, info.value.title, info.value.bids, bidId);
+          // new Email().sendEmailToThoseWhoBidded(info.value._id, info.value.title, info.value.bids, bidId);
         })
         .catch(() => {
           reject('Adding bid failed.');
@@ -544,9 +544,33 @@ Project.prototype.saveEditedBid = function () {
           },
           {
             arrayFilters: [{ 'elem.id': new ObjectID(this.data.bidId) }],
+            projection: {
+              email: 1,
+              title: 1,
+              bids: 1,
+            },
+            returnOriginal: true,
           }
         )
-        .then(_ => {
+        .then(info => {
+          // console.log(info.value);
+          let bidOfInterest = info.value.bids.filter(bid => bid.id == this.data.bidId);
+          
+
+          function bidItemsTotal (array) {
+            if(Array.isArray(array)){
+                return array.reduce((total, currentElem) => {
+                const currentTotal = +currentElem.quantity * +currentElem.price_per_item;
+                return total + currentTotal;
+              }, 0);
+            }
+          }
+
+          const oldBidItemsTotal = bidItemsTotal(bidOfInterest[0].items);
+          const editedBidItemsTotal = bidItemsTotal(this.data.items);
+          console.log(oldBidItemsTotal, editedBidItemsTotal);
+
+
           resolve('Success');
         })
         .catch(error => {
