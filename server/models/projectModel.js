@@ -6,6 +6,7 @@ const User = require('./userModel');
 const sanitizeHTML = require('sanitize-html');
 const Email = require('../emailNotifications/Emails');
 const validator = require('validator');
+const { bidItemsTotal } = require('../helpers/jsHelpers');
 
 let Project = function (data, userid, requestedProjectId) {
   this.data = data;
@@ -553,23 +554,18 @@ Project.prototype.saveEditedBid = function () {
           }
         )
         .then(info => {
-          // console.log(info.value);
           let bidOfInterest = info.value.bids.filter(bid => bid.id == this.data.bidId);
           
-
-          function bidItemsTotal (array) {
-            if(Array.isArray(array)){
-                return array.reduce((total, currentElem) => {
-                const currentTotal = +currentElem.quantity * +currentElem.price_per_item;
-                return total + currentTotal;
-              }, 0);
-            }
-          }
-
           const oldBidItemsTotal = bidItemsTotal(bidOfInterest[0].items);
           const editedBidItemsTotal = bidItemsTotal(this.data.items);
-          console.log(oldBidItemsTotal, editedBidItemsTotal);
-
+          
+          if(editedBidItemsTotal < oldBidItemsTotal){
+            // SEND EMAIL
+            console.log(oldBidItemsTotal, editedBidItemsTotal);
+            console.log(bidOfInterest[0].bidAuthor.username);
+            // EMAIL ALL THOSE WHO BIDDED ON THE PROJECT
+            // new Email().lowerBidAmountEmailToBidders(info.value._id, info.value.title, info.value.bids, bidId, bidOfInterest[0].bidAuthor.username);
+          }
 
           resolve('Success');
         })

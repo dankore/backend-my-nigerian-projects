@@ -875,6 +875,151 @@ Email.prototype.sendEmailToThoseWhoBidded = (projectId, projectTitle, bids, bidI
   }
 };
 
+Email.prototype.lowerBidAmountEmailToBidders = (projectId, projectTitle, bids, bidId, usernameEditedBid) => {
+  // SEND EMAIL TO EACH USER
+  for (let i = 0; i < bids.length; i++) {
+    const email = bids[i].email;
+    const username = bids[i].bidAuthor.username;
+
+      const data = {
+        from: '"My Nigerian Projects" <thebiddingapp@gmail.com>',
+        to: email,
+        subject: `${usernameEditedBid} Lowered Their Bidding Amount | My Nigerian Projects`,
+        html: `${emailHeader}
+        <tr>
+          <td
+            valign="top"
+            id="m_-5334885316815523950templateHeader"
+            style="background:#ffffff none no-repeat center/cover;background-color:#ffffff;background-image:none;background-repeat:no-repeat;background-position:center;background-size:cover;border-top:0;border-bottom:0;padding-top:0px;padding-bottom:0"
+          >
+            <table
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              width="100%"
+              style="border-collapse:collapse"
+            ></table>
+            <table
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              width="100%"
+              style="border-collapse:collapse"
+            >
+              <tbody>
+                <tr>
+                  <td valign="top"></td>
+                </tr>
+              </tbody>
+            </table>
+            <table
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              width="100%"
+              style="min-width:100%;border-collapse:collapse"
+            >
+              <tbody>
+                <tr>
+                  <td valign="top">
+                    <table
+                      align="left"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      width="100%"
+                      style="min-width:100%;border-collapse:collapse"
+                    >
+                      <tbody>
+                        <tr>
+                          <td
+                            style="padding-top:9px;padding-left:18px;padding-bottom:9px;padding-right:18px"
+                          >
+                            <table
+                              border="0"
+                              cellspacing="0"
+                              width="100%"
+                              style="min-width:100%!important;border:10px solid #ffffff;border-collapse:collapse"
+                            >
+                              <tbody>
+                                <tr>
+                                  <td
+                                    valign="top"
+                                    style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                                  >
+                                    <h2>Hello ${username},</h2>
+
+                                    <span>${usernameEditedBid} lowered their bidding amount on the project you bidded earlier with the title <strong>'${projectTitle}.'</strong></span>
+                                    <p>Consider lowering your bidding amount to stay competitive in the selection process.</p>
+                                    <p>View the new bid:</p>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td
+                                    style="padding:18px;color:#241c15;font-family:Helvetica;font-size:20px;font-weight:normal;text-align:left;word-break:break-word;line-height:150%"
+                                    valign="top"
+                                  >
+                                    <a
+                                      href="https://mynigerianprojects.com/${projectId}/bid/${bidId}"
+                                      style="background:#0060df;color:#fff;text-decoration:none;border:14px solid #0060df;border-left-width:50px;border-right-width:50px;display:inline-block"
+                                      target="_blank"
+                                    >
+                                      View the New Bid on My Nigerian Projects
+                                    </a>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              width="100%"
+              style="min-width:100%;border-collapse:collapse;table-layout:fixed!important"
+            >
+              <tbody>
+                <tr>
+                  <td style="min-width:100%;padding:9px 18px 18px">
+                    <table
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      width="100%"
+                      style="min-width:100%;border-collapse:collapse"
+                    >
+                      <tbody>
+                        <tr>
+                          <td>
+                            <span></span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        ${emailFooter}
+          `,
+      };
+      transporter.sendMail(data, (err, info) => {
+        if (err) console.log(err);
+        else console.log(`Lower Bid Amount Email To Bidders: Email #${i + 1} to ${email}: ` + info.response);
+      });
+  }
+};
+
 Email.prototype.registrationSuccess = userData => {
   const data = {
     from: '"My Nigerian Projects" <thebiddingapp@gmail.com>',
