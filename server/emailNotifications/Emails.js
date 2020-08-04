@@ -875,12 +875,13 @@ Email.prototype.sendEmailToThoseWhoBidded = (projectId, projectTitle, bids, bidI
   }
 };
 
-Email.prototype.lowerBidAmountEmailToBidders = (projectId, projectTitle, bids, bidId, usernameEditedBid) => {
+Email.prototype.lowerBidAmountEmailToBidders = (projectId, projectTitle, bids, bidId, usernameEditedBid, emailEditedBid) => {
   // SEND EMAIL TO EACH USER
   for (let i = 0; i < bids.length; i++) {
     const email = bids[i].email;
     const username = bids[i].bidAuthor.username;
-
+    
+    if(email !== emailEditedBid){
       const data = {
         from: '"My Nigerian Projects" <thebiddingapp@gmail.com>',
         to: email,
@@ -950,8 +951,10 @@ Email.prototype.lowerBidAmountEmailToBidders = (projectId, projectTitle, bids, b
                                     <h2>Hello ${username},</h2>
 
                                     <span>${usernameEditedBid} lowered their bidding amount on the project you bidded earlier with the title <strong>'${projectTitle}.'</strong></span>
+                                    
                                     <p>Consider lowering your bidding amount to stay competitive in the selection process.</p>
-                                    <p>View the new bid:</p>
+
+                                    <p>View ${usernameEditedBid}'s bid:</p>
                                   </td>
                                 </tr>
                                 <tr>
@@ -1017,6 +1020,7 @@ Email.prototype.lowerBidAmountEmailToBidders = (projectId, projectTitle, bids, b
         if (err) console.log(err);
         else console.log(`Lower Bid Amount Email To Bidders: Email #${i + 1} to ${email}: ` + info.response);
       });
+   }
   }
 };
 
