@@ -119,11 +119,11 @@ Project.prototype.create = function () {
           resolve(info.ops[0]._id);
 
           // // SEND EMAIL TO USER WHO CREATED PROJECT
-          // new Email().projectSuccessfullyCreated(info.ops[0]);
+          new Email().projectSuccessfullyCreated(info.ops[0]);
 
           // // SEND EMAIL TO ALL OTHER USERS
-          // const emails = await this.getAllUserEmails();
-          // new Email().emailAllUsersAboutNewProject(info.ops[0], emails);
+          const emails = await this.getAllUserEmails();
+          new Email().emailAllUsersAboutNewProject(info.ops[0], emails);
         })
         .catch(() => {
           this.errors.push('Please try again later.');
@@ -470,9 +470,9 @@ Project.prototype.addBid = function () {
             bidId,
           });
           // EMAIL ONWER OF PROJECT
-          // new Email().sendEmailToOwnerOfProjectAboutNewBid(info.value._id, info.value.title, info.value.email, bidId);
+          new Email().sendEmailToOwnerOfProjectAboutNewBid(info.value._id, info.value.title, info.value.email, bidId);
           // EMAIL ALL THOSE WHO BIDDED ON THE PROJECT
-          // new Email().sendEmailToThoseWhoBidded(info.value._id, info.value.title, info.value.bids, bidId);
+          new Email().sendEmailToThoseWhoBidded(info.value._id, info.value.title, info.value.bids, bidId);
         })
         .catch(() => {
           reject('Adding bid failed.');
@@ -554,7 +554,10 @@ Project.prototype.saveEditedBid = function () {
           }
         )
         .then(info => {
-          let bidOfInterest = info.value.bids.filter(bid => bid.id == this.data.bidId);
+
+          resolve('Success');
+
+          const bidOfInterest = info.value.bids.filter(bid => bid.id == this.data.bidId);
           
           const oldBidItemsTotal = bidItemsTotal(bidOfInterest[0].items);
           const editedBidItemsTotal = bidItemsTotal(this.data.items);
@@ -563,8 +566,6 @@ Project.prototype.saveEditedBid = function () {
             // EMAIL ALL THOSE WHO BIDDED ON THE PROJECT
             new Email().lowerBidAmountEmailToBidders(info.value._id, info.value.title, info.value.bids, bidOfInterest[0].id, bidOfInterest[0].bidAuthor.username, bidOfInterest[0].email );
           }
-
-          resolve('Success');
         })
         .catch(error => {
           reject(error);
