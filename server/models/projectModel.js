@@ -6,6 +6,7 @@ const User = require('./userModel');
 const sanitizeHTML = require('sanitize-html');
 const Email = require('../emailNotifications/Emails');
 const validator = require('validator');
+const { bidItemsTotal } = require('../helpers/jsHelpers');
 
 let Project = function (data, userid, requestedProjectId) {
   this.data = data;
@@ -152,9 +153,9 @@ Project.prototype.getAllUserEmails = function () {
       /**
          * GET ONLY EMAILS
          * @VARIABLE RESPONSE E.G   [
-         { email: 'adamu.dankore@gmail.com' },
-         { email: 'usmanfatima61@gmail.com' },
-         { email: 'zimmazone@yahoo.com' }
+         { email: 'email-1@gmail.com' },
+         { email: 'email-2@gmail.com' },
+         { email: 'email-3@gmail.com' }
          ]
          */
       response.filter(userDoc => allEmails.push(userDoc.email));
@@ -544,10 +545,27 @@ Project.prototype.saveEditedBid = function () {
           },
           {
             arrayFilters: [{ 'elem.id': new ObjectID(this.data.bidId) }],
+            projection: {
+              email: 1,
+              title: 1,
+              bids: 1,
+            },
+            returnOriginal: true,
           }
         )
-        .then(_ => {
+        .then(info => {
+
           resolve('Success');
+
+          const bidOfInterest = info.value.bids.filter(bid => bid.id == this.data.bidId);
+          
+          const oldBidItemsTotal = bidItemsTotal(bidOfInterest[0].items);
+          const editedBidItemsTotal = bidItemsTotal(this.data.items);
+          
+          if(editedBidItemsTotal < oldBidItemsTotal){
+            // EMAIL ALL THOSE WHO BIDDED ON THE PROJECT
+            new Email().lowerBidAmountEmailToBidders(info.value._id, info.value.title, info.value.bids, bidOfInterest[0].id, bidOfInterest[0].bidAuthor.username, bidOfInterest[0].email );
+          }
         })
         .catch(error => {
           reject(error);
