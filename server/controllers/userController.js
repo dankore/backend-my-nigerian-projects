@@ -9,7 +9,7 @@ const tokenLasts = '30d';
 
 exports.apiRegister = (req, res) => {
   let user = new User(req.body);
-  console.log({user})
+
   user
     .register()
     .then(response => {
