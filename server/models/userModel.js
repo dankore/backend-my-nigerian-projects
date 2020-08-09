@@ -7,7 +7,6 @@ const bcrypt = require('bcryptjs');
 const md5 = require('md5');
 const Email = require('../emailNotifications/Emails');
 const crypto = require('crypto');
-const { response } = require('express');
 
 let User = class user {
   constructor (data, getAvatar) {
