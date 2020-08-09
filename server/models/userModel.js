@@ -35,7 +35,7 @@ User.prototype.cleanUpForNotRegisterApi = function () {
   }
 
   if (typeof this.data.lastName != 'string') {
-    this.data.firstName = '';
+    this.data.lastName = '';
   }
 
   // get rid of any bogus properties
