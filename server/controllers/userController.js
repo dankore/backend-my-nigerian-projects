@@ -60,6 +60,7 @@ exports.apiDoesEmailExist = (req, res) => {
 exports.apiCheckToken = (req, res) => {
   try {
     req.apiUser = jwt.verify(req.body.token, process.env.JWTSECRET);
+    res.json(true);
   } catch (error) {
     res.json(false);
   }
