@@ -14,13 +14,11 @@ let Email = class email {
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
   port: 465,
-  secure: false,
+  secure: true,
   auth: {
     user: 'thebiddingapp@gmail.com',
     pass: process.env.GMAILPW,
   },
-  debug: false,
-  logger: true,
 });
 
 transporter.verify((error, success) => {
