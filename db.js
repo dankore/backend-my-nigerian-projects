@@ -7,6 +7,6 @@ mongodb.connect(process.env.CONNECTIONSTRING, { useNewUrlParser: true, useUnifie
   const PORT = process.env.PORT || 8080;
   const server = require("./server/server");
   server.listen(PORT, () => {
-    console.log(`Listening on port number: ${PORT}`);
+    console.log(`Listening on PORT number: ${PORT}`);
   });
 });
