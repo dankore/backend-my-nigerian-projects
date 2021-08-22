@@ -9,7 +9,7 @@ const Email = require('../emailNotifications/Emails');
 const crypto = require('crypto');
 
 let User = class user {
-  constructor (data, getAvatar) {
+  constructor(data, getAvatar) {
     this.data = data;
     this.errors = [];
     if (getAvatar == undefined) {
@@ -442,10 +442,10 @@ User.prototype.resetPassword = function (url) {
           },
         },
         {
-            projection: {
-                _id: 0,
-                firstName: 1
-            }
+          projection: {
+            _id: 0,
+            firstName: 1,
+          },
         }
       );
       // SEND ATTEMPTED USER THE TOKEN
@@ -596,49 +596,50 @@ User.ChangeAvatar = data => {
   });
 };
 
+User.prototype.validateEmail = function () {
+  return new Promise(async (resolve, reject) => {
+    // CHECK EMAIL
+    if (!validator.isEmail(this.data.email)) {
+      this.errors.push('Please provide a valid email. ');
+    }
 
-User.prototype.validateEmail = function() {
-    return new Promise(async(resolve, reject)=> {
-        // CHECK EMAIL
-        if (!validator.isEmail(this.data.email)) {
-            this.errors.push('Please provide a valid email. ');
-        }
-
-        // CHECK IF EMAIL EXISTS IN DB
-        let userDoc = await usersCollection.findOne({ email: this.data.email });
-        if (!userDoc) {
-            this.errors.push('No account with that email address exists.');
-        }
-        resolve();
-    })
-}
-User.prototype.recoverUsername = function() {
+    // CHECK IF EMAIL EXISTS IN DB
+    let userDoc = await usersCollection.findOne({ email: this.data.email });
+    if (!userDoc) {
+      this.errors.push('No account with that email address exists.');
+    }
+    resolve();
+  });
+};
+User.prototype.recoverUsername = function () {
   return new Promise(async (resolve, reject) => {
     // VALIDATION CHECK
     await this.validateEmail();
 
-    if(!this.errors.length){
-        usersCollection.findOne(
-        { email: this.data.email },
-        {
+    if (!this.errors.length) {
+      usersCollection
+        .findOne(
+          { email: this.data.email },
+          {
             projection: {
-            _id: 0,
-            username: 1,
-            firstName: 1,
-            email: 1,
-            }
-        }
-        ).then(response => {
-        resolve('Success');
-        new Email().sendUsernameAfterUsernameRecovery(response);
+              _id: 0,
+              username: 1,
+              firstName: 1,
+              email: 1,
+            },
+          }
+        )
+        .then(response => {
+          resolve('Success');
+          new Email().sendUsernameAfterUsernameRecovery(response);
         })
         .catch(error => {
-            reject(error)
-        })
+          reject(error);
+        });
     } else {
-        reject(this.errors);
+      reject(this.errors);
     }
-  })
-}
+  });
+};
 
 module.exports = User;
