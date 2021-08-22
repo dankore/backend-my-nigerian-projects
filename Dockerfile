@@ -19,6 +19,7 @@ WORKDIR /app
 ENV NODE_ENV production
 
 COPY --from=builder /app/db.js ./db.js
+COPY --from=builder /app/server ./server
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 
