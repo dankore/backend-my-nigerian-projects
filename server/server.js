@@ -8,4 +8,4 @@ server.use(express.urlencoded({ extended: false }));
 server.use(express.json());
 server.use('/', apiRouter);
 
-module.exports = server;
+module.exports = server
