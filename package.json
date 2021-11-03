@@ -19,6 +19,6 @@
     "nodemailer": "^6.4.14",
     "nodemon": "^2.0.5",
     "sanitize-html": "^2.4.0",
-    "validator": "^13.1.17"
+    "validator": "^13.7.0"
   }
 }
